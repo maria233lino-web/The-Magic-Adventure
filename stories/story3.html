@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Story 3 - The Little Dragon's Friend</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+margin:0;
+padding:20px;
+background:linear-gradient(to bottom,#DFF6FF,#E8D5FF);
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+.section{
+background:white;
+padding:20px;
+margin-top:20px;
+border-radius:20px;
+box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+
+h1{
+text-align:center;
+color:#5A4FCF;
+}
+
+h2{
+color:#7A5FFF;
+}
+
+.card{
+display:inline-block;
+width:180px;
+margin:10px;
+padding:15px;
+background:#FFF8E7;
+border-radius:15px;
+text-align:center;
+vertical-align:top;
+}
+
+.card img{
+width:120px;
+height:120px;
+object-fit:cover;
+border-radius:10px;
+}
+
+button{
+background:#7A5FFF;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.back{
+background:#FF9F43;
+}
+
+.question-box{
+background:#F4F8FF;
+padding:15px;
+margin-top:15px;
+border-radius:10px;
+}
+
+.story-box{
+background:#FDFDFD;
+padding:20px;
+border-radius:15px;
+line-height:1.8;
+font-size:18px;
+}
+
+.feedback{
+font-weight:bold;
+margin-top:10px;
+}
+
+.correct{
+color:green;
+}
+
+.incorrect{
+color:red;
+}
+
+canvas{
+border:3px solid #7A5FFF;
+background:white;
+border-radius:10px;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<button class="back"
+onclick="window.location.href='../index.html'">
+🏠 Back to Home
+</button>
+
+<h1>🐉 Story 3: The Little Dragon's Friend</h1>
+
+<!-- BEFORE READING -->
+
+<div class="section">
+
+<h2>📚 Before Reading</h2>
+
+<p>
+Learn the vocabulary before reading.
+</p>
+
+<div class="card">
+
+<img src="../images/dragon.jpg">
+
+<h3>Dragon</h3>
+
+<button onclick="speak('Dragon. A magical flying creature.')">
+🔊 Listen
+</button>
+
+<p>A magical flying creature.</p>
+
+</div>
+
+<div class="card">
+
+<img src="../images/mountain.jpg">
+
+<h3>Mountain</h3>
+
+<button onclick="speak('Mountain. A very high hill.')">
+🔊 Listen
+</button>
+
+<p>A very high hill.</p>
+
+</div>
+
+<div class="card">
+
+<img src="../images/light.jpg">
+
+<h3>Light</h3>
+
+<button onclick="speak('Light. Something bright that helps us see.')">
+🔊 Listen
+</button>
+
+<p>Something bright that helps us see.</p>
+
+</div>
+
+<div class="card">
+
+<img src="../images/cave.jpg">
+
+<h3>Cave</h3>
+
+<button onclick="speak('Cave. A large hole in a mountain or rock.')">
+🔊 Listen
+</button>
+
+<p>A large hole in a mountain or rock.</p>
+
+</div>
+
+<div class="card">
+
+<img src="../images/crystal.jpg">
+
+<h3>Crystal</h3>
+
+<button onclick="speak('Crystal. A beautiful shiny stone.')">
+🔊 Listen
+</button>
+
+<p>A beautiful shiny stone.</p>
+
+</div>
+
+</div>
+
+<!-- VOCABULARY ACTIVITY -->
+
+<div class="section">
+
+<h2>🔍 Choose the Correct Definition</h2>
+
+<p>
+Choose the correct definition for each word.
+</p>
+
+<button onclick="resetGame()">
+🔄 Reset
+</button>
+
+<div class="question-box">
+
+<p><b>Dragon</b></p>
+
+<select onchange="checkSelect(this,'A magical flying creature','v1')">
+<option value="">Select...</option>
+<option>A magical flying creature</option>
+<option>A shiny stone</option>
+<option>A dark cave</option>
+</select>
+
+<div id="v1"></div>
+
+</div>
+
+<div class="question-box">
+
+<p><b>Mountain</b></p>
+
+<select onchange="checkSelect(this,'A very high hill','v2')">
+<option value="">Select...</option>
+<option>A very high hill</option>
+<option>A bright light</option>
+<option>A flying animal</option>
+</select>
+
+<div id="v2"></div>
+
+</div>
+
+<div class="question-box">
+
+<p><b>Light</b></p>
+
+<select onchange="checkSelect(this,'Something bright that helps us see','v3')">
+<option value="">Select...</option>
+<option>Something bright that helps us see</option>
+<option>A place to sleep</option>
+<option>A magical creature</option>
+</select>
+
+<div id="v3"></div>
+
+</div>
+
+<div class="question-box">
+
+<p><b>Cave</b></p>
+
+<select onchange="checkSelect(this,'A large hole in a mountain or rock','v4')">
+<option value="">Select...</option>
+<option>A large hole in a mountain or rock</option>
+<option>A shiny crystal</option>
+<option>A bird house</option>
+</select>
+
+<div id="v4"></div>
+
+</div>
+
+<div class="question-box">
+
+<p><b>Crystal</b></p>
+
+<select onchange="checkSelect(this,'A beautiful shiny stone','v5')">
+<option value="">Select...</option>
+<option>A beautiful shiny stone</option>
+<option>A scary monster</option>
+<option>A river</option>
+</select>
+
+<div id="v5"></div>
+
+</div>
+
+</div>
+
+<!-- WARM UP -->
+
+<div class="section">
+
+<h2>🗣️ Warm-Up</h2>
+
+<div class="question-box">
+🐉 Do you think dragons are friendly or scary?
+</div>
+
+<div class="question-box">
+💡 What would you do if you saw a mysterious light?
+</div>
+
+<div class="question-box">
+🕳️ Would you enter a cave to solve a mystery?
+</div>
+
+<div class="question-box">
+💎 Have you ever seen a crystal?
+</div>
+
+<div class="question-box">
+🤝 What makes someone a good friend?
+</div>
+
+</div>
+
+<!-- WHILE READING -->
+
+<div class="section">
+
+<h2>📖 While Reading</h2>
+
+<div class="story-box">
+
+<p>
+
+Far away, on a mountain, lived a little dragon named Ember.
+
+Every night, Ember saw a strange blue light in the forest.
+
+The light moved between the trees and then disappeared.
+
+The rabbits were scared.
+
+The birds stopped singing.
+
+Some animals thought the light was a monster.
+
+No one knew what the light was.
+
+Ember was curious.
+
+One morning, he decided to follow the light.
+
+He walked into the forest and found small glowing footprints.
+
+The footprints led him to a cave.
+
+Inside the cave, Ember saw the blue light again.
+
+Then he found a small creature with silver fur and blue eyes.
+
+The creature looked sad.
+
+"My name is Lumi," she said.
+
+"I am lost."
+
+Lumi explained that she came from the Crystal Valley.
+
+A strong storm had carried her far from home.
+
+The blue light was not dangerous.
+
+It was Lumi's magic glow.
+
+Ember smiled.
+
+"I will help you," he said.
+
+Together they traveled across hills and rivers.
+
+At last, they reached the Crystal Valley.
+
+Lumi's family was very happy to see her again.
+
+Before Ember left, Lumi gave him a small crystal.
+
+"Now you will always remember our friendship," she said.
+
+Ember returned to his mountain.
+
+Every night, the crystal glowed beside his window.
+
+The mysterious blue light was no longer a mystery.
+
+It was the beginning of a wonderful friendship.
+
+The End.
+
+</p>
+
+</div>
+
+<div style="margin-top:15px;">
+
+<button onclick="playStory(0.7)">
+🐢 Slow
+</button>
+
+<button onclick="playStory(1)">
+🚶 Normal
+</button>
+
+<button onclick="playStory(1.3)">
+🐇 Fast
+</button>
+
+<button onclick="stopStory()">
+⏹ Stop
+</button>
+
+</div>
+
+</div>
+
+<!-- AFTER READING -->
+
+<div class="section">
+
+<h2>📝 After Reading</h2>
+
+<!-- ACTIVITY 1 -->
+
+<h3>📖 Activity 1: Literal Comprehension</h3>
+
+<div class="question-box">
+
+<p>1. Where did Ember live?</p>
+
+<input type="radio" name="q1" value="correct"> On a mountain<br>
+<input type="radio" name="q1" value="wrong"> In a city<br>
+<input type="radio" name="q1" value="wrong"> In a school<br>
+
+<button onclick="checkAnswer('q1','fb1')">
+Check Answer
+</button>
+
+<div id="fb1"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>2. What color was the mysterious light?</p>
+
+<input type="radio" name="q2" value="wrong"> Red<br>
+<input type="radio" name="q2" value="correct"> Blue<br>
+<input type="radio" name="q2" value="wrong"> Green<br>
+
+<button onclick="checkAnswer('q2','fb2')">
+Check Answer
+</button>
+
+<div id="fb2"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>3. Where did the footprints lead Ember?</p>
+
+<input type="radio" name="q3" value="wrong"> A river<br>
+<input type="radio" name="q3" value="correct"> A cave<br>
+<input type="radio" name="q3" value="wrong"> A house<br>
+
+<button onclick="checkAnswer('q3','fb3')">
+Check Answer
+</button>
+
+<div id="fb3"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>4. What gift did Lumi give Ember?</p>
+
+<input type="radio" name="q4" value="wrong"> A map<br>
+<input type="radio" name="q4" value="correct"> A crystal<br>
+<input type="radio" name="q4" value="wrong"> A book<br>
+
+<button onclick="checkAnswer('q4','fb4')">
+Check Answer
+</button>
+
+<div id="fb4"></div>
+
+</div>
+
+</div>
+
+<!-- ACTIVITY 2 -->
+
+<div class="section">
+
+<h3>🧠 Activity 2: Inferential Comprehension</h3>
+
+<div class="question-box">
+
+<p>Why were the animals scared?</p>
+
+<select onchange="checkSelect(this,'They thought it was a monster','i1')">
+<option value="">Select...</option>
+<option>They thought it was a monster</option>
+<option>They wanted to play</option>
+<option>They were tired</option>
+</select>
+
+<div id="i1"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>Was Lumi dangerous?</p>
+
+<select onchange="checkSelect(this,'No','i2')">
+<option value="">Select...</option>
+<option>No</option>
+<option>Yes</option>
+</select>
+
+<div id="i2"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>Why did Ember help Lumi?</p>
+
+<select onchange="checkSelect(this,'He was kind','i3')">
+<option value="">Select...</option>
+<option>He was kind</option>
+<option>He was angry</option>
+<option>He was scared</option>
+</select>
+
+<div id="i3"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>What can we learn from Ember?</p>
+
+<select onchange="checkSelect(this,'Help others','i4')">
+<option value="">Select...</option>
+<option>Help others</option>
+<option>Be selfish</option>
+<option>Never explore</option>
+</select>
+
+<div id="i4"></div>
+
+</div>
+
+</div>
+
+<!-- ACTIVITY 3 -->
+
+<div class="section">
+
+<h3>💡 Activity 3: Main Idea</h3>
+
+<div class="question-box">
+
+<p>What is the story mainly about?</p>
+
+<select onchange="checkSelect(this,'A dragon and a friendship','main1')">
+
+<option value="">Select...</option>
+
+<option>A dragon and a friendship</option>
+
+<option>A scary monster</option>
+
+<option>A lost treasure</option>
+
+</select>
+
+<div id="main1"></div>
+
+</div>
+
+</div>
+
+<!-- ACTIVITY 4 -->
+
+<div class="section">
+
+<h3>🔤 Activity 4: Sentence Order</h3>
+
+<p>
+Put the words in the correct order.
+</p>
+
+<div class="question-box">
+
+<p>
+Ember | saw | light | a
+</p>
+
+<select onchange="checkSelect(this,'Ember saw a light','s1')">
+
+<option value="">Select...</option>
+
+<option>Ember saw a light</option>
+
+<option>Light saw Ember a</option>
+
+<option>A Ember light saw</option>
+
+</select>
+
+<div id="s1"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>
+lost | was | Lumi
+</p>
+
+<select onchange="checkSelect(this,'Lumi was lost','s2')">
+
+<option value="">Select...</option>
+
+<option>Lumi was lost</option>
+
+<option>Lost Lumi was</option>
+
+<option>Was Lumi lost lost</option>
+
+</select>
+
+<div id="s2"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>
+became | They | friends
+</p>
+
+<select onchange="checkSelect(this,'They became friends','s3')">
+
+<option value="">Select...</option>
+
+<option>They became friends</option>
+
+<option>Friends they became</option>
+
+<option>Became friends they</option>
+
+</select>
+
+<div id="s3"></div>
+
+</div>
+
+</div>
+
+<!-- ACTIVITY 5 -->
+
+<div class="section">
+
+<h3>🎨 Activity 5: Draw Lumi</h3>
+
+<p>
+Draw Lumi using the description from the story.
+</p>
+
+<canvas id="drawingCanvas"
+width="700"
+height="350">
+</canvas>
+
+<br><br>
+
+<button onclick="clearCanvas()">
+🧹 Clear Drawing
+</button>
+
+</div>
+
+<!-- ACTIVITY 6 -->
+
+<div class="section">
+
+<h3>⭐ Activity 6: Mystery Prediction</h3>
+
+<p>
+Before Ember found Lumi, what did you think the blue light was?
+</p>
+
+<select onchange="predictionAnswer(this)">
+
+<option value="">Select...</option>
+
+<option>A monster</option>
+
+<option>A ghost</option>
+
+<option>A magical creature</option>
+
+<option>Something else</option>
+
+</select>
+
+<div id="predictionFeedback"></div>
+
+</div>
+
+<script>
+
+function speak(text){
+
+speechSynthesis.cancel();
+
+let speech =
+new SpeechSynthesisUtterance(text);
+
+speech.lang="en-US";
+
+speechSynthesis.speak(speech);
+
+}
+
+let storySpeech;
+
+function playStory(speed){
+
+stopStory();
+
+let text=`
+Far away, on a mountain, lived a little dragon named Ember. 
+Every night, Ember saw a strange blue light in the forest. 
+The light moved between the trees and then disappeared. 
+The rabbits were scared. 
+The birds stopped singing. 
+Some animals thought the light was a monster. 
+No one knew what the light was. 
+Ember was curious. 
+One morning, he decided to follow the light. 
+He walked into the forest and found small glowing footprints. 
+The footprints led him to a cave. 
+Inside the cave, Ember saw the blue light again. 
+Then he found a small creature with silver fur and blue eyes. 
+The creature looked sad. 
+"My name is Lumi," she said. 
+"I am lost." Lumi explained that she came from the Crystal Valley. 
+A strong storm had carried her far from home. 
+The blue light was not dangerous. 
+It was Lumi's magic glow. 
+Ember smiled. 
+"I will help you," he said. 
+Together they traveled across hills and rivers. At last, they reached the Crystal Valley. 
+Lumi's family was very happy to see her again. 
+Before Ember left, Lumi gave him a small crystal. 
+"Now you will always remember our friendship," she said. 
+Ember returned to his mountain. 
+Every night, the crystal glowed beside his window. 
+The mysterious blue light was no longer a mystery. 
+It was the beginning of a wonderful friendship. 
+The End
+`;
+
+storySpeech =
+new SpeechSynthesisUtterance(text);
+
+storySpeech.lang="en-US";
+storySpeech.rate=speed;
+
+speechSynthesis.speak(storySpeech);
+
+}
+
+function stopStory(){
+
+speechSynthesis.cancel();
+
+}
+
+function checkAnswer(question,feedback){
+
+let answer=
+document.querySelector(
+'input[name="'+question+'"]:checked'
+);
+
+if(!answer)return;
+
+document.getElementById(feedback).innerHTML=
+answer.value==="correct"
+?
+"✅ Correct!"
+:
+"❌ Incorrect!";
+
+}
+
+function checkSelect(select,correct,id){
+
+document.getElementById(id).innerHTML=
+select.value===correct
+?
+"✅ Correct!"
+:
+"❌ Incorrect!";
+
+}
+
+function predictionAnswer(select){
+
+if(select.value!=""){
+
+document.getElementById(
+"predictionFeedback"
+).innerHTML=
+"🌟 Great prediction!";
+
+}
+
+}
+
+let canvas=
+document.getElementById("drawingCanvas");
+
+let ctx=
+canvas.getContext("2d");
+
+let drawing=false;
+
+canvas.addEventListener("mousedown",()=>{
+
+drawing=true;
+
+});
+
+canvas.addEventListener("mouseup",()=>{
+
+drawing=false;
+
+ctx.beginPath();
+
+});
+
+canvas.addEventListener("mousemove",(e)=>{
+
+if(!drawing)return;
+
+ctx.lineWidth=3;
+
+ctx.lineCap="round";
+
+ctx.lineTo(
+e.offsetX,
+e.offsetY
+);
+
+ctx.stroke();
+
+ctx.beginPath();
+
+ctx.moveTo(
+e.offsetX,
+e.offsetY
+);
+
+});
+
+function clearCanvas(){
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+}
+
+function resetGame(){
+
+location.reload();
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Story 2 - Mia's Magic Backpack</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+margin:0;
+padding:20px;
+background:linear-gradient(to bottom,#FFE8B6,#FFD6F5);
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+.section{
+background:white;
+padding:20px;
+margin-top:20px;
+border-radius:20px;
+box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+
+h1{
+text-align:center;
+color:#7A3E65;
+}
+
+h2{
+color:#9B59B6;
+}
+
+.card{
+display:inline-block;
+width:180px;
+margin:10px;
+padding:15px;
+background:#FFF8E7;
+border-radius:15px;
+text-align:center;
+vertical-align:top;
+}
+
+.card img{
+width:120px;
+height:120px;
+object-fit:cover;
+border-radius:10px;
+}
+
+button{
+background:#9B59B6;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.back{
+background:#FF9F43;
+}
+
+.feedback{
+font-weight:bold;
+margin-top:10px;
+}
+
+.correct{
+color:green;
+}
+
+.incorrect{
+color:red;
+}
+
+.question-box{
+background:#F4F8FF;
+padding:15px;
+margin-top:15px;
+border-radius:10px;
+}
+
+.story-box{
+background:#FDFDFD;
+padding:20px;
+border-radius:15px;
+line-height:1.8;
+font-size:18px;
+}
+
+canvas{
+border:3px solid #9B59B6;
+background:white;
+border-radius:10px;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<button class="back"
+onclick="window.location.href='../index.html'">
+🏠 Back to Home
+</button>
+
+<h1>🎒 Story 2: Mia's Magic Backpack</h1>
+
+<!-- BEFORE READING -->
+
+<div class="section">
+
+<h2>📚 Before Reading</h2>
+
+<p>
+Learn the vocabulary before reading.
+</p>
+
+<div class="card">
+
+<img src="../images/backpack.jpg">
+
+<h3>Backpack</h3>
+
+<button onclick="speak('Backpack. A bag used to carry things.')">
+🔊 Listen
+</button>
+
+<p>A bag used to carry things.</p>
+
+</div>
+
+<div class="card">
+
+<img src="../images/pencil.jpg">
+
+<h3>Pencil</h3>
+
+<button onclick="speak('Pencil. Used for writing.')">
+🔊 Listen
+</button>
+
+<p>Used for writing.</p>
+
+</div>
+
+<div class="card">
+
+<img src="../images/book.jpg">
+
+<h3>Book</h3>
+
+<button onclick="speak('Book. Something you read.')">
+🔊 Listen
+</button>
+
+<p>Something you read.</p>
+
+</div>
+
+<div class="card">
+
+<img src="../images/umbrella.jpg">
+
+<h3>Umbrella</h3>
+
+<button onclick="speak('Umbrella. Used when it rains.')">
+🔊 Listen
+</button>
+
+<p>Used when it rains.</p>
+
+</div>
+
+<div class="card">
+
+<img src="../images/magic.jpg">
+
+<h3>Magic</h3>
+
+<button onclick="speak('Magic. Something special and surprising.')">
+🔊 Listen
+</button>
+
+<p>Something special and surprising.</p>
+
+</div>
+
+</div>
+
+<!-- MATCH GAME -->
+
+<div class="section">
+
+<h2>📚 Choose the Correct Definition</h2>
+
+<p>Choose the correct definition for each word.</p>
+
+<button onclick="resetGame()">
+🔄 Reset Game
+</button>
+
+<div id="matchFeedback" class="feedback"></div>
+
+<div class="question-box">
+
+<p><b>Backpack</b></p>
+
+<select onchange="checkSelect(this,'A bag used to carry things','m1')">
+<option value="">Select...</option>
+<option>A bag used to carry things</option>
+<option>Used when it rains</option>
+<option>Something you read</option>
+</select>
+
+<div id="m1"></div>
+
+</div>
+
+<div class="question-box">
+
+<p><b>Pencil</b></p>
+
+<select onchange="checkSelect(this,'Used for writing','m2')">
+<option value="">Select...</option>
+<option>Used for writing</option>
+<option>A magical object</option>
+<option>A place to sleep</option>
+</select>
+
+<div id="m2"></div>
+
+</div>
+
+<div class="question-box">
+
+<p><b>Book</b></p>
+
+<select onchange="checkSelect(this,'Something you read','m3')">
+<option value="">Select...</option>
+<option>Something you read</option>
+<option>Used for cooking</option>
+<option>A school bag</option>
+</select>
+
+<div id="m3"></div>
+
+</div>
+
+<div class="question-box">
+
+<p><b>Umbrella</b></p>
+
+<select onchange="checkSelect(this,'Used when it rains','m4')">
+<option value="">Select...</option>
+<option>Used when it rains</option>
+<option>Used for writing</option>
+<option>A pet</option>
+</select>
+
+<div id="m4"></div>
+
+</div>
+
+<div class="question-box">
+
+<p><b>Magic</b></p>
+
+<select onchange="checkSelect(this,'Something special and surprising','m5')">
+<option value="">Select...</option>
+<option>Something special and surprising</option>
+<option>A type of food</option>
+<option>A toy</option>
+</select>
+
+<div id="m5"></div>
+
+</div>
+
+</div>
+
+<!-- WARM UP -->
+
+<div class="section">
+
+<h2>🗣️ Warm-Up</h2>
+
+<div class="question-box">
+🎒 What do you usually carry in your backpack?
+</div>
+
+<div class="question-box">
+📚 What is your favorite book?
+</div>
+
+<div class="question-box">
+✏️ Do you use pencils at school?
+</div>
+
+<div class="question-box">
+☂️ When do you use an umbrella?
+</div>
+
+<div class="question-box">
+✨ If you had a magic backpack, what would you want inside?
+</div>
+
+</div>
+
+<!-- WHILE READING -->
+
+<div class="section">
+
+<h2>📖 While Reading</h2>
+
+<div class="story-box">
+
+<p>
+
+Mia was a young girl.
+
+One day, she found a magic backpack in her attic.
+
+The backpack looked old, but it was very special.
+
+Every morning, Mia opened the backpack.
+
+Inside, she found something useful.
+
+On Monday, she found a pencil.
+
+On Tuesday, she found a book.
+
+On Wednesday, she found an umbrella.
+
+Mia used these items to help her friends at school.
+
+Her friends were happy and thankful.
+
+One day, the backpack was empty.
+
+Mia felt sad.
+
+Then she found a note inside.
+
+The note said:
+
+"The real magic is helping others."
+
+Mia smiled.
+
+She understood the lesson.
+
+From that day, she continued helping people every day.
+
+</p>
+
+</div>
+
+<div style="margin-top:15px;">
+
+<button onclick="playStory(0.7)">
+🐢 Super Slow
+</button>
+
+<button onclick="playStory(1)">
+🚶 Normal
+</button>
+
+<button onclick="playStory(1.3)">
+🐇 Fast
+</button>
+
+<button onclick="stopStory()">
+⏹ Stop
+</button>
+
+</div>
+
+</div>
+
+<!-- AFTER READING -->
+
+<div class="section">
+
+<h2>📝 After Reading</h2>
+
+<!-- ACTIVITY 1 -->
+
+<h3>📖 Activity 1: Literal Comprehension</h3>
+
+<div class="question-box">
+
+<p>1. What did Mia find?</p>
+
+<input type="radio" name="q1" value="correct"> A magic backpack<br>
+<input type="radio" name="q1" value="wrong"> A magic book<br>
+<input type="radio" name="q1" value="wrong"> A magic pencil<br>
+
+<button onclick="checkAnswer('q1','fb1')">
+Check Answer
+</button>
+
+<div id="fb1"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>2. Where did Mia find the backpack?</p>
+
+<input type="radio" name="q2" value="correct"> In the attic<br>
+<input type="radio" name="q2" value="wrong"> In the garden<br>
+<input type="radio" name="q2" value="wrong"> At school<br>
+
+<button onclick="checkAnswer('q2','fb2')">
+Check Answer
+</button>
+
+<div id="fb2"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>3. What did Mia find on Monday?</p>
+
+<input type="radio" name="q3" value="correct"> A pencil<br>
+<input type="radio" name="q3" value="wrong"> A book<br>
+<input type="radio" name="q3" value="wrong"> An umbrella<br>
+
+<button onclick="checkAnswer('q3','fb3')">
+Check Answer
+</button>
+
+<div id="fb3"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>4. What did the note say?</p>
+
+<input type="radio" name="q4" value="correct"> Helping others is magic<br>
+<input type="radio" name="q4" value="wrong"> Go to school<br>
+<input type="radio" name="q4" value="wrong"> Keep the backpack<br>
+
+<button onclick="checkAnswer('q4','fb4')">
+Check Answer
+</button>
+
+<div id="fb4"></div>
+
+</div>
+
+<!-- ACTIVITY 2 -->
+
+<h3>🧠 Activity 2: Inferential Comprehension</h3>
+
+<div class="question-box">
+
+<p>Why were Mia's friends happy?</p>
+
+<select onchange="checkSelect(this,'She helped them','inf1')">
+<option value="">Select...</option>
+<option>She helped them</option>
+<option>She ignored them</option>
+<option>She was absent</option>
+</select>
+
+<div id="inf1"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>How did Mia feel when the backpack was empty?</p>
+
+<select onchange="checkSelect(this,'sad','inf2')">
+<option value="">Select...</option>
+<option>happy</option>
+<option>sad</option>
+<option>excited</option>
+</select>
+
+<div id="inf2"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>Was Mia a helpful person?</p>
+
+<select onchange="checkSelect(this,'yes','inf3')">
+<option value="">Select...</option>
+<option>yes</option>
+<option>no</option>
+</select>
+
+<div id="inf3"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>What was the real magic?</p>
+
+<select onchange="checkSelect(this,'Helping others','inf4')">
+<option value="">Select...</option>
+<option>Helping others</option>
+<option>The umbrella</option>
+<option>The attic</option>
+</select>
+
+<div id="inf4"></div>
+
+</div>
+
+<!-- ACTIVITY 3 -->
+
+<h3>🎨 Draw What You Read</h3>
+
+<p>
+Draw Mia and her Magic Backpack.
+</p>
+
+<canvas id="drawingCanvas"
+width="700"
+height="350">
+</canvas>
+
+<br>
+
+<button onclick="clearCanvas()">
+🧹 Clear Drawing
+</button>
+
+</div>
+
+<!-- ACTIVITY 4 -->
+
+<div class="section">
+
+<h3>🎒 What's Inside the Backpack?</h3>
+
+<p>
+Select only the objects that appeared in the story.
+</p>
+
+<div class="question-box">
+
+<input type="checkbox" id="item1"> Pencil ✏️<br>
+<input type="checkbox" id="item2"> Book 📖<br>
+<input type="checkbox" id="item3"> Umbrella ☂️<br>
+<input type="checkbox" id="item4"> Pizza 🍕<br>
+<input type="checkbox" id="item5"> Car 🚗<br>
+
+<button onclick="checkBackpack()">
+Check
+</button>
+
+<div id="backpackFeedback"></div>
+
+</div>
+
+</div>
+
+<!-- ACTIVITY 5 -->
+
+<div class="section">
+
+<h3>⭐ Favorite Part</h3>
+
+<p>
+What was your favorite part of the story?
+</p>
+
+<select onchange="favoritePart(this)">
+
+<option value="">Select...</option>
+
+<option>Finding the backpack</option>
+
+<option>Finding the pencil</option>
+
+<option>Helping friends</option>
+
+<option>Reading the note</option>
+
+</select>
+
+<div id="favoriteFeedback"></div>
+
+</div>
+
+<script>
+
+function speak(text){
+
+speechSynthesis.cancel();
+
+let speech =
+new SpeechSynthesisUtterance(text);
+
+speech.lang="en-US";
+
+speechSynthesis.speak(speech);
+
+}
+
+let storySpeech;
+
+function playStory(speed){
+
+stopStory();
+
+let text=`
+Mia was a young girl.
+One day she found a magic backpack.
+Every day the backpack gave her something useful.
+She used those things to help her friends.
+The real magic was helping others.
+`;
+
+storySpeech =
+new SpeechSynthesisUtterance(text);
+
+storySpeech.lang="en-US";
+storySpeech.rate=speed;
+
+speechSynthesis.speak(storySpeech);
+
+}
+
+function stopStory(){
+
+speechSynthesis.cancel();
+
+}
+
+function checkAnswer(question,feedback){
+
+let answer=
+document.querySelector(
+'input[name="'+question+'"]:checked'
+);
+
+if(!answer)return;
+
+document.getElementById(feedback).innerHTML=
+answer.value==="correct"
+?
+"✅ Correct!"
+:
+"❌ Incorrect!";
+
+}
+
+function checkSelect(select,correct,id){
+
+document.getElementById(id).innerHTML=
+select.value===correct
+?
+"✅ Correct!"
+:
+"❌ Incorrect!";
+
+}
+
+function checkBackpack(){
+
+let pencil=
+document.getElementById("item1").checked;
+
+let book=
+document.getElementById("item2").checked;
+
+let umbrella=
+document.getElementById("item3").checked;
+
+let pizza=
+document.getElementById("item4").checked;
+
+let car=
+document.getElementById("item5").checked;
+
+if(
+pencil &&
+book &&
+umbrella &&
+!pizza &&
+!car
+){
+
+document.getElementById(
+"backpackFeedback"
+).innerHTML=
+"✅ Correct!";
+
+}else{
+
+document.getElementById(
+"backpackFeedback"
+).innerHTML=
+"❌ Incorrect!";
+
+}
+
+}
+
+function favoritePart(select){
+
+if(select.value!=""){
+
+document.getElementById(
+"favoriteFeedback"
+).innerHTML=
+"🌟 Great choice!";
+
+}
+
+}
+
+let canvas=
+document.getElementById("drawingCanvas");
+
+let ctx=
+canvas.getContext("2d");
+
+let drawing=false;
+
+canvas.addEventListener("mousedown",()=>{
+
+drawing=true;
+
+});
+
+canvas.addEventListener("mouseup",()=>{
+
+drawing=false;
+
+ctx.beginPath();
+
+});
+
+canvas.addEventListener("mousemove",(e)=>{
+
+if(!drawing)return;
+
+ctx.lineWidth=3;
+
+ctx.lineCap="round";
+
+ctx.lineTo(
+e.offsetX,
+e.offsetY
+);
+
+ctx.stroke();
+
+ctx.beginPath();
+
+ctx.moveTo(
+e.offsetX,
+e.offsetY
+);
+
+});
+
+function clearCanvas(){
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+}
+
+function resetGame(){
+
+location.reload();
+
+}
+
+</script>
+
+</body>
+</html>

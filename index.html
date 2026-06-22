@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Magic Story Book</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(180deg,#A8D8FF,#C7CEFF,#DCC6FF);
+min-height:100vh;
+text-align:center;
+}
+
+header{
+padding:40px;
+}
+
+h1{
+color:#4B3F72;
+font-size:50px;
+}
+
+.subtitle{
+font-size:20px;
+color:#333;
+}
+
+.container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+padding:30px;
+}
+
+.card{
+background:white;
+width:250px;
+padding:20px;
+border-radius:20px;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.card h2{
+color:#6A5AE0;
+}
+
+.teacher{
+background:#FFE38A;
+}
+
+footer{
+margin-top:30px;
+padding:20px;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📖 The Magic Story Book</h1>
+
+<p class="subtitle">
+Every Story Opens a New Door to Learning English
+</p>
+
+</header>
+
+<div class="container">
+
+<div class="card" onclick="window.location.href='stories/story1.html'">
+<h2>🐶 Story 1</h2>
+<p>The Lost Puppy</p>
+</div>
+
+<div class="card" onclick="window.location.href='stories/story2.html'">
+<h2>🎒 Story 2</h2>
+<p>Mia's Magic Backpack</p>
+</div>
+
+<div class="card" onclick="window.location.href='stories/story3.html'">
+<h2>🐉 Story 3</h2>
+<p>The Little Dragon's Friend</p>
+</div>
+
+<div class="card" onclick="window.location.href='stories/story4.html'">
+<h2>🧚 Story 4</h2>
+<p>Lily and the Crystal Fairy</p>
+</div>
+
+<div class="card teacher">
+<h2>👩‍🏫 Teacher Dashboard</h2>
+<p>Manage images, audio and teams</p>
+</div>
+
+</div>
+
+<footer>
+
+✨ Read • Imagine • Learn • Discover ✨
+
+</footer>
+
+</body>
+</html>
