@@ -124,6 +124,8 @@ padding:15px;
 margin-top:10px;
 border-radius:10px;
 min-height:50px;
+display:flex;
+align-items:center;
 }
 
 .success{
@@ -234,37 +236,37 @@ Match each word with its correct meaning.
 
 <div style="width:40%;">
 
-<div class="drag-word" 
-draggable="true" 
+<div class="drag-word"
 id="puppy"
+draggable="true"
 ondragstart="drag(event)">
 Puppy
 </div>
 
-<div class="drag-word" 
-draggable="true" 
+<div class="drag-word"
 id="park"
+draggable="true"
 ondragstart="drag(event)">
 Park
 </div>
 
-<div class="drag-word" 
-draggable="true" 
+<div class="drag-word"
 id="flower"
+draggable="true"
 ondragstart="drag(event)">
 Flower
 </div>
 
-<div class="drag-word" 
-draggable="true" 
+<div class="drag-word"
 id="home"
+draggable="true"
 ondragstart="drag(event)">
 Home
 </div>
 
-<div class="drag-word" 
-draggable="true" 
+<div class="drag-word"
 id="worried"
+draggable="true"
 ondragstart="drag(event)">
 Worried
 </div>
@@ -280,28 +282,28 @@ ondragover="allowDrop(event)">
 A colorful plant.
 </div>
 
-<div class="drop-zone" 
+<div class="drop-zone"
 data-word="home"
 ondrop="drop(event)"
 ondragover="allowDrop(event)">
 The place where you live.
 </div>
 
-<div class="drop-zone" 
+<div class="drop-zone"
 data-word="puppy"
 ondrop="drop(event)"
 ondragover="allowDrop(event)">
 A young dog.
 </div>
 
-<div class="drop-zone" 
+<div class="drop-zone"
 data-word="worried"
 ondrop="drop(event)"
 ondragover="allowDrop(event)">
 Feeling nervous or concerned.
 </div>
 
-<div class="drop-zone" 
+<div class="drop-zone"
 data-word="park"
 ondrop="drop(event)"
 ondragover="allowDrop(event)">
@@ -398,6 +400,8 @@ Max learned an important lesson that day:
 
 It is good to explore, but it is important to stay close to home.
 
+The End.
+
 </p>
 
 </div>
@@ -438,9 +442,14 @@ It is good to explore, but it is important to stay close to home.
 
 <p>1. Where did Max live?</p>
 
-<input type="radio" name="q1" value="correct"> In a small house<br>
-<input type="radio" name="q1" value="wrong"> In a zoo<br>
-<input type="radio" name="q1" value="wrong"> In a school<br>
+<input type="radio" name="q1" value="correct">
+In a small house<br>
+
+<input type="radio" name="q1" value="wrong">
+In a zoo<br>
+
+<input type="radio" name="q1" value="wrong">
+In a school<br>
 
 <button onclick="checkAnswer('q1','fb1')">
 Check Answer
@@ -454,9 +463,14 @@ Check Answer
 
 <p>2. What did Max follow?</p>
 
-<input type="radio" name="q2" value="wrong"> A cat<br>
-<input type="radio" name="q2" value="correct"> A butterfly<br>
-<input type="radio" name="q2" value="wrong"> A bird<br>
+<input type="radio" name="q2" value="wrong">
+A cat<br>
+
+<input type="radio" name="q2" value="correct">
+A butterfly<br>
+
+<input type="radio" name="q2" value="wrong">
+A bird<br>
 
 <button onclick="checkAnswer('q2','fb2')">
 Check Answer
@@ -470,9 +484,14 @@ Check Answer
 
 <p>3. Who helped Max?</p>
 
-<input type="radio" name="q3" value="wrong"> A teacher<br>
-<input type="radio" name="q3" value="correct"> Emma<br>
-<input type="radio" name="q3" value="wrong"> A police officer<br>
+<input type="radio" name="q3" value="wrong">
+A teacher<br>
+
+<input type="radio" name="q3" value="correct">
+Emma<br>
+
+<input type="radio" name="q3" value="wrong">
+A police officer<br>
 
 <button onclick="checkAnswer('q3','fb3')">
 Check Answer
@@ -486,9 +505,14 @@ Check Answer
 
 <p>4. Where did Emma find Max?</p>
 
-<input type="radio" name="q4" value="correct"> Under a tree<br>
-<input type="radio" name="q4" value="wrong"> At school<br>
-<input type="radio" name="q4" value="wrong"> In a store<br>
+<input type="radio" name="q4" value="correct">
+Under a tree<br>
+
+<input type="radio" name="q4" value="wrong">
+At school<br>
+
+<input type="radio" name="q4" value="wrong">
+In a store<br>
 
 <button onclick="checkAnswer('q4','fb4')">
 Check Answer
@@ -627,7 +651,71 @@ Check Answer
 
 <!-- ACTIVITY 4 -->
 
-<h3>📚 Activity 4: Sentence Order</h3>
+<h3>📝 Activity 4: Vocabulary in Context</h3>
+
+<div class="question-box">
+
+<p>1. Max felt ________ when he could not find his house.</p>
+
+<select onchange="checkSelect(this,'worried','vocab1')">
+<option value="">Select...</option>
+<option>worried</option>
+<option>happy</option>
+<option>hungry</option>
+</select>
+
+<div id="vocab1"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>2. Max lived near a beautiful ________.</p>
+
+<select onchange="checkSelect(this,'park','vocab2')">
+<option value="">Select...</option>
+<option>school</option>
+<option>park</option>
+<option>hospital</option>
+</select>
+
+<div id="vocab2"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>3. A puppy is a young ________.</p>
+
+<select onchange="checkSelect(this,'dog','vocab3')">
+<option value="">Select...</option>
+<option>cat</option>
+<option>bird</option>
+<option>dog</option>
+</select>
+
+<div id="vocab3"></div>
+
+</div>
+
+<div class="question-box">
+
+<p>4. Emma helped Max return ________.</p>
+
+<select onchange="checkSelect(this,'home','vocab4')">
+<option value="">Select...</option>
+<option>home</option>
+<option>school</option>
+<option>park</option>
+</select>
+
+<div id="vocab4"></div>
+
+</div>
+
+<!-- ACTIVITY 5 -->
+
+<h3>📚 Activity 5: Sentence Order</h3>
 
 <div class="question-box">
 
@@ -740,16 +828,21 @@ Check
 
 </div>
 
-</div>
-
 <script>
 
 function speak(text){
+
 speechSynthesis.cancel();
+
 let speech = new SpeechSynthesisUtterance(text);
+
 speech.lang="en-US";
+
 speechSynthesis.speak(speech);
+
 }
+
+// STORY AUDIO
 
 let storySpeech;
 
@@ -758,34 +851,50 @@ function playStory(speed){
 stopStory();
 
 let storyText=`
-Once upon a time, there was a little puppy named Max. 
-Max lived in a small house near a beautiful park. 
-Every day, he played with his family and ran in the garden. 
-One sunny morning, Max saw a colorful butterfly. 
-He wanted to follow it. 
-The butterfly flew over some flowers and into the park. 
-Max followed the butterfly. 
-He walked and walked until he could not see his house anymore. 
-Suddenly, Max stopped. 
-He looked around. 
-The park was very big. 
-His house was gone. 
-Max felt worried. 
-He barked loudly, but nobody came. 
-After a few minutes, a kind girl named Emma saw Max sitting under a tree. 
-"Are you lost?" she asked. 
-Max wagged his tail. 
-Emma looked at Max's collar and saw his address. 
-She took Max back home. 
-When Max arrived, his family was very happy. 
-They hugged him and thanked Emma for her help. 
-Max learned an important lesson that day: It is good to explore, but it is important to stay close to home. 
-The End
+
+Once upon a time, there was a little puppy named Max.
+
+Max lived in a small house near a beautiful park.
+
+Every day, he played with his family and ran in the garden.
+
+One sunny morning, Max saw a colorful butterfly.
+
+He wanted to follow it.
+
+The butterfly flew over some flowers and into the park.
+
+Max followed the butterfly.
+
+He walked and walked until he could not see his house anymore.
+
+Suddenly, Max stopped.
+
+He looked around.
+
+The park was very big.
+
+His house was gone.
+
+Max felt worried.
+
+He barked loudly, but nobody came.
+
+After a few minutes, a kind girl named Emma saw Max sitting under a tree.
+
+She helped Max return home.
+
+His family was very happy.
+
+The End.
+
 `;
 
-storySpeech=new SpeechSynthesisUtterance(storyText);
+storySpeech =
+new SpeechSynthesisUtterance(storyText);
 
 storySpeech.lang="en-US";
+
 storySpeech.rate=speed;
 
 speechSynthesis.speak(storySpeech);
@@ -793,8 +902,12 @@ speechSynthesis.speak(storySpeech);
 }
 
 function stopStory(){
+
 speechSynthesis.cancel();
+
 }
+
+// RADIO QUESTIONS
 
 function checkAnswer(question,feedback){
 
@@ -802,101 +915,161 @@ let answer=document.querySelector(
 'input[name="'+question+'"]:checked'
 );
 
-if(!answer)return;
+if(!answer){
 
-document.getElementById(feedback).innerHTML=
-answer.value==="correct"
-? "✅ Correct!"
-: "❌ Incorrect!";
+return;
 
 }
+
+document.getElementById(feedback).innerHTML =
+
+answer.value==="correct"
+
+?
+
+"✅ Correct!"
+
+:
+
+"❌ Incorrect!";
+
+}
+
+// SELECT QUESTIONS
 
 function checkSelect(select,correct,id){
 
-document.getElementById(id).innerHTML=
-select.value===correct
-? "✅ Correct!"
-: "❌ Incorrect!";
+let feedback =
+document.getElementById(id);
+
+if(select.value===correct){
+
+feedback.innerHTML="✅ Correct!";
+
+feedback.className="correct";
+
+}else{
+
+feedback.innerHTML="❌ Incorrect!";
+  
+feedback.className="incorrect";
 
 }
+
+}
+
+// SENTENCE ORDER 1
 
 function checkOrder1(){
-
+  
 let a=document.getElementById("o1a").value;
+
 let b=document.getElementById("o1b").value;
+
 let c=document.getElementById("o1c").value;
 
-document.getElementById("order1").innerHTML=
-(a==="Max" && b==="felt" && c==="worried")
-? "✅ Correct!"
-: "❌ Incorrect!";
+document.getElementById("order1").innerHTML =
+
+(a==="Max" &&
+b==="felt" &&
+c==="worried")
+
+?
+
+"✅ Correct!"
+
+:
+
+"❌ Incorrect!";
 
 }
+
+// SENTENCE ORDER 2
 
 function checkOrder2(){
 
 let a=document.getElementById("o2a").value;
+
 let b=document.getElementById("o2b").value;
+  
 let c=document.getElementById("o2c").value;
 
-document.getElementById("order2").innerHTML=
-(a==="Max" && b==="returned" && c==="home")
-? "✅ Correct!"
-: "❌ Incorrect!";
+document.getElementById("order2").innerHTML =
+
+(a==="Max" &&
+b==="returned" &&
+c==="home")
+
+?
+
+"✅ Correct!"
+
+:
+
+"❌ Incorrect!";
 
 }
+
+// SENTENCE ORDER 3
 
 function checkOrder3(){
 
 let a=document.getElementById("o3a").value;
+
 let b=document.getElementById("o3b").value;
+
 let c=document.getElementById("o3c").value;
 
-document.getElementById("order3").innerHTML=
-(a==="Emma" && b==="helped" && c==="Max")
-? "✅ Correct!"
-: "❌ Incorrect!";
+document.getElementById("order3").innerHTML =
+
+(a==="Emma" &&
+b==="helped" &&
+c==="Max")
+
+?
+
+"✅ Correct!"
+
+:
+
+"❌ Incorrect!";
 
 }
 
-function allowDrop(ev){
+// VOCABULARY DRAG AND DROP
 
-ev.preventDefault();
+let draggedWord=null;
 
-}
+function drag(event){
 
-function drag(ev){
-
-ev.dataTransfer.setData(
-"text",
-ev.target.id
-);
+draggedWord =
+event.target;
 
 }
 
-function drop(ev){
+function allowDrop(event){
 
-ev.preventDefault();
+event.preventDefault();
 
-const data =
-ev.dataTransfer.getData("text");
+}
 
-const dragged =
-document.getElementById(data);
+function drop(event){
 
-const dropZone =
-ev.currentTarget;
+event.preventDefault();
 
-const correctAnswer =
-dropZone.dataset.word;
+let zone =
+event.currentTarget;
 
-if(data === correctAnswer){
+let correctWord =
+zone.dataset.word;
 
-dropZone.innerHTML="";
+if(draggedWord.id===correctWord){
 
-dropZone.appendChild(dragged);
+zone.innerHTML="";
 
-dropZone.classList.add("success");
+zone.appendChild(draggedWord);
+  
+zone.classList.add("success");
 
 document.getElementById("matchFeedback").innerHTML=
 "✅ Correct Match!";
@@ -905,44 +1078,20 @@ document.getElementById("matchFeedback").innerHTML=
 
 document.getElementById("matchFeedback").innerHTML=
 "❌ Try Again!";
-
+}
+  
 }
 
-}
-function allowDrop(ev){
-ev.preventDefault();
-}
+// RESET GAME
 
-function drag(ev){
-ev.dataTransfer.setData("text", ev.target.id);
-}
-
-function drop(ev){
-ev.preventDefault();
-
-const data = ev.dataTransfer.getData("text");
-const dragged = document.getElementById(data);
-const dropZone = ev.currentTarget;
-
-const correctAnswer = dropZone.dataset.word;
-
-if(data === correctAnswer){
-
-dropZone.innerHTML="";
-dropZone.appendChild(dragged);
-dropZone.classList.add("success");
-
-}else{
-
-alert("❌ Try Again!");
-
-}
-}
 function resetGame(){
+  
 location.reload();
+
 }
 
 </script>
 
 </body>
+
 </html>
