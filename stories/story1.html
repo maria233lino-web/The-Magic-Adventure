@@ -842,6 +842,7 @@ speechSynthesis.speak(speech);
 
 }
 
+
 // STORY AUDIO
 
 let storySpeech;
@@ -849,6 +850,7 @@ let storySpeech;
 function playStory(speed){
 
 stopStory();
+
 
 let storyText=`
 
@@ -890,16 +892,22 @@ The End.
 
 `;
 
+
 storySpeech =
 new SpeechSynthesisUtterance(storyText);
+
 
 storySpeech.lang="en-US";
 
 storySpeech.rate=speed;
 
+
 speechSynthesis.speak(storySpeech);
 
+
 }
+
+
 
 function stopStory(){
 
@@ -907,19 +915,25 @@ speechSynthesis.cancel();
 
 }
 
+
+
 // RADIO QUESTIONS
 
+
 function checkAnswer(question,feedback){
+
 
 let answer=document.querySelector(
 'input[name="'+question+'"]:checked'
 );
+
 
 if(!answer){
 
 return;
 
 }
+
 
 document.getElementById(feedback).innerHTML =
 
@@ -935,40 +949,58 @@ answer.value==="correct"
 
 }
 
+
+
+
 // SELECT QUESTIONS
 
+
 function checkSelect(select,correct,id){
+
 
 let feedback =
 document.getElementById(id);
 
+
 if(select.value===correct){
+
 
 feedback.innerHTML="✅ Correct!";
 
 feedback.className="correct";
 
+
 }else{
 
+
 feedback.innerHTML="❌ Incorrect!";
-  
+
 feedback.className="incorrect";
 
-}
 
 }
+
+
+}
+
+
 
 // SENTENCE ORDER 1
 
+
 function checkOrder1(){
-  
+
+
 let a=document.getElementById("o1a").value;
 
 let b=document.getElementById("o1b").value;
 
 let c=document.getElementById("o1c").value;
 
+
+
 document.getElementById("order1").innerHTML =
+
 
 (a==="Max" &&
 b==="felt" &&
@@ -982,19 +1014,27 @@ c==="worried")
 
 "❌ Incorrect!";
 
+
 }
+
+
 
 // SENTENCE ORDER 2
 
+
 function checkOrder2(){
+
 
 let a=document.getElementById("o2a").value;
 
 let b=document.getElementById("o2b").value;
-  
+
 let c=document.getElementById("o2c").value;
 
+
+
 document.getElementById("order2").innerHTML =
+
 
 (a==="Max" &&
 b==="returned" &&
@@ -1008,11 +1048,16 @@ c==="home")
 
 "❌ Incorrect!";
 
+
 }
+
+
 
 // SENTENCE ORDER 3
 
+
 function checkOrder3(){
+
 
 let a=document.getElementById("o3a").value;
 
@@ -1020,7 +1065,10 @@ let b=document.getElementById("o3b").value;
 
 let c=document.getElementById("o3c").value;
 
+
+
 document.getElementById("order3").innerHTML =
+
 
 (a==="Emma" &&
 b==="helped" &&
@@ -1034,63 +1082,109 @@ c==="Max")
 
 "❌ Incorrect!";
 
+
 }
+
+
+
 
 // VOCABULARY DRAG AND DROP
 
+
 let draggedWord=null;
 
+
+
 function drag(event){
+
 
 draggedWord =
 event.target;
 
+
 }
+
+
+
 
 function allowDrop(event){
 
+
 event.preventDefault();
+
 
 }
 
+
+
+
 function drop(event){
 
+
 event.preventDefault();
+
+
 
 let zone =
 event.currentTarget;
 
+
+
 let correctWord =
 zone.dataset.word;
 
+
+
 if(draggedWord.id===correctWord){
+
+
 
 zone.innerHTML="";
 
+
 zone.appendChild(draggedWord);
-  
+
+
+
 zone.classList.add("success");
+
+
 
 document.getElementById("matchFeedback").innerHTML=
 "✅ Correct Match!";
 
+
+
 }else{
+
 
 document.getElementById("matchFeedback").innerHTML=
 "❌ Try Again!";
+
+
 }
-  
+
+
+
 }
+
+
 
 // RESET GAME
 
+
 function resetGame(){
-  
+
+
 location.reload();
+
 
 }
 
+
+
 </script>
+
 
 </body>
 
