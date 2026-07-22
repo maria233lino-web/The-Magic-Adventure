@@ -4,162 +4,680 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Story 1 - The Lost Puppy</title>
 
+
 <style>
 
-body{
-font-family:Arial,sans-serif;
-margin:0;
-padding:20px;
-background:linear-gradient(to bottom,#A8D8FF,#E8D9FF);
+/*====================================================
+=                 GENERAL PAGE STYLE                  =
+====================================================*/
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
+
+
+body{
+
+    font-family:Arial,sans-serif;
+
+    margin:0;
+
+    padding:20px;
+
+    background:linear-gradient(
+        to bottom,
+        #A8D8FF,
+        #E8D9FF
+    );
+
+    min-height:100vh;
+
+}
+
 
 .container{
-max-width:1200px;
-margin:auto;
+
+    max-width:1200px;
+
+    margin:auto;
+
 }
+
+
+/*====================================================
+=                    SECTION STYLE                    =
+====================================================*/
 
 .section{
-background:white;
-padding:20px;
-margin-top:20px;
-border-radius:20px;
-box-shadow:0 4px 10px rgba(0,0,0,.15);
+
+    background:white;
+
+    padding:20px;
+
+    margin-top:20px;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,.15);
+
 }
+
 
 h1{
-text-align:center;
-color:#4B3F72;
+
+    text-align:center;
+
+    color:#4B3F72;
+
+    margin-bottom:20px;
+
 }
+
 
 h2{
-color:#6A5AE0;
+
+    color:#6A5AE0;
+
+    margin-bottom:15px;
+
 }
+
 
 h3{
-color:#444;
+
+    color:#444;
+
+    margin-top:15px;
+
+    margin-bottom:10px;
+
 }
+
+
+p{
+
+    line-height:1.6;
+
+}
+
+
+/*====================================================
+=                    BUTTON STYLE                     =
+====================================================*/
 
 button{
-background:#6A5AE0;
-color:white;
-border:none;
-padding:10px 15px;
-border-radius:10px;
-cursor:pointer;
-font-weight:bold;
-margin:5px;
+
+    background:#6A5AE0;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 15px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    margin:5px;
+
+    transition:
+        transform .2s ease,
+        opacity .2s ease;
+
 }
+
 
 button:hover{
-transform:scale(1.05);
+
+    transform:scale(1.05);
+
+    opacity:.9;
+
 }
+
+
+button:active{
+
+    transform:scale(.98);
+
+}
+
 
 .back{
-background:#FF9F43;
+
+    background:#FF9F43;
+
 }
+
+
+/*====================================================
+=                 VOCABULARY CARD STYLE               =
+====================================================*/
 
 .card{
-display:inline-block;
-width:180px;
-margin:10px;
-padding:15px;
-background:#FFF8E7;
-border-radius:15px;
-text-align:center;
-vertical-align:top;
+
+    display:inline-block;
+
+    width:180px;
+
+    margin:10px;
+
+    padding:15px;
+
+    background:#FFF8E7;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    vertical-align:top;
+
 }
+
 
 .card img{
-width:120px;
-height:120px;
-object-fit:cover;
-border-radius:10px;
+
+    width:120px;
+
+    height:120px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
 }
+
+
+.card h3{
+
+    margin-top:10px;
+
+    margin-bottom:5px;
+
+}
+
+
+/*====================================================
+=                  FEEDBACK STYLE                     =
+====================================================*/
 
 .feedback{
-margin-top:10px;
-font-weight:bold;
+
+    margin-top:10px;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+    line-height:1.6;
+
 }
+
 
 .correct{
-color:green;
+
+    color:#087F23;
+
+    background:#E8F8EC;
+
+    border-left:5px solid #20C463;
+
 }
+
 
 .incorrect{
-color:red;
+
+    color:#B00020;
+
+    background:#FFF0F2;
+
+    border-left:5px solid #FF4D6D;
+
 }
+
+
+/*====================================================
+=              FEEDBACK SUPPORT MESSAGE              =
+====================================================*/
+
+.feedback-help{
+
+    display:block;
+
+    margin-top:6px;
+
+    font-weight:normal;
+
+    color:#444;
+
+}
+
+
+.feedback-help strong{
+
+    color:#6A5AE0;
+
+}
+
+
+.feedback-audio{
+
+    margin-top:8px;
+
+    font-size:14px;
+
+    color:#555;
+
+}
+
+
+/*====================================================
+=                   QUESTION BOX                     =
+====================================================*/
 
 .question-box{
-background:#F4F8FF;
-padding:15px;
-margin-top:15px;
-border-radius:10px;
+
+    background:#F4F8FF;
+
+    padding:15px;
+
+    margin-top:15px;
+
+    border-radius:10px;
+
 }
+
+
+.question-box input{
+
+    margin-top:8px;
+
+    margin-bottom:5px;
+
+}
+
+
+.question-box select{
+
+    margin-top:8px;
+
+}
+
+
+/*====================================================
+=                     STORY BOX                      =
+====================================================*/
 
 .story-box{
-background:#FDFDFD;
-padding:20px;
-border-radius:15px;
-line-height:1.8;
-font-size:18px;
+
+    background:#FDFDFD;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    line-height:1.8;
+
+    font-size:18px;
+
 }
+
+
+/*====================================================
+=                VOCABULARY DRAG WORDS               =
+====================================================*/
 
 .drag-word{
-background:#6A5AE0;
-color:white;
-padding:10px;
-margin:5px;
-border-radius:10px;
-display:inline-block;
-cursor:grab;
+
+    background:#6A5AE0;
+
+    color:white;
+
+    padding:10px;
+
+    margin:5px;
+
+    border-radius:10px;
+
+    display:inline-block;
+
+    cursor:grab;
+
+    user-select:none;
+
 }
+
+
+.drag-word:active{
+
+    cursor:grabbing;
+
+}
+
+
+/*====================================================
+=                     DROP ZONE                      =
+====================================================*/
 
 .drop-zone{
-border:3px dashed #6A5AE0;
-padding:15px;
-margin-top:10px;
-border-radius:10px;
-min-height:50px;
-display:flex;
-align-items:center;
+
+    border:3px dashed #6A5AE0;
+
+    padding:15px;
+
+    margin-top:10px;
+
+    border-radius:10px;
+
+    min-height:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease;
+
 }
+
+
+.drop-zone:hover{
+
+    background:#F4F0FF;
+
+}
+
 
 .success{
-background:#C8F7C5;
+
+    background:#C8F7C5;
+
+    border-color:#20A83A;
+
 }
+
+
+/*====================================================
+=                  SENTENCE ORDER                    =
+====================================================*/
 
 .order-box{
-background:#FFF8E7;
-padding:15px;
-margin-top:10px;
-border-radius:10px;
+
+    background:#FFF8E7;
+
+    padding:15px;
+
+    margin-top:10px;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
 }
+
 
 select{
-padding:8px;
-margin:3px;
+
+    padding:8px;
+
+    margin:3px;
+
+    border-radius:7px;
+
+    border:1px solid #CCC;
+
 }
 
+
+/*====================================================
+=                  ACTIVITY RESULT                   =
+====================================================*/
+
+.activity-result{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    background:#F4F8FF;
+
+    display:none;
+
+}
+
+
+.activity-result h4{
+
+    font-size:22px;
+
+    color:#4B3F72;
+
+    margin-bottom:10px;
+
+}
+
+
+.score-text{
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+
+/*====================================================
+=                    STAR RUBRIC                     =
+====================================================*/
+
+.star-rating{
+
+    font-size:32px;
+
+    letter-spacing:5px;
+
+    margin:10px 0;
+
+}
+
+
+.rubric-message{
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    margin-top:5px;
+
+}
+
+
+/*====================================================
+=                 RUBRIC COLOR BOXES                 =
+====================================================*/
+
+.excellent-result{
+
+    background:#FFF9D6;
+
+    border:3px solid #FFD633;
+
+}
+
+
+.good-result{
+
+    background:#EAF7FF;
+
+    border:3px solid #69B7FF;
+
+}
+
+
+.practice-result{
+
+    background:#FFF0F0;
+
+    border:3px solid #FF8A8A;
+
+}
+
+
+/*====================================================
+=              VOCABULARY GAME RESULT               =
+====================================================*/
+
+#matchResult{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    display:none;
+
+}
+
+
+/*====================================================
+=                 STORY AUDIO CONTROLS               =
+====================================================*/
+
+.story-controls{
+
+    margin-top:15px;
+
+    text-align:center;
+
+}
+
+
+.story-controls button{
+
+    margin:5px;
+
+}
+
+
+/*====================================================
+=                  RESPONSIVE DESIGN                 =
+====================================================*/
+
+@media(max-width:700px){
+
+    body{
+
+        padding:10px;
+
+    }
+
+
+    .section{
+
+        padding:15px;
+
+    }
+
+
+    .card{
+
+        width:100%;
+
+        max-width:250px;
+
+        display:block;
+
+        margin:15px auto;
+
+    }
+
+
+    .story-box{
+
+        font-size:16px;
+
+    }
+
+
+    .question-box{
+
+        padding:12px;
+
+    }
+
+
+    .star-rating{
+
+        font-size:28px;
+
+    }
+
+}
+
+
+
+.try-again-button,.try-again-match-button{display:inline-block;margin-top:15px;padding:10px 20px;border:none;border-radius:10px;cursor:pointer;font-weight:bold;font-size:15px;}
 </style>
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
-<button class="back"
-onclick="window.location.href='../index.html'">
+
+<!--==================================================
+=                    BACK BUTTON                      =
+===================================================-->
+
+<button
+    class="back"
+    onclick="window.location.href='../index.html'"
+>
+
 🏠 Back to Home
+
 </button>
 
-<h1>🐶 Story 1: The Lost Puppy</h1>
 
-<!-- BEFORE READING -->
+<!--==================================================
+=                     STORY TITLE                     =
+===================================================-->
+
+<h1>
+
+🐶 Story 1: The Lost Puppy
+
+</h1>
+
+<!--==================================================
+=                 BEFORE READING                     =
+===================================================-->
 
 <div class="section">
 
@@ -169,54 +687,153 @@ onclick="window.location.href='../index.html'">
 Learn the vocabulary before reading the story.
 </p>
 
+
+<!--==================================================
+=                    PUPPY                           =
+===================================================-->
+
 <div class="card">
-<img src="../images/puppy.jpg">
+
+<img
+    src="../images/puppy.jpg"
+    alt="Puppy"
+>
+
 <h3>Puppy</h3>
-<button onclick="speak('Puppy. A young dog.')">
+
+<button
+    onclick="speak('Puppy. A young dog.')"
+>
+
 🔊 Listen
+
 </button>
-<p>A young dog.</p>
+
+<p>
+A young dog.
+</p>
+
 </div>
 
+
+<!--==================================================
+=                     PARK                           =
+===================================================-->
+
 <div class="card">
-<img src="../images/park.jpg">
+
+<img
+    src="../images/park.jpg"
+    alt="Park"
+>
+
 <h3>Park</h3>
-<button onclick="speak('Park. A place where people play and relax.')">
+
+<button
+    onclick="speak('Park. A place where people play and relax.')"
+>
+
 🔊 Listen
+
 </button>
-<p>A place where people play and relax.</p>
+
+<p>
+A place where people play and relax.
+</p>
+
 </div>
 
+
+<!--==================================================
+=                    FLOWER                          =
+===================================================-->
+
 <div class="card">
-<img src="../images/flower.jpg">
+
+<img
+    src="../images/flower.jpg"
+    alt="Flower"
+>
+
 <h3>Flower</h3>
-<button onclick="speak('Flower. A colorful plant.')">
+
+<button
+    onclick="speak('Flower. A colorful plant.')"
+>
+
 🔊 Listen
+
 </button>
-<p>A colorful plant.</p>
+
+<p>
+A colorful plant.
+</p>
+
 </div>
 
+
+<!--==================================================
+=                     HOME                           =
+===================================================-->
+
 <div class="card">
-<img src="../images/home.jpg">
+
+<img
+    src="../images/home.jpg"
+    alt="Home"
+>
+
 <h3>Home</h3>
-<button onclick="speak('Home. The place where you live.')">
+
+<button
+    onclick="speak('Home. The place where you live.')"
+>
+
 🔊 Listen
+
 </button>
-<p>The place where you live.</p>
+
+<p>
+The place where you live.
+</p>
+
 </div>
+
+
+<!--==================================================
+=                   WORRIED                         =
+===================================================-->
 
 <div class="card">
-<img src="../images/worried.jpg">
+
+<img
+    src="../images/worried.jpg"
+    alt="Worried"
+>
+
 <h3>Worried</h3>
-<button onclick="speak('Worried. Feeling nervous or concerned.')">
+
+<button
+    onclick="speak('Worried. Feeling nervous or concerned.')"
+>
+
 🔊 Listen
+
 </button>
-<p>Feeling nervous or concerned.</p>
-</div>
+
+<p>
+Feeling nervous or concerned.
+</p>
 
 </div>
 
-<!-- MATCH GAME -->
+
+</div>
+
+
+<!--==================================================
+=               VOCABULARY MATCH GAME                =
+===================================================-->
 
 <div class="section">
 
@@ -226,133 +843,4341 @@ Learn the vocabulary before reading the story.
 Match each word with its correct meaning.
 </p>
 
-<button onclick="resetGame()">
+
+<!--==================================================
+=                  RESET BUTTON                      =
+===================================================-->
+
+<button
+    onclick="resetGame()"
+>
+
 🔄 Reset Game
+
 </button>
 
-<div id="matchFeedback" class="feedback"></div>
 
-<div style="display:flex;justify-content:space-between;flex-wrap:wrap;">
+<!--==================================================
+=              MATCH GAME FEEDBACK                   =
+===================================================-->
+
+<div
+    id="matchFeedback"
+    class="feedback"
+>
+
+</div>
+
+
+<!--==================================================
+=             DRAG AND DROP CONTAINER                =
+===================================================-->
+
+<div
+    style="
+        display:flex;
+        justify-content:space-between;
+        flex-wrap:wrap;
+    "
+>
+
+
+<!--==================================================
+=                 WORDS TO DRAG                      =
+===================================================-->
 
 <div style="width:40%;">
 
-<div class="drag-word"
-id="puppy"
-draggable="true"
-ondragstart="drag(event)">
+
+<div
+    class="drag-word"
+    id="puppy"
+    draggable="true"
+    ondragstart="drag(event)"
+>
+
 Puppy
+
 </div>
 
-<div class="drag-word"
-id="park"
-draggable="true"
-ondragstart="drag(event)">
+
+<div
+    class="drag-word"
+    id="park"
+    draggable="true"
+    ondragstart="drag(event)"
+>
+
 Park
+
 </div>
 
-<div class="drag-word"
-id="flower"
-draggable="true"
-ondragstart="drag(event)">
+
+<div
+    class="drag-word"
+    id="flower"
+    draggable="true"
+    ondragstart="drag(event)"
+>
+
 Flower
+
 </div>
 
-<div class="drag-word"
-id="home"
-draggable="true"
-ondragstart="drag(event)">
+
+<div
+    class="drag-word"
+    id="home"
+    draggable="true"
+    ondragstart="drag(event)"
+>
+
 Home
+
 </div>
 
-<div class="drag-word"
-id="worried"
-draggable="true"
-ondragstart="drag(event)">
+
+<div
+    class="drag-word"
+    id="worried"
+    draggable="true"
+    ondragstart="drag(event)"
+>
+
 Worried
-</div>
 
 </div>
+
+
+</div>
+
+
+<!--==================================================
+=                 DEFINITIONS                       =
+===================================================-->
 
 <div style="width:50%;">
 
-<div class="drop-zone"
-data-word="flower"
-ondrop="drop(event)"
-ondragover="allowDrop(event)">
+
+<!-- FLOWER -->
+
+<div
+    class="drop-zone"
+    data-word="flower"
+    ondrop="drop(event)"
+    ondragover="allowDrop(event)"
+>
+
 A colorful plant.
+
 </div>
 
-<div class="drop-zone"
-data-word="home"
-ondrop="drop(event)"
-ondragover="allowDrop(event)">
+
+<!-- HOME -->
+
+<div
+    class="drop-zone"
+    data-word="home"
+    ondrop="drop(event)"
+    ondragover="allowDrop(event)"
+>
+
 The place where you live.
+
 </div>
 
-<div class="drop-zone"
-data-word="puppy"
-ondrop="drop(event)"
-ondragover="allowDrop(event)">
+
+<!-- PUPPY -->
+
+<div
+    class="drop-zone"
+    data-word="puppy"
+    ondrop="drop(event)"
+    ondragover="allowDrop(event)"
+>
+
 A young dog.
+
 </div>
 
-<div class="drop-zone"
-data-word="worried"
-ondrop="drop(event)"
-ondragover="allowDrop(event)">
+
+<!-- WORRIED -->
+
+<div
+    class="drop-zone"
+    data-word="worried"
+    ondrop="drop(event)"
+    ondragover="allowDrop(event)"
+>
+
 Feeling nervous or concerned.
+
 </div>
 
-<div class="drop-zone"
-data-word="park"
-ondrop="drop(event)"
-ondragover="allowDrop(event)">
+
+<!-- PARK -->
+
+<div
+    class="drop-zone"
+    data-word="park"
+    ondrop="drop(event)"
+    ondragover="allowDrop(event)"
+>
+
 A place where people play and relax.
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=            VOCABULARY GAME FINAL RESULT             =
+===================================================-->
+
+<div
+    id="matchResult"
+>
+
+<h3>
+🎉 Vocabulary Match Complete!
+</h3>
+
+<div
+    id="matchScore"
+    class="score-text"
+>
+</div>
+
+<div
+    id="matchStars"
+    class="star-rating"
+>
+</div>
+
+<div
+    id="matchRubric"
+    class="rubric-message"
+>
 </div>
 
 </div>
 
-</div>
 
 </div>
 
-<!-- WARM UP -->
-
-<div class="section">
-
-<h2>🗣️ Warm-Up</h2>
-
-<div class="question-box">
-🐶 Have you ever seen a puppy?
-</div>
-
-<div class="question-box">
-🏠 Do you have a pet at home?
-</div>
-
-<div class="question-box">
-🌳 Have you visited a park?
-</div>
-
-<div class="question-box">
-😟 How do you feel when you lose something?
-</div>
-
-<div class="question-box">
-🦋 What would you do if you followed a butterfly?
-</div>
-
-</div>
-
-<!-- WHILE READING -->
+<!--==================================================
+=                  WHILE READING                     =
+===================================================-->
 
 <div class="section">
 
 <h2>📖 While Reading</h2>
 
+
+<!--==================================================
+=                  STORY TEXT                        =
+===================================================-->
+
 <div class="story-box">
 
 <p>
+
+Once upon a time, there was a little puppy named Max.
+
+<br><br>
+
+Max lived in a small house near a beautiful park.
+
+<br><br>
+
+Every day, he played with his family and ran in the garden.
+
+<br><br>
+
+One sunny morning, Max saw a colorful butterfly.
+
+<br><br>
+
+He wanted to follow it.
+
+<br><br>
+
+The butterfly flew over some flowers and into the park.
+
+<br><br>
+
+Max followed the butterfly.
+
+<br><br>
+
+He walked and walked until he could not see his house anymore.
+
+<br><br>
+
+Suddenly, Max stopped.
+
+<br><br>
+
+He looked around.
+
+<br><br>
+
+The park was very big.
+
+<br><br>
+
+His house was gone.
+
+<br><br>
+
+Max felt worried.
+
+<br><br>
+
+He barked loudly, but nobody came.
+
+<br><br>
+
+After a few minutes, a kind girl named Emma saw Max sitting under a tree.
+
+<br><br>
+
+"Are you lost?" she asked.
+
+<br><br>
+
+Max wagged his tail.
+
+<br><br>
+
+Emma looked at Max's collar and saw his address.
+
+<br><br>
+
+She took Max back home.
+
+<br><br>
+
+When Max arrived, his family was very happy.
+
+<br><br>
+
+They hugged him and thanked Emma for her help.
+
+<br><br>
+
+Max learned an important lesson that day:
+
+<br><br>
+
+It is good to explore, but it is important to stay close to home.
+
+<br><br>
+
+The End.
+
+</p>
+
+</div>
+
+
+<!--==================================================
+=                 STORY AUDIO CONTROLS               =
+===================================================-->
+
+<div class="story-controls">
+
+
+<button
+    onclick="playStory(0.7)"
+>
+
+🐢 Slow
+
+</button>
+
+
+<button
+    onclick="playStory(1)"
+>
+
+🚶 Normal
+
+</button>
+
+
+<button
+    onclick="playStory(1.3)"
+>
+
+🐇 Fast
+
+</button>
+
+
+<button
+    onclick="stopStory()"
+>
+
+⏹ Stop
+
+</button>
+
+
+</div>
+
+
+</div>
+
+<!--==================================================
+=                  AFTER READING                     =
+===================================================-->
+
+<div class="section">
+
+<h2>📝 After Reading</h2>
+
+
+<!--==================================================
+=       ACTIVITY 1: LITERAL COMPREHENSION            =
+===================================================-->
+
+<h3>📌 Activity 1: Literal Comprehension</h3>
+
+
+<!--==================================================
+=                    QUESTION 1                       =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>1. Where did Max live?</strong>
+</p>
+
+
+<input
+    type="radio"
+    name="q1"
+    value="correct"
+>
+
+In a small house
+
+<br>
+
+
+<input
+    type="radio"
+    name="q1"
+    value="wrong"
+>
+
+In a zoo
+
+<br>
+
+
+<input
+    type="radio"
+    name="q1"
+    value="wrong"
+>
+
+In a school
+
+<br>
+
+
+<button
+    onclick="checkAnswer('q1','fb1')"
+>
+
+Check Answer
+
+</button>
+
+
+<div
+    id="fb1"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 2                       =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>2. What did Max follow?</strong>
+</p>
+
+
+<input
+    type="radio"
+    name="q2"
+    value="wrong"
+>
+
+A cat
+
+<br>
+
+
+<input
+    type="radio"
+    name="q2"
+    value="correct"
+>
+
+A butterfly
+
+<br>
+
+
+<input
+    type="radio"
+    name="q2"
+    value="wrong"
+>
+
+A bird
+
+<br>
+
+
+<button
+    onclick="checkAnswer('q2','fb2')"
+>
+
+Check Answer
+
+</button>
+
+
+<div
+    id="fb2"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 3                       =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>3. Who helped Max?</strong>
+</p>
+
+
+<input
+    type="radio"
+    name="q3"
+    value="wrong"
+>
+
+A teacher
+
+<br>
+
+
+<input
+    type="radio"
+    name="q3"
+    value="correct"
+>
+
+Emma
+
+<br>
+
+
+<input
+    type="radio"
+    name="q3"
+    value="wrong"
+>
+
+A police officer
+
+<br>
+
+
+<button
+    onclick="checkAnswer('q3','fb3')"
+>
+
+Check Answer
+
+</button>
+
+
+<div
+    id="fb3"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 4                       =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>4. Where did Emma find Max?</strong>
+</p>
+
+
+<input
+    type="radio"
+    name="q4"
+    value="correct"
+>
+
+Under a tree
+
+<br>
+
+
+<input
+    type="radio"
+    name="q4"
+    value="wrong"
+>
+
+At school
+
+<br>
+
+
+<input
+    type="radio"
+    name="q4"
+    value="wrong"
+>
+
+In a store
+
+<br>
+
+
+<button
+    onclick="checkAnswer('q4','fb4')"
+>
+
+Check Answer
+
+</button>
+
+
+<div
+    id="fb4"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=              ACTIVITY 1 FINAL RESULT               =
+===================================================-->
+
+<div
+    id="resultActivity1"
+    class="activity-result"
+>
+
+<h4>
+🎉 Activity 1 Complete!
+</h4>
+
+
+<div
+    id="scoreActivity1"
+    class="score-text"
+>
+</div>
+
+
+<div
+    id="starsActivity1"
+    class="star-rating"
+>
+</div>
+
+
+<div
+    id="rubricActivity1"
+    class="rubric-message"
+>
+</div>
+
+
+</div>
+
+<!--==================================================
+=       ACTIVITY 2: INFERENTIAL COMPREHENSION         =
+===================================================-->
+
+<h3>🧠 Activity 2: Inferential Comprehension</h3>
+
+
+<!--==================================================
+=                    QUESTION 1                       =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>1. How did Max feel when he got lost?</strong>
+</p>
+
+
+<select
+    onchange="checkSelect(this,'worried','inf1')"
+>
+
+<option value="">
+Select...
+</option>
+
+<option>
+happy
+</option>
+
+<option>
+worried
+</option>
+
+<option>
+hungry
+</option>
+
+</select>
+
+
+<div
+    id="inf1"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 2                       =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>2. Why did Max get lost?</strong>
+</p>
+
+
+<select
+    onchange="checkSelect(
+        this,
+        'He followed a butterfly',
+        'inf2'
+    )"
+>
+
+<option value="">
+Select...
+</option>
+
+<option>
+He followed a butterfly
+</option>
+
+<option>
+He went to school
+</option>
+
+<option>
+He slept
+</option>
+
+</select>
+
+
+<div
+    id="inf2"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 3                       =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>3. How did Max feel when he returned home?</strong>
+</p>
+
+
+<select
+    onchange="checkSelect(
+        this,
+        'happy',
+        'inf3'
+    )"
+>
+
+<option value="">
+Select...
+</option>
+
+<option>
+happy
+</option>
+
+<option>
+sad
+</option>
+
+<option>
+angry
+</option>
+
+</select>
+
+
+<div
+    id="inf3"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 4                       =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>4. Was Emma kind?</strong>
+</p>
+
+
+<select
+    onchange="checkSelect(
+        this,
+        'yes',
+        'inf4'
+    )"
+>
+
+<option value="">
+Select...
+</option>
+
+<option>
+yes
+</option>
+
+<option>
+no
+</option>
+
+</select>
+
+
+<div
+    id="inf4"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=              ACTIVITY 2 FINAL RESULT               =
+===================================================-->
+
+<div
+    id="resultActivity2"
+    class="activity-result"
+>
+
+<h4>
+🎉 Activity 2 Complete!
+</h4>
+
+
+<div
+    id="scoreActivity2"
+    class="score-text"
+>
+</div>
+
+
+<div
+    id="starsActivity2"
+    class="star-rating"
+>
+</div>
+
+
+<div
+    id="rubricActivity2"
+    class="rubric-message"
+>
+</div>
+
+
+</div>
+
+<!--==================================================
+=            ACTIVITY 3: MAIN IDEA                   =
+===================================================-->
+
+<h3>💡 Activity 3: Main Idea</h3>
+
+
+<!--==================================================
+=                    QUESTION 1                      =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>1. Choose the best title.</strong>
+</p>
+
+<select onchange="checkMainIdea(this,'The Lost Puppy','main1')">
+
+<option value="">Select...</option>
+
+<option>The Lost Puppy</option>
+
+<option>The Hungry Cat</option>
+
+<option>The Big School</option>
+
+</select>
+
+<div
+id="main1"
+class="feedback">
+</div>
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 2                      =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>2. What is the story mainly about?</strong>
+</p>
+
+<select onchange="checkMainIdea(this,'A puppy gets lost and returns home','main2')">
+
+<option value="">Select...</option>
+
+<option>A puppy gets lost and returns home</option>
+
+<option>A puppy learns math</option>
+
+<option>A puppy buys flowers</option>
+
+</select>
+
+<div
+id="main2"
+class="feedback">
+</div>
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 3                      =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>3. What lesson did Max learn?</strong>
+</p>
+
+<select onchange="checkMainIdea(this,'Stay close to home','main3')">
+
+<option value="">Select...</option>
+
+<option>Stay close to home</option>
+
+<option>Run away</option>
+
+<option>Never play</option>
+
+</select>
+
+<div
+id="main3"
+class="feedback">
+</div>
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 4                      =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>4. Who is the main character?</strong>
+</p>
+
+<select onchange="checkMainIdea(this,'Max','main4')">
+
+<option value="">Select...</option>
+
+<option>Max</option>
+
+<option>Emma</option>
+
+<option>Butterfly</option>
+
+</select>
+
+<div
+id="main4"
+class="feedback">
+</div>
+
+</div>
+
+
+<!--==================================================
+=           ACTIVITY 3 FINAL RESULT                  =
+===================================================-->
+
+<div
+id="resultActivity3"
+class="activity-result">
+
+<h4>
+🎉 Activity 3 Complete!
+</h4>
+
+<div
+id="scoreActivity3"
+class="score-text">
+</div>
+
+<div
+id="starsActivity3"
+class="star-rating">
+</div>
+
+<div
+id="rubricActivity3"
+class="rubric-message">
+</div>
+
+</div>
+
+<!--==================================================
+=       ACTIVITY 4: VOCABULARY IN CONTEXT            =
+===================================================-->
+
+<h3>📝 Activity 4: Vocabulary in Context</h3>
+
+
+<!--==================================================
+=                    QUESTION 1                      =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>
+1. Max felt ________ when he could not find his house.
+</strong>
+</p>
+
+
+<select
+    onchange="checkVocabularyContext(
+        this,
+        'worried',
+        'vocab1'
+    )"
+>
+
+<option value="">
+Select...
+</option>
+
+<option>
+worried
+</option>
+
+<option>
+happy
+</option>
+
+<option>
+hungry
+</option>
+
+</select>
+
+
+<div
+    id="vocab1"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 2                      =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>
+2. Max lived near a beautiful ________.
+</strong>
+</p>
+
+
+<select
+    onchange="checkVocabularyContext(
+        this,
+        'park',
+        'vocab2'
+    )"
+>
+
+<option value="">
+Select...
+</option>
+
+<option>
+school
+</option>
+
+<option>
+park
+</option>
+
+<option>
+hospital
+</option>
+
+</select>
+
+
+<div
+    id="vocab2"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 3                      =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>
+3. A puppy is a young ________.
+</strong>
+</p>
+
+
+<select
+    onchange="checkVocabularyContext(
+        this,
+        'dog',
+        'vocab3'
+    )"
+>
+
+<option value="">
+Select...
+</option>
+
+<option>
+cat
+</option>
+
+<option>
+bird
+</option>
+
+<option>
+dog
+</option>
+
+</select>
+
+
+<div
+    id="vocab3"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 4                      =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>
+4. Emma helped Max return ________.
+</strong>
+</p>
+
+
+<select
+    onchange="checkVocabularyContext(
+        this,
+        'home',
+        'vocab4'
+    )"
+>
+
+<option value="">
+Select...
+</option>
+
+<option>
+home
+</option>
+
+<option>
+school
+</option>
+
+<option>
+park
+</option>
+
+</select>
+
+
+<div
+    id="vocab4"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=           ACTIVITY 4 FINAL RESULT                  =
+===================================================-->
+
+<div
+    id="resultActivity4"
+    class="activity-result"
+>
+
+<h4>
+🎉 Activity 4 Complete!
+</h4>
+
+
+<div
+    id="scoreActivity4"
+    class="score-text"
+>
+</div>
+
+
+<div
+    id="starsActivity4"
+    class="star-rating"
+>
+</div>
+
+
+<div
+    id="rubricActivity4"
+    class="rubric-message"
+>
+</div>
+
+
+</div>
+
+<!--==================================================
+=             ACTIVITY 5: SENTENCE ORDER              =
+===================================================-->
+
+<h3>📚 Activity 5: Sentence Order</h3>
+
+
+<!--==================================================
+=                    QUESTION 1                      =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>
+1. Order the sentence:
+</strong>
+</p>
+
+
+<div class="order-box">
+
+worried | Max | felt
+
+</div>
+
+
+<select id="o1a">
+
+<option value="">
+Select...
+</option>
+
+<option>
+felt
+</option>
+
+<option>
+Max
+</option>
+
+<option>
+worried
+</option>
+
+</select>
+
+
+<select id="o1b">
+
+<option value="">
+Select...
+</option>
+
+<option>
+worried
+</option>
+
+<option>
+felt
+</option>
+
+<option>
+Max
+</option>
+
+</select>
+
+
+<select id="o1c">
+
+<option value="">
+Select...
+</option>
+
+<option>
+Max
+</option>
+
+<option>
+felt
+</option>
+
+<option>
+worried
+</option>
+
+</select>
+
+
+<br>
+
+
+<button
+    onclick="checkOrder1()"
+>
+
+Check
+
+</button>
+
+
+<div
+    id="order1"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 2                      =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>
+2. Order the sentence:
+</strong>
+</p>
+
+
+<div class="order-box">
+
+home | returned | Max
+
+</div>
+
+
+<select id="o2a">
+
+<option value="">
+Select...
+</option>
+
+<option>
+home
+</option>
+
+<option>
+returned
+</option>
+
+<option>
+Max
+</option>
+
+</select>
+
+
+<select id="o2b">
+
+<option value="">
+Select...
+</option>
+
+<option>
+returned
+</option>
+
+<option>
+Max
+</option>
+
+<option>
+home
+</option>
+
+</select>
+
+
+<select id="o2c">
+
+<option value="">
+Select...
+</option>
+
+<option>
+home
+</option>
+
+<option>
+returned
+</option>
+
+<option>
+Max
+</option>
+
+</select>
+
+
+<br>
+
+
+<button
+    onclick="checkOrder2()"
+>
+
+Check
+
+</button>
+
+
+<div
+    id="order2"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=                    QUESTION 3                      =
+===================================================-->
+
+<div class="question-box">
+
+<p>
+<strong>
+3. Order the sentence:
+</strong>
+</p>
+
+
+<div class="order-box">
+
+helped | Emma | Max
+
+</div>
+
+
+<select id="o3a">
+
+<option value="">
+Select...
+</option>
+
+<option>
+Helped
+</option>
+
+<option>
+Emma
+</option>
+
+<option>
+Max
+</option>
+
+</select>
+
+
+<select id="o3b">
+
+<option value="">
+Select...
+</option>
+
+<option>
+Max
+</option>
+
+<option>
+helped
+</option>
+
+<option>
+Emma
+</option>
+
+</select>
+
+
+<select id="o3c">
+
+<option value="">
+Select...
+</option>
+
+<option>
+Max
+</option>
+
+<option>
+Emma
+</option>
+
+<option>
+helped
+</option>
+
+</select>
+
+
+<br>
+
+
+<button
+    onclick="checkOrder3()"
+>
+
+Check
+
+</button>
+
+
+<div
+    id="order3"
+    class="feedback"
+>
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=           ACTIVITY 5 FINAL RESULT                  =
+===================================================-->
+
+<div
+    id="resultActivity5"
+    class="activity-result"
+>
+
+<h4>
+🎉 Activity 5 Complete!
+</h4>
+
+
+<div
+    id="scoreActivity5"
+    class="score-text"
+>
+</div>
+
+
+<div
+    id="starsActivity5"
+    class="star-rating"
+>
+</div>
+
+
+<div
+    id="rubricActivity5"
+    class="rubric-message"
+>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+<!--==================================================
+=              END OF AFTER READING                  =
+===================================================-->
+
+</div>
+
+<!--==================================================
+=                    JAVASCRIPT                      =
+===================================================-->
+
+<script>
+
+
+/*====================================================
+=                 GLOBAL AUDIO SYSTEM                =
+====================================================*/
+
+
+/*
+    This variable stores the current speech.
+    It allows the system to stop previous audio
+    before playing new feedback.
+*/
+
+let currentSpeech = null;
+
+
+/*
+    This function cancels any previous audio
+    and prepares the browser for new speech.
+*/
+
+function stopSpeech(){
+
+    if(
+        "speechSynthesis" in window
+    ){
+
+        window.speechSynthesis.cancel();
+
+    }
+
+}
+
+
+/*
+    MAIN SPEECH FUNCTION
+
+    This function is used for:
+    - Vocabulary audio
+    - Feedback audio
+    - Activity results
+    - Story audio
+*/
+
+function speak(text){
+
+    stopSpeech();
+
+
+    if(
+        !("speechSynthesis" in window)
+    ){
+
+        return;
+
+    }
+
+
+    currentSpeech =
+        new SpeechSynthesisUtterance(text);
+
+
+    currentSpeech.lang = "en-US";
+
+
+    currentSpeech.rate = 0.9;
+
+
+    currentSpeech.pitch = 1;
+
+
+    currentSpeech.volume = 1;
+
+
+    window.speechSynthesis.speak(
+        currentSpeech
+    );
+
+}
+
+
+/*====================================================
+=             AUTOMATIC FEEDBACK AUDIO               =
+====================================================*/
+
+
+/*
+    This function attempts to reproduce
+    the feedback audio automatically.
+
+    The browser may restrict automatic audio
+    in some situations.
+
+    The visual feedback will always remain
+    available even if audio is blocked.
+*/
+
+function playFeedbackAudio(text){
+
+    stopSpeech();
+
+
+    setTimeout(function(){
+
+        speak(text);
+
+    },100);
+
+}
+
+
+/*====================================================
+=             CORRECT ANSWER FEEDBACK                =
+====================================================*/
+
+
+/*
+    This function creates positive feedback.
+
+    The message changes depending on the
+    feedback type selected.
+*/
+
+function showCorrectFeedback(
+    element,
+    message,
+    audioMessage
+){
+
+    element.className =
+        "feedback correct";
+
+
+    element.innerHTML =
+
+        "✅ " +
+        message;
+
+
+    playFeedbackAudio(
+        audioMessage
+    );
+
+}
+
+
+/*====================================================
+=            INCORRECT ANSWER FEEDBACK               =
+====================================================*/
+
+
+/*
+    This function creates corrective feedback.
+
+    It does not reveal the correct answer.
+
+    Instead, it gives the student a clue
+    or directs the student back to the text.
+*/
+
+function showIncorrectFeedback(
+    element,
+    helpText,
+    audioMessage
+){
+
+    element.className =
+        "feedback incorrect";
+
+
+    element.innerHTML =
+
+        "❌ Not quite!" +
+
+        "<span class='feedback-help'>" +
+
+        "💡 <strong>Read again:</strong> " +
+
+        helpText +
+
+        "</span>";
+
+
+    playFeedbackAudio(
+        audioMessage
+    );
+
+}
+
+
+/*====================================================
+=               ACTIVITY RESULT AUDIO                =
+====================================================*/
+
+
+/*
+    This function creates the audio message
+    for the final activity result.
+*/
+
+function playResultAudio(
+    score,
+    total,
+    resultText
+){
+
+    let audioText =
+
+        "Activity complete. " +
+
+        "You got " +
+
+        score +
+
+        " out of " +
+
+        total +
+
+        " correct. " +
+
+        resultText;
+
+
+    playFeedbackAudio(
+        audioText
+    );
+
+}
+
+
+/*====================================================
+=                STAR RATING SYSTEM                  =
+====================================================*/
+
+
+/*
+    This function determines the number
+    of stars according to the student's score.
+
+    3 stars = Excellent
+    2 stars = Good
+    1 star  = Keep Practicing
+*/
+
+function getStarRating(
+    score,
+    total
+){
+
+    let percentage =
+        (score / total) * 100;
+
+
+    if(
+        percentage === 100
+    ){
+
+        return {
+
+            stars:"⭐⭐⭐",
+
+            message:"Excellent!",
+
+            className:"excellent-result",
+
+            audio:
+                "Excellent! You answered all the questions correctly. Great job!"
+
+        };
+
+    }
+
+
+    if(
+        percentage >= 75
+    ){
+
+        return {
+
+            stars:"⭐⭐",
+
+            message:"Good!",
+
+            className:"good-result",
+
+            audio:
+                "Good job! You answered most of the questions correctly. Keep going!"
+
+        };
+
+    }
+
+
+    return {
+
+        stars:"⭐",
+
+        message:"Keep Practicing!",
+
+        className:"practice-result",
+
+        audio:
+            "Keep practicing! Read the story again and try once more. You can do it!"
+
+    };
+
+}
+
+
+/*====================================================
+=              DISPLAY ACTIVITY RESULT               =
+====================================================*/
+
+
+/*
+    This function displays the final score
+    and star rating of each activity.
+*/
+
+function showActivityResult(
+    activityNumber,
+    score,
+    total
+){
+
+    let resultBox =
+
+        document.getElementById(
+            "resultActivity" +
+            activityNumber
+        );
+
+
+    let scoreBox =
+
+        document.getElementById(
+            "scoreActivity" +
+            activityNumber
+        );
+
+
+    let starsBox =
+
+        document.getElementById(
+            "starsActivity" +
+            activityNumber
+        );
+
+
+    let rubricBox =
+
+        document.getElementById(
+            "rubricActivity" +
+            activityNumber
+        );
+
+
+    let rating =
+
+        getStarRating(
+            score,
+            total
+        );
+
+
+    scoreBox.innerHTML =
+
+        "Your Score: " +
+
+        score +
+
+        "/" +
+
+        total;
+
+
+    starsBox.innerHTML =
+
+        rating.stars;
+
+
+    rubricBox.innerHTML =
+
+        rating.message;
+
+
+    resultBox.className =
+
+        "activity-result " +
+
+        rating.className;
+
+
+    resultBox.style.display =
+        "block";
+
+
+    playResultAudio(
+        score,
+        total,
+        rating.message
+    );
+
+}
+
+/*====================================================
+=        ACTIVITY 1: LITERAL COMPREHENSION             =
+=====================================================*/
+
+
+/*
+    Each question has its own state.
+
+    false = not answered correctly yet
+    true  = already answered correctly
+
+    This prevents the student from receiving
+    multiple points for the same question.
+*/
+
+let activity1State = {
+
+    q1:false,
+
+    q2:false,
+
+    q3:false,
+
+    q4:false
+
+};
+
+
+/*
+    Current score for Activity 1.
+*/
+
+let activity1Score = 0;
+
+
+/*
+    Total number of questions.
+*/
+
+const activity1Total = 4;
+
+
+/*====================================================
+=              ACTIVITY 1 FEEDBACK DATA              =
+====================================================*/
+
+
+const activity1Feedback = {
+
+    q1:{
+
+        correctMessage:
+            "Correct! Good job!",
+
+        correctAudio:
+            "Correct! Good job!",
+
+        helpText:
+            "Read again: Max lived in a small house near a beautiful park.",
+
+        incorrectAudio:
+            "Not quite. Read again: Max lived in a small house near a beautiful park."
+
+    },
+
+
+    q2:{
+
+        correctMessage:
+            "Correct! Excellent!",
+
+        correctAudio:
+            "Correct! Excellent!",
+
+        helpText:
+            "Read again: One sunny morning, Max saw a colorful butterfly. He wanted to follow it.",
+
+        incorrectAudio:
+            "Not quite. Read again: One sunny morning, Max saw a colorful butterfly. He wanted to follow it."
+
+    },
+
+
+    q3:{
+
+        correctMessage:
+            "Correct! Well done!",
+
+        correctAudio:
+            "Correct! Well done!",
+
+        helpText:
+            "Read again: A kind girl named Emma saw Max sitting under a tree.",
+
+        incorrectAudio:
+            "Not quite. Read again: A kind girl named Emma saw Max sitting under a tree."
+
+    },
+
+
+    q4:{
+
+        correctMessage:
+            "Correct! Great work!",
+
+        correctAudio:
+            "Correct! Great work!",
+
+        helpText:
+            "Read again: Emma saw Max sitting under a tree.",
+
+        incorrectAudio:
+            "Not quite. Read again: Emma saw Max sitting under a tree."
+
+    }
+
+};
+
+
+/*====================================================
+=              CHECK ACTIVITY 1 ANSWER               =
+====================================================*/
+
+
+function checkAnswer(
+    question,
+    feedback
+){
+
+    /*
+        Find the selected radio button.
+    */
+
+    let answer =
+
+        document.querySelector(
+
+            'input[name="' +
+            question +
+            '"]:checked'
+
+        );
+
+
+    /*
+        If the student has not selected
+        an answer, show a message.
+    */
+
+    if(!answer){
+
+        let feedbackElement =
+
+            document.getElementById(
+                feedback
+            );
+
+
+        feedbackElement.className =
+            "feedback incorrect";
+
+
+        feedbackElement.innerHTML =
+
+            "⚠️ Please choose an answer first.";
+
+
+        playFeedbackAudio(
+
+            "Please choose an answer first."
+
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+        Obtain the feedback data
+        corresponding to the question.
+    */
+
+    let questionData =
+
+        activity1Feedback[
+            question
+        ];
+
+
+    /*
+        Find out whether the answer
+        is correct.
+    */
+
+    let isCorrect =
+
+        answer.value ===
+        "correct";
+
+
+    /*
+        Get the feedback element.
+    */
+
+    let feedbackElement =
+
+        document.getElementById(
+            feedback
+        );
+
+
+    /*===============================================
+    =              CORRECT ANSWER                    =
+    ===============================================*/
+
+    registerAttemptAnswer(
+        1,
+        question,
+        isCorrect
+    );
+
+
+    if(isCorrect){
+
+        showCorrectFeedback(
+
+            feedbackElement,
+
+            questionData.correctMessage,
+
+            questionData.correctAudio
+
+        );
+
+
+        /*
+            Only add one point if this question
+            has not already been answered correctly.
+        */
+
+        if(
+            activity1State[question] === false
+        ){
+
+            activity1State[question] =
+                true;
+
+
+            activity1Score++;
+
+        }
+
+
+    }
+
+
+    /*===============================================
+    =             INCORRECT ANSWER                   =
+    ===============================================*/
+
+    else{
+
+        showIncorrectFeedback(
+
+            feedbackElement,
+
+            questionData.helpText,
+
+            questionData.incorrectAudio
+
+        );
+
+    }
+
+
+    /*
+        Check whether all four questions
+        have been answered correctly.
+    */
+
+    checkActivity1Completion();
+
+}
+
+
+/*====================================================
+=           CHECK ACTIVITY 1 COMPLETION               =
+====================================================*/
+
+
+function checkActivity1Completion(){
+
+    checkAttemptCompletion(
+        1,
+        activity1Total,
+        activity1Score
+    );
+
+}
+
+/*====================================================
+=       ACTIVITY 2: INFERENTIAL COMPREHENSION         =
+====================================================*/
+
+
+/*
+    Each question has its own state.
+
+    A question becomes true only after
+    the student selects the correct answer.
+*/
+
+let activity2State = {
+
+    inf1:false,
+
+    inf2:false,
+
+    inf3:false,
+
+    inf4:false
+
+};
+
+
+/*
+    Current score for Activity 2.
+*/
+
+let activity2Score = 0;
+
+
+/*
+    Total number of questions.
+*/
+
+const activity2Total = 4;
+
+
+/*====================================================
+=              ACTIVITY 2 FEEDBACK DATA              =
+====================================================*/
+
+
+const activity2Feedback = {
+
+    inf1:{
+
+        correctMessage:
+            "Correct! Good job!",
+
+        correctAudio:
+            "Correct! Good job!",
+
+        helpText:
+            "Read again: Max felt worried when he could not see his house anymore.",
+
+        incorrectAudio:
+            "Not quite. Read again: Max felt worried when he could not see his house anymore."
+
+    },
+
+
+    inf2:{
+
+        correctMessage:
+            "Correct! Excellent!",
+
+        correctAudio:
+            "Correct! Excellent!",
+
+        helpText:
+            "Read again: Max saw a colorful butterfly and wanted to follow it. He followed the butterfly into the park.",
+
+        incorrectAudio:
+            "Not quite. Read again: Max saw a colorful butterfly and wanted to follow it. He followed the butterfly into the park."
+
+    },
+
+
+    inf3:{
+
+        correctMessage:
+            "Correct! Well done!",
+
+        correctAudio:
+            "Correct! Well done!",
+
+        helpText:
+            "Read again: When Max arrived home, his family was very happy.",
+
+        incorrectAudio:
+            "Not quite. Read again: When Max arrived home, his family was very happy."
+
+    },
+
+
+    inf4:{
+
+        correctMessage:
+            "Correct! Great work!",
+
+        correctAudio:
+            "Correct! Great work!",
+
+        helpText:
+            "Read again: Emma was kind because she helped Max return home.",
+
+        incorrectAudio:
+            "Not quite. Read again: Emma was kind because she helped Max return home."
+
+    }
+
+};
+
+
+/*====================================================
+=              CHECK ACTIVITY 2 ANSWER               =
+====================================================*/
+
+
+function checkSelect(
+
+    select,
+
+    correct,
+
+    id
+
+){
+
+    /*
+        Get the feedback element.
+    */
+
+    let feedback =
+
+        document.getElementById(
+            id
+        );
+
+
+    /*
+        If no answer has been selected,
+        do not evaluate the question.
+    */
+
+    if(
+        select.value === ""
+    ){
+
+        feedback.innerHTML = "";
+
+        feedback.className =
+            "feedback";
+
+        return;
+
+    }
+
+
+    /*
+        Obtain the feedback data
+        for the current question.
+    */
+
+    let questionData =
+
+        activity2Feedback[
+            id
+        ];
+
+
+    /*
+        Check whether the selected
+        answer is correct.
+    */
+
+    let isCorrect =
+
+        select.value ===
+        correct;
+
+
+    /*===============================================
+    =              CORRECT ANSWER                    =
+    ===============================================*/
+
+    registerAttemptAnswer(
+        2,
+        id,
+        isCorrect
+    );
+
+
+    if(isCorrect){
+
+        showCorrectFeedback(
+
+            feedback,
+
+            questionData.correctMessage,
+
+            questionData.correctAudio
+
+        );
+
+
+        /*
+            Add the point only once.
+
+            If the student changes the answer
+            later, the score will not increase
+            again.
+        */
+
+        if(
+            activity2State[id] === false
+        ){
+
+            activity2State[id] =
+                true;
+
+
+            activity2Score++;
+
+        }
+
+    }
+
+
+    /*===============================================
+    =             INCORRECT ANSWER                   =
+    ===============================================*/
+
+    else{
+
+        showIncorrectFeedback(
+
+            feedback,
+
+            questionData.helpText,
+
+            questionData.incorrectAudio
+
+        );
+
+    }
+
+
+    /*
+        Check whether all four questions
+        have been answered correctly.
+    */
+
+    checkActivity2Completion();
+
+}
+
+
+/*====================================================
+=           CHECK ACTIVITY 2 COMPLETION               =
+====================================================*/
+
+
+function checkActivity2Completion(){
+
+    checkAttemptCompletion(
+        2,
+        activity2Total,
+        activity2Score
+    );
+
+}
+
+/*====================================================
+=              ACTIVITY 3: MAIN IDEA                  =
+=====================================================*/
+
+
+/*
+    Each question has an individual state.
+
+    false = the question has not been answered
+            correctly yet.
+
+    true = the student has answered correctly.
+*/
+
+let activity3State = {
+
+    main1:false,
+
+    main2:false,
+
+    main3:false,
+
+    main4:false
+
+};
+
+
+/*
+    Current score for Activity 3.
+*/
+
+let activity3Score = 0;
+
+
+/*
+    Total number of questions.
+*/
+
+const activity3Total = 4;
+
+
+/*====================================================
+=              ACTIVITY 3 FEEDBACK DATA              =
+====================================================*/
+
+
+const activity3Feedback = {
+
+    main1:{
+
+        correctMessage:
+            "Correct! Excellent!",
+
+        correctAudio:
+            "Correct! Excellent!",
+
+        helpText:
+            "Read the beginning of the story again. Max is a little puppy who gets lost while following a butterfly.",
+
+        incorrectAudio:
+            "Not quite. Read the beginning of the story again. Max is a little puppy who gets lost while following a butterfly."
+
+    },
+
+
+    main2:{
+
+        correctMessage:
+            "Correct! Great job!",
+
+        correctAudio:
+            "Correct! Great job!",
+
+        helpText:
+            "Think about the main events. Max follows a butterfly, gets lost, and finally returns home.",
+
+        incorrectAudio:
+            "Not quite. Think about the main events. Max follows a butterfly, gets lost, and finally returns home."
+
+    },
+
+
+    main3:{
+
+        correctMessage:
+            "Correct! Well done!",
+
+        correctAudio:
+            "Correct! Well done!",
+
+        helpText:
+            "Read the last part of the story again. Max learns that it is important to stay close to home.",
+
+        incorrectAudio:
+            "Not quite. Read the last part of the story again. Max learns that it is important to stay close to home."
+
+    },
+
+
+    main4:{
+
+        correctMessage:
+            "Correct! Good job!",
+
+        correctAudio:
+            "Correct! Good job!",
+
+        helpText:
+            "Look at the character who appears throughout the story. The story begins with this character and follows his adventure.",
+
+        incorrectAudio:
+            "Not quite. Look at the character who appears throughout the story. The story begins with this character and follows his adventure."
+
+    }
+
+};
+
+
+/*====================================================
+=              CHECK ACTIVITY 3 ANSWER               =
+====================================================*/
+
+
+function checkMainIdea(
+
+    select,
+
+    correct,
+
+    id
+
+){
+
+    /*
+        Get the feedback element.
+    */
+
+    let feedback =
+
+        document.getElementById(
+            id
+        );
+
+
+    /*
+        Do not evaluate an empty selection.
+    */
+
+    if(
+        select.value === ""
+    ){
+
+        feedback.innerHTML = "";
+
+        feedback.className =
+            "feedback";
+
+        return;
+
+    }
+
+
+    /*
+        Obtain feedback information
+        for the current question.
+    */
+
+    let questionData =
+
+        activity3Feedback[
+            id
+        ];
+
+
+    /*
+        Check the selected answer.
+    */
+
+    let isCorrect =
+
+        select.value ===
+        correct;
+
+
+    /*===============================================
+    =              CORRECT ANSWER                    =
+    ===============================================*/
+
+    registerAttemptAnswer(
+        3,
+        id,
+        isCorrect
+    );
+
+
+    if(isCorrect){
+
+        showCorrectFeedback(
+
+            feedback,
+
+            questionData.correctMessage,
+
+            questionData.correctAudio
+
+        );
+
+
+        /*
+            Add only one point for each question.
+        */
+
+        if(
+            activity3State[id] === false
+        ){
+
+            activity3State[id] =
+                true;
+
+
+            activity3Score++;
+
+        }
+
+    }
+
+
+    /*===============================================
+    =             INCORRECT ANSWER                   =
+    ===============================================*/
+
+    else{
+
+        showIncorrectFeedback(
+
+            feedback,
+
+            questionData.helpText,
+
+            questionData.incorrectAudio
+
+        );
+
+    }
+
+
+    /*
+        Check whether Activity 3
+        has been completed.
+    */
+
+    checkActivity3Completion();
+
+}
+
+
+/*====================================================
+=           CHECK ACTIVITY 3 COMPLETION               =
+====================================================*/
+
+
+function checkActivity3Completion(){
+
+    checkAttemptCompletion(
+        3,
+        activity3Total,
+        activity3Score
+    );
+
+}
+
+/*====================================================
+=       ACTIVITY 4: VOCABULARY IN CONTEXT            =
+====================================================*/
+
+
+/*
+    Each question has an individual state.
+
+    This prevents duplicate points.
+*/
+
+let activity4State = {
+
+    vocab1:false,
+
+    vocab2:false,
+
+    vocab3:false,
+
+    vocab4:false
+
+};
+
+
+/*
+    Current score for Activity 4.
+*/
+
+let activity4Score = 0;
+
+
+/*
+    Total number of questions.
+*/
+
+const activity4Total = 4;
+
+
+/*====================================================
+=              ACTIVITY 4 FEEDBACK DATA              =
+====================================================*/
+
+
+const activity4Feedback = {
+
+    vocab1:{
+
+        correctMessage:
+            "Correct! Good job!",
+
+        correctAudio:
+            "Correct! Good job!",
+
+        helpText:
+            "Read again: Max felt worried when he could not see his house anymore.",
+
+        incorrectAudio:
+            "Not quite. Read again: Max felt worried when he could not see his house anymore."
+
+    },
+
+
+    vocab2:{
+
+        correctMessage:
+            "Correct! Excellent!",
+
+        correctAudio:
+            "Correct! Excellent!",
+
+        helpText:
+            "Read again: Max lived in a small house near a beautiful park.",
+
+        incorrectAudio:
+            "Not quite. Read again: Max lived in a small house near a beautiful park."
+
+    },
+
+
+    vocab3:{
+
+        correctMessage:
+            "Correct! Well done!",
+
+        correctAudio:
+            "Correct! Well done!",
+
+        helpText:
+            "Remember the meaning of puppy from Before Reading. A puppy is a young dog.",
+
+        incorrectAudio:
+            "Not quite. Remember the meaning of puppy from Before Reading. A puppy is a young dog."
+
+    },
+
+
+    vocab4:{
+
+        correctMessage:
+            "Correct! Great work!",
+
+        correctAudio:
+            "Correct! Great work!",
+
+        helpText:
+            "Read the ending of the story again. Emma took Max back to his family and helped him return home.",
+
+        incorrectAudio:
+            "Not quite. Read the ending of the story again. Emma took Max back to his family and helped him return home."
+
+    }
+
+};
+
+
+/*====================================================
+=              CHECK ACTIVITY 4 ANSWER               =
+====================================================*/
+
+
+function checkVocabularyContext(
+
+    select,
+
+    correct,
+
+    id
+
+){
+
+    /*
+        Get the feedback element.
+    */
+
+    let feedback =
+
+        document.getElementById(
+            id
+        );
+
+
+    /*
+        Do not evaluate an empty selection.
+    */
+
+    if(
+        select.value === ""
+    ){
+
+        feedback.innerHTML = "";
+
+        feedback.className =
+            "feedback";
+
+        return;
+
+    }
+
+
+    /*
+        Obtain the specific feedback
+        for the selected question.
+    */
+
+    let questionData =
+
+        activity4Feedback[
+            id
+        ];
+
+
+    /*
+        Compare the student's answer
+        with the correct answer.
+    */
+
+    let isCorrect =
+
+        select.value ===
+        correct;
+
+
+    /*===============================================
+    =              CORRECT ANSWER                    =
+    ===============================================*/
+
+    registerAttemptAnswer(
+        4,
+        id,
+        isCorrect
+    );
+
+
+    if(isCorrect){
+
+        showCorrectFeedback(
+
+            feedback,
+
+            questionData.correctMessage,
+
+            questionData.correctAudio
+
+        );
+
+
+        /*
+            Add the point only once.
+        */
+
+        if(
+            activity4State[id] === false
+        ){
+
+            activity4State[id] =
+                true;
+
+
+            activity4Score++;
+
+        }
+
+    }
+
+
+    /*===============================================
+    =             INCORRECT ANSWER                   =
+    ===============================================*/
+
+    else{
+
+        showIncorrectFeedback(
+
+            feedback,
+
+            questionData.helpText,
+
+            questionData.incorrectAudio
+
+        );
+
+    }
+
+
+    /*
+        Check whether Activity 4
+        has been completed.
+    */
+
+    checkActivity4Completion();
+
+}
+
+
+/*====================================================
+=           CHECK ACTIVITY 4 COMPLETION               =
+====================================================*/
+
+
+function checkActivity4Completion(){
+
+    checkAttemptCompletion(
+        4,
+        activity4Total,
+        activity4Score
+    );
+
+}
+
+/*====================================================
+=          ACTIVITY 5: SENTENCE ORDER                  =
+=====================================================*/
+
+
+/*
+    Each sentence has its own state.
+
+    false = not answered correctly yet
+    true  = answered correctly
+*/
+
+let activity5State = {
+
+    order1:false,
+
+    order2:false,
+
+    order3:false
+
+};
+
+
+/*
+    Current score for Activity 5.
+*/
+
+let activity5Score = 0;
+
+
+/*
+    Total number of sentence-order questions.
+*/
+
+const activity5Total = 3;
+
+
+/*====================================================
+=           ACTIVITY 5 FEEDBACK DATA                 =
+====================================================*/
+
+
+const activity5Feedback = {
+
+    order1:{
+
+        correctMessage:
+            "Correct! Excellent!",
+
+        correctAudio:
+            "Correct! Excellent!",
+
+        helpText:
+            "Remember the basic English sentence structure: Subject + Verb + Complement.",
+
+        incorrectAudio:
+            "Not quite. Remember the basic English sentence structure: Subject, Verb, Complement."
+
+    },
+
+
+    order2:{
+
+        correctMessage:
+            "Correct! Good job!",
+
+        correctAudio:
+            "Correct! Good job!",
+
+        helpText:
+            "Look for the person first. Then identify the action and the place.",
+
+        incorrectAudio:
+            "Not quite. Look for the person first. Then identify the action and the place."
+
+    },
+
+
+    order3:{
+
+        correctMessage:
+            "Correct! Well done!",
+
+        correctAudio:
+            "Correct! Well done!",
+
+        helpText:
+            "Remember that the person who performs the action usually comes before the verb.",
+
+        incorrectAudio:
+            "Not quite. Remember that the person who performs the action usually comes before the verb."
+
+    }
+
+};
+
+
+/*====================================================
+=              CHECK SENTENCE ORDER 1                =
+====================================================*/
+
+
+function checkOrder1(){
+
+    let a =
+        document.getElementById(
+            "o1a"
+        ).value;
+
+
+    let b =
+        document.getElementById(
+            "o1b"
+        ).value;
+
+
+    let c =
+        document.getElementById(
+            "o1c"
+        ).value;
+
+
+    let feedback =
+        document.getElementById(
+            "order1"
+        );
+
+
+    /*
+        Check whether all three words
+        have been selected.
+    */
+
+    if(
+        a === "" ||
+        b === "" ||
+        c === ""
+    ){
+
+        feedback.className =
+            "feedback incorrect";
+
+
+        feedback.innerHTML =
+            "⚠️ Please complete the sentence first.";
+
+
+        playFeedbackAudio(
+            "Please complete the sentence first."
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+        Correct order:
+        Max → felt → worried
+    */
+
+    let isCorrect =
+
+        a === "Max" &&
+
+        b === "felt" &&
+
+        c === "worried";
+
+
+    registerAttemptAnswer(
+        5,
+        "order1",
+        isCorrect
+    );
+
+
+    if(isCorrect){
+
+        showCorrectFeedback(
+
+            feedback,
+
+            activity5Feedback.order1.correctMessage,
+
+            activity5Feedback.order1.correctAudio
+
+        );
+
+
+        if(
+            activity5State.order1 === false
+        ){
+
+            activity5State.order1 =
+                true;
+
+
+            activity5Score++;
+
+        }
+
+    }
+
+    else{
+
+        showIncorrectFeedback(
+
+            feedback,
+
+            activity5Feedback.order1.helpText,
+
+            activity5Feedback.order1.incorrectAudio
+
+        );
+
+    }
+
+
+    checkActivity5Completion();
+
+}
+
+
+/*====================================================
+=              CHECK SENTENCE ORDER 2                =
+====================================================*/
+
+
+function checkOrder2(){
+
+    let a =
+        document.getElementById(
+            "o2a"
+        ).value;
+
+
+    let b =
+        document.getElementById(
+            "o2b"
+        ).value;
+
+
+    let c =
+        document.getElementById(
+            "o2c"
+        ).value;
+
+
+    let feedback =
+        document.getElementById(
+            "order2"
+        );
+
+
+    if(
+        a === "" ||
+        b === "" ||
+        c === ""
+    ){
+
+        feedback.className =
+            "feedback incorrect";
+
+
+        feedback.innerHTML =
+            "⚠️ Please complete the sentence first.";
+
+
+        playFeedbackAudio(
+            "Please complete the sentence first."
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+        Correct order:
+        Max → returned → home
+    */
+
+    let isCorrect =
+
+        a === "Max" &&
+
+        b === "returned" &&
+
+        c === "home";
+
+
+    registerAttemptAnswer(
+        5,
+        "order2",
+        isCorrect
+    );
+
+
+    if(isCorrect){
+
+        showCorrectFeedback(
+
+            feedback,
+
+            activity5Feedback.order2.correctMessage,
+
+            activity5Feedback.order2.correctAudio
+
+        );
+
+
+        if(
+            activity5State.order2 === false
+        ){
+
+            activity5State.order2 =
+                true;
+
+
+            activity5Score++;
+
+        }
+
+    }
+
+    else{
+
+        showIncorrectFeedback(
+
+            feedback,
+
+            activity5Feedback.order2.helpText,
+
+            activity5Feedback.order2.incorrectAudio
+
+        );
+
+    }
+
+
+    checkActivity5Completion();
+
+}
+
+
+/*====================================================
+=              CHECK SENTENCE ORDER 3                =
+====================================================*/
+
+
+function checkOrder3(){
+
+    let a =
+        document.getElementById(
+            "o3a"
+        ).value;
+
+
+    let b =
+        document.getElementById(
+            "o3b"
+        ).value;
+
+
+    let c =
+        document.getElementById(
+            "o3c"
+        ).value;
+
+
+    let feedback =
+        document.getElementById(
+            "order3"
+        );
+
+
+    if(
+        a === "" ||
+        b === "" ||
+        c === ""
+    ){
+
+        feedback.className =
+            "feedback incorrect";
+
+
+        feedback.innerHTML =
+            "⚠️ Please complete the sentence first.";
+
+
+        playFeedbackAudio(
+            "Please complete the sentence first."
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+        Correct order:
+        Emma → helped → Max
+    */
+
+    let isCorrect =
+
+        a === "Emma" &&
+
+        b === "helped" &&
+
+        c === "Max";
+
+
+    registerAttemptAnswer(
+        5,
+        "order3",
+        isCorrect
+    );
+
+
+    if(isCorrect){
+
+        showCorrectFeedback(
+
+            feedback,
+
+            activity5Feedback.order3.correctMessage,
+
+            activity5Feedback.order3.correctAudio
+
+        );
+
+
+        if(
+            activity5State.order3 === false
+        ){
+
+            activity5State.order3 =
+                true;
+
+
+            activity5Score++;
+
+        }
+
+    }
+
+    else{
+
+        showIncorrectFeedback(
+
+            feedback,
+
+            activity5Feedback.order3.helpText,
+
+            activity5Feedback.order3.incorrectAudio
+
+        );
+
+    }
+
+
+    checkActivity5Completion();
+
+}
+
+
+/*====================================================
+=           CHECK ACTIVITY 5 COMPLETION               =
+====================================================*/
+
+
+function checkActivity5Completion(){
+
+    checkAttemptCompletion(
+        5,
+        activity5Total,
+        activity5Score
+    );
+
+}
+
+/*====================================================
+=          FIRST ATTEMPT / RETRY SYSTEM              =
+====================================================*/
+
+const attemptData = {
+    1:{keys:["q1","q2","q3","q4"],firstAnswered:{q1:false,q2:false,q3:false,q4:false},firstScore:0,firstCompleted:false,retryAnswered:{q1:false,q2:false,q3:false,q4:false}},
+    2:{keys:["inf1","inf2","inf3","inf4"],firstAnswered:{inf1:false,inf2:false,inf3:false,inf4:false},firstScore:0,firstCompleted:false,retryAnswered:{inf1:false,inf2:false,inf3:false,inf4:false}},
+    3:{keys:["main1","main2","main3","main4"],firstAnswered:{main1:false,main2:false,main3:false,main4:false},firstScore:0,firstCompleted:false,retryAnswered:{main1:false,main2:false,main3:false,main4:false}},
+    4:{keys:["vocab1","vocab2","vocab3","vocab4"],firstAnswered:{vocab1:false,vocab2:false,vocab3:false,vocab4:false},firstScore:0,firstCompleted:false,retryAnswered:{vocab1:false,vocab2:false,vocab3:false,vocab4:false}},
+    5:{keys:["order1","order2","order3"],firstAnswered:{order1:false,order2:false,order3:false},firstScore:0,firstCompleted:false,retryAnswered:{order1:false,order2:false,order3:false}}
+};
+
+function registerAttemptAnswer(activityNumber, questionId, isCorrect){
+    let data=attemptData[activityNumber];
+    if(!data.firstCompleted){
+        if(!data.firstAnswered[questionId]){
+            data.firstAnswered[questionId]=true;
+            if(isCorrect) data.firstScore++;
+        }
+    }else{
+        if(!data.retryAnswered[questionId]) data.retryAnswered[questionId]=true;
+    }
+}
+
+function getAttemptCount(activityNumber){
+    let data=attemptData[activityNumber];
+    let tracker=data.firstCompleted?data.retryAnswered:data.firstAnswered;
+    return Object.values(tracker).filter(v=>v===true).length;
+}
+
+function checkAttemptCompletion(activityNumber,total,currentScore){
+    let data=attemptData[activityNumber];
+    if(getAttemptCount(activityNumber)===total){
+        if(!data.firstCompleted){
+            data.firstCompleted=true;
+            showActivityResult(activityNumber,data.firstScore,total,"first");
+        }else{
+            showActivityResult(activityNumber,currentScore,total,"retry");
+        }
+    }
+}
+
+function clearActivityFeedback(activityNumber){
+    let ids={1:["fb1","fb2","fb3","fb4"],2:["inf1","inf2","inf3","inf4"],3:["main1","main2","main3","main4"],4:["vocab1","vocab2","vocab3","vocab4"],5:["order1","order2","order3"]};
+    ids[activityNumber].forEach(function(id){
+        let el=document.getElementById(id);
+        if(el){el.className="feedback";el.innerHTML="";}
+    });
+}
+
+function startActivityRetry(activityNumber){
+    let data=attemptData[activityNumber];
+    data.retryAnswered={};
+    data.keys.forEach(k=>data.retryAnswered[k]=false);
+    clearActivityFeedback(activityNumber);
+    let resultBox=document.getElementById("resultActivity"+activityNumber);
+    if(resultBox) resultBox.style.display="none";
+
+    if(activityNumber===1){
+        activity1State={q1:false,q2:false,q3:false,q4:false}; activity1Score=0;
+        document.querySelectorAll('input[type="radio"]').forEach(i=>i.checked=false);
+    }
+    if(activityNumber===2){
+        activity2State={inf1:false,inf2:false,inf3:false,inf4:false}; activity2Score=0;
+        ["inf1","inf2","inf3","inf4"].forEach(id=>{let f=document.getElementById(id);if(f&&f.parentElement){let s=f.parentElement.querySelector('select');if(s)s.value="";}});
+    }
+    if(activityNumber===3){
+        activity3State={main1:false,main2:false,main3:false,main4:false}; activity3Score=0;
+        ["main1","main2","main3","main4"].forEach(id=>{let f=document.getElementById(id);if(f&&f.parentElement){let s=f.parentElement.querySelector('select');if(s)s.value="";}});
+    }
+    if(activityNumber===4){
+        activity4State={vocab1:false,vocab2:false,vocab3:false,vocab4:false}; activity4Score=0;
+        ["vocab1","vocab2","vocab3","vocab4"].forEach(id=>{let f=document.getElementById(id);if(f&&f.parentElement){let s=f.parentElement.querySelector('select');if(s)s.value="";}});
+    }
+    if(activityNumber===5){
+        activity5State={order1:false,order2:false,order3:false}; activity5Score=0;
+        ["order1","order2","order3"].forEach(id=>{let f=document.getElementById(id);if(f&&f.parentElement){f.parentElement.querySelectorAll('select').forEach(s=>s.value="");}});
+    }
+}
+
+function showActivityResult(activityNumber,score,total,attemptType){
+    let resultBox=document.getElementById("resultActivity"+activityNumber);
+    let scoreBox=document.getElementById("scoreActivity"+activityNumber);
+    let starsBox=document.getElementById("starsActivity"+activityNumber);
+    let rubricBox=document.getElementById("rubricActivity"+activityNumber);
+    let rating=getStarRating(score,total);
+    let data=attemptData[activityNumber];
+    let firstRating=getStarRating(data.firstScore,total);
+
+    if(attemptType==="first"){
+        scoreBox.innerHTML="First Attempt Score: "+data.firstScore+"/"+total;
+        starsBox.innerHTML=firstRating.stars;
+        rubricBox.innerHTML=firstRating.message;
+    }else{
+        scoreBox.innerHTML="First Attempt: "+data.firstScore+"/"+total+"<br><strong>Retry Result: "+score+"/"+total+"</strong>";
+        starsBox.innerHTML="First Attempt: "+firstRating.stars+"<br>Retry: "+rating.stars;
+        rubricBox.innerHTML="First Attempt: "+firstRating.message+"<br>Retry: "+rating.message;
+    }
+
+    resultBox.className="activity-result "+rating.className;
+    resultBox.style.display="block";
+
+    let retryButton=resultBox.querySelector(".try-again-button");
+    if(!retryButton){
+        retryButton=document.createElement("button");
+        retryButton.className="try-again-button";
+        retryButton.type="button";
+        retryButton.innerHTML="🔄 Try Again";
+        retryButton.onclick=function(){startActivityRetry(activityNumber);};
+        resultBox.appendChild(retryButton);
+    }
+    retryButton.style.display="inline-block";
+    playResultAudio(score,total,rating.message);
+}
+
+/*====================================================
+=             VOCABULARY MATCH GAME                  =
+====================================================*/
+
+
+/*
+    Vocabulary Match Game state.
+
+    The five words remain independent
+    from the five reading-comprehension
+    activities.
+*/
+
+let matchState = {
+
+    puppy:false,
+
+    park:false,
+
+    flower:false,
+
+    home:false,
+
+    worried:false
+
+};
+
+
+/*
+    Current Vocabulary Match score.
+*/
+
+let matchScore = 0;
+
+
+/*
+    Total number of vocabulary items.
+*/
+
+const matchTotal = 5;
+
+
+/*====================================================
+=                  DRAG FUNCTION                     =
+====================================================*/
+
+
+
+let matchFirstAttempted={puppy:false,park:false,flower:false,home:false,worried:false};
+let matchFirstScore=0;
+let matchFirstCompleted=false;
+let matchRetryAttempted={puppy:false,park:false,flower:false,home:false,worried:false};
+
+function registerMatchAttempt(wordId,isCorrect){
+    if(!matchFirstCompleted){
+        if(!matchFirstAttempted[wordId]){
+            matchFirstAttempted[wordId]=true;
+            if(isCorrect) matchFirstScore++;
+        }
+    }else{
+        if(!matchRetryAttempted[wordId]) matchRetryAttempted[wordId]=true;
+    }
+}
+
+function startMatchRetry(){
+    matchRetryAttempted={puppy:false,park:false,flower:false,home:false,worried:false};
+    let resultBox=document.getElementById("matchResult");
+    if(resultBox) resultBox.style.display="none";
+    let feedback=document.getElementById("matchFeedback");
+    if(feedback){feedback.className="feedback";feedback.innerHTML="";}
+    resetGame();
+}
+
+function drag(event){
+
+    /*
+        Store the ID of the dragged word.
+    */
+
+    event.dataTransfer.setData(
+
+        "text",
+
+        event.target.id
+
+    );
+
+}
+
+
+/*====================================================
+=                ALLOW DROP FUNCTION                 =
+====================================================*/
+
+
+function allowDrop(event){
+
+    event.preventDefault();
+
+}
+
+
+/*====================================================
+=                    DROP FUNCTION                   =
+====================================================*/
+
+
+function drop(event){
+
+    event.preventDefault();
+
+
+    /*
+        Get the ID of the dragged word.
+    */
+
+    let wordId =
+
+        event.dataTransfer.getData(
+            "text"
+        );
+
+
+    /*
+        Get the dragged element.
+    */
+
+    let draggedElement =
+
+        document.getElementById(
+            wordId
+        );
+
+
+    /*
+        Get the drop zone.
+    */
+
+    let dropZone =
+
+        event.currentTarget;
+
+
+    /*
+        Get the expected word
+        from data-word.
+    */
+
+    let expectedWord =
+
+        dropZone.dataset.word;
+
+
+    let isCorrectMatch = wordId === expectedWord;
+
+    registerMatchAttempt(
+        wordId,
+        isCorrectMatch
+    );
+
+
+    /*
+        Prevent an already completed
+        drop zone from being changed.
+    */
+
+    if(
+        dropZone.classList.contains(
+            "success"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    /*===============================================
+    =                CORRECT MATCH                   =
+    ===============================================*/
+
+    if(
+        wordId === expectedWord
+    ){
+
+        /*
+            Add the word inside
+            the correct drop zone.
+        */
+
+        dropZone.innerHTML = "";
+
+        dropZone.appendChild(
+            draggedElement
+        );
+
+
+        dropZone.classList.add(
+            "success"
+        );
+
+
+        /*
+            Disable dragging after
+            a correct match.
+        */
+
+        draggedElement.draggable =
+            false;
+
+
+        /*
+            Add one point only once.
+        */
+
+        if(
+            matchState[wordId] === false
+        ){
+
+            matchState[wordId] =
+                true;
+
+
+            matchScore++;
+
+        }
+
+
+        /*
+            Positive visual feedback.
+        */
+
+        showMatchFeedback(
+
+            "correct",
+
+            "Correct! Great job!"
+
+        );
+
+
+        /*
+            Automatic audio feedback.
+        */
+
+        playFeedbackAudio(
+
+            "Correct! Great job!"
+
+        );
+
+
+        /*
+            Check whether the entire
+            vocabulary game is complete.
+        */
+
+        checkMatchCompletion();
+
+    }
+
+
+    /*===============================================
+    =               INCORRECT MATCH                  =
+    ===============================================*/
+
+    else{
+
+        showMatchFeedback(
+
+            "incorrect",
+
+            "Not quite! Try again and look carefully at the meaning."
+
+        );
+
+
+        playFeedbackAudio(
+
+            "Not quite! Try again and look carefully at the meaning."
+
+        );
+
+    }
+
+}
+
+
+/*====================================================
+=           VOCABULARY MATCH FEEDBACK                =
+====================================================*/
+
+
+function showMatchFeedback(
+
+    type,
+
+    message
+
+){
+
+    let feedback =
+
+        document.getElementById(
+            "matchFeedback"
+        );
+
+
+    if(
+        type === "correct"
+    ){
+
+        feedback.className =
+            "feedback correct";
+
+    }
+
+    else{
+
+        feedback.className =
+            "feedback incorrect";
+
+    }
+
+
+    feedback.innerHTML =
+        message;
+
+}
+
+
+/*====================================================
+=          CHECK MATCH GAME COMPLETION               =
+====================================================*/
+
+
+function checkMatchCompletion(){
+
+    let tracker=matchFirstCompleted?matchRetryAttempted:matchFirstAttempted;
+    let attempted=Object.values(tracker).filter(v=>v===true).length;
+
+    if(attempted===matchTotal){
+
+        let resultBox=document.getElementById("matchResult");
+        let scoreBox=document.getElementById("matchScore");
+        let starsBox=document.getElementById("matchStars");
+        let rubricBox=document.getElementById("matchRubric");
+        let currentRating=getStarRating(matchScore,matchTotal);
+        let firstRating=getStarRating(matchFirstScore,matchTotal);
+
+        if(!matchFirstCompleted){
+            matchFirstCompleted=true;
+            scoreBox.innerHTML="First Attempt Score: "+matchFirstScore+"/"+matchTotal;
+            starsBox.innerHTML=firstRating.stars;
+            rubricBox.innerHTML=firstRating.message;
+        }else{
+            scoreBox.innerHTML="First Attempt: "+matchFirstScore+"/"+matchTotal+"<br><strong>Retry Result: "+matchScore+"/"+matchTotal+"</strong>";
+            starsBox.innerHTML="First Attempt: "+firstRating.stars+"<br>Retry: "+currentRating.stars;
+            rubricBox.innerHTML="First Attempt: "+firstRating.message+"<br>Retry: "+currentRating.message;
+        }
+
+        resultBox.className="activity-result "+currentRating.className;
+        resultBox.style.display="block";
+
+        let retryButton=resultBox.querySelector(".try-again-match-button");
+        if(!retryButton){
+            retryButton=document.createElement("button");
+            retryButton.className="try-again-match-button";
+            retryButton.type="button";
+            retryButton.innerHTML="🔄 Try Again";
+            retryButton.onclick=function(){startMatchRetry();};
+            resultBox.appendChild(retryButton);
+        }
+        retryButton.style.display="inline-block";
+
+        playResultAudio(matchScore,matchTotal,currentRating.message);
+    }
+}
+
+
+/*====================================================
+=               RESET MATCH GAME                     =
+====================================================*/
+
+
+function resetGame(){
+
+    /*
+        Reset the score.
+    */
+
+    matchScore = 0;
+
+
+    /*
+        Reset all states.
+    */
+
+    matchState = {
+
+        puppy:false,
+
+        park:false,
+
+        flower:false,
+
+        home:false,
+
+        worried:false
+
+    };
+
+
+    /*
+        Reset all draggable words.
+    */
+
+    let words =
+
+        document.querySelectorAll(
+            ".drag-word"
+        );
+
+
+    words.forEach(
+
+        function(word){
+
+            word.draggable =
+                true;
+
+        }
+
+    );
+
+
+    /*
+        Reset all drop zones.
+    */
+
+    let dropZones =
+
+        document.querySelectorAll(
+            ".drop-zone"
+        );
+
+
+    dropZones.forEach(
+
+        function(zone){
+
+            zone.classList.remove(
+                "success"
+            );
+
+        }
+
+    );
+
+
+    /*
+        Reset feedback.
+    */
+
+    let feedback =
+
+        document.getElementById(
+            "matchFeedback"
+        );
+
+
+    feedback.innerHTML = "";
+
+    feedback.className =
+        "feedback";
+
+
+    /*
+        Hide final result.
+    */
+
+    let resultBox =
+
+        document.getElementById(
+            "matchResult"
+        );
+
+
+    resultBox.style.display =
+        "none";
+
+
+    /*
+        Stop any active audio.
+    */
+
+    stopSpeech();
+
+}
+
+/*====================================================
+=                 STORY AUDIO SYSTEM                  =
+=====================================================*/
+
+
+/*
+    Complete story text used by the
+    reading audio function.
+
+    The student can listen to the story
+    at different speeds.
+*/
+
+const storyText = `
 
 Once upon a time, there was a little puppy named Max.
 
@@ -402,787 +5227,312 @@ It is good to explore, but it is important to stay close to home.
 
 The End.
 
-</p>
-
-</div>
-
-<div style="margin-top:15px;">
-
-<button onclick="playStory(0.7)">
-🐢 Slow
-</button>
-
-<button onclick="playStory(1)">
-🚶 Normal
-</button>
-
-<button onclick="playStory(1.3)">
-🐇 Fast
-</button>
-
-<button onclick="stopStory()">
-⏹ Stop
-</button>
-
-</div>
-
-</div>
-
-<!-- AFTER READING -->
-
-<div class="section">
-
-<h2>📝 After Reading</h2>
-
-<!-- ACTIVITY 1 -->
-
-<h3>📌 Activity 1: Literal Comprehension</h3>
-
-<div class="question-box">
-
-<p>1. Where did Max live?</p>
-
-<input type="radio" name="q1" value="correct">
-In a small house<br>
-
-<input type="radio" name="q1" value="wrong">
-In a zoo<br>
-
-<input type="radio" name="q1" value="wrong">
-In a school<br>
-
-<button onclick="checkAnswer('q1','fb1')">
-Check Answer
-</button>
-
-<div id="fb1"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>2. What did Max follow?</p>
-
-<input type="radio" name="q2" value="wrong">
-A cat<br>
-
-<input type="radio" name="q2" value="correct">
-A butterfly<br>
-
-<input type="radio" name="q2" value="wrong">
-A bird<br>
-
-<button onclick="checkAnswer('q2','fb2')">
-Check Answer
-</button>
-
-<div id="fb2"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>3. Who helped Max?</p>
-
-<input type="radio" name="q3" value="wrong">
-A teacher<br>
-
-<input type="radio" name="q3" value="correct">
-Emma<br>
-
-<input type="radio" name="q3" value="wrong">
-A police officer<br>
-
-<button onclick="checkAnswer('q3','fb3')">
-Check Answer
-</button>
-
-<div id="fb3"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>4. Where did Emma find Max?</p>
-
-<input type="radio" name="q4" value="correct">
-Under a tree<br>
-
-<input type="radio" name="q4" value="wrong">
-At school<br>
-
-<input type="radio" name="q4" value="wrong">
-In a store<br>
-
-<button onclick="checkAnswer('q4','fb4')">
-Check Answer
-</button>
-
-<div id="fb4"></div>
-
-</div>
-
-<!-- ACTIVITY 2 -->
-
-<h3>🧠 Activity 2: Inferential Comprehension</h3>
-
-<div class="question-box">
-
-<p>1. How did Max feel when he got lost?</p>
-
-<select onchange="checkSelect(this,'worried','inf1')">
-<option value="">Select...</option>
-<option>happy</option>
-<option>worried</option>
-<option>hungry</option>
-</select>
-
-<div id="inf1"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>2. Why did Max get lost?</p>
-
-<select onchange="checkSelect(this,'He followed a butterfly','inf2')">
-<option value="">Select...</option>
-<option>He followed a butterfly</option>
-<option>He went to school</option>
-<option>He slept</option>
-</select>
-
-<div id="inf2"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>3. How did Max feel when he returned home?</p>
-
-<select onchange="checkSelect(this,'happy','inf3')">
-<option value="">Select...</option>
-<option>happy</option>
-<option>sad</option>
-<option>angry</option>
-</select>
-
-<div id="inf3"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>4. Was Emma kind?</p>
-
-<select onchange="checkSelect(this,'yes','inf4')">
-<option value="">Select...</option>
-<option>yes</option>
-<option>no</option>
-</select>
-
-<div id="inf4"></div>
-
-</div>
-
-<!-- ACTIVITY 3 -->
-
-<h3>💡 Activity 3: Main Idea</h3>
-
-<div class="question-box">
-
-<p>1. Choose the best title.</p>
-
-<select onchange="checkSelect(this,'The Lost Puppy','main1')">
-<option value="">Select...</option>
-<option>The Lost Puppy</option>
-<option>The Hungry Cat</option>
-<option>The Big School</option>
-</select>
-
-<div id="main1"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>2. What is the story mainly about?</p>
-
-<select onchange="checkSelect(this,'A puppy gets lost and returns home','main2')">
-<option value="">Select...</option>
-<option>A puppy gets lost and returns home</option>
-<option>A puppy learns math</option>
-<option>A puppy buys flowers</option>
-</select>
-
-<div id="main2"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>3. What lesson did Max learn?</p>
-
-<select onchange="checkSelect(this,'Stay close to home','main3')">
-<option value="">Select...</option>
-<option>Stay close to home</option>
-<option>Run away</option>
-<option>Never play</option>
-</select>
-
-<div id="main3"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>4. Who is the main character?</p>
-
-<select onchange="checkSelect(this,'Max','main4')">
-<option value="">Select...</option>
-<option>Max</option>
-<option>Emma</option>
-<option>Butterfly</option>
-</select>
-
-<div id="main4"></div>
-
-</div>
-
-<!-- ACTIVITY 4 -->
-
-<h3>📝 Activity 4: Vocabulary in Context</h3>
-
-<div class="question-box">
-
-<p>1. Max felt ________ when he could not find his house.</p>
-
-<select onchange="checkSelect(this,'worried','vocab1')">
-<option value="">Select...</option>
-<option>worried</option>
-<option>happy</option>
-<option>hungry</option>
-</select>
-
-<div id="vocab1"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>2. Max lived near a beautiful ________.</p>
-
-<select onchange="checkSelect(this,'park','vocab2')">
-<option value="">Select...</option>
-<option>school</option>
-<option>park</option>
-<option>hospital</option>
-</select>
-
-<div id="vocab2"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>3. A puppy is a young ________.</p>
-
-<select onchange="checkSelect(this,'dog','vocab3')">
-<option value="">Select...</option>
-<option>cat</option>
-<option>bird</option>
-<option>dog</option>
-</select>
-
-<div id="vocab3"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>4. Emma helped Max return ________.</p>
-
-<select onchange="checkSelect(this,'home','vocab4')">
-<option value="">Select...</option>
-<option>home</option>
-<option>school</option>
-<option>park</option>
-</select>
-
-<div id="vocab4"></div>
-
-</div>
-
-<!-- ACTIVITY 5 -->
-
-<h3>📚 Activity 5: Sentence Order</h3>
-
-<div class="question-box">
-
-<p>1. Order the sentence:</p>
-
-<div class="order-box">
-worried | Max | felt
-</div>
-
-<select id="o1a">
-<option value="">Select...</option>
-<option>Max</option>
-<option>felt</option>
-<option>worried</option>
-</select>
-
-<select id="o1b">
-<option value="">Select...</option>
-<option>Max</option>
-<option>felt</option>
-<option>worried</option>
-</select>
-
-<select id="o1c">
-<option value="">Select...</option>
-<option>Max</option>
-<option>felt</option>
-<option>worried</option>
-</select>
-
-<button onclick="checkOrder1()">
-Check
-</button>
-
-<div id="order1"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>2. Order the sentence:</p>
-
-<div class="order-box">
-home | returned | Max
-</div>
-
-<select id="o2a">
-<option value="">Select...</option>
-<option>Max</option>
-<option>returned</option>
-<option>home</option>
-</select>
-
-<select id="o2b">
-<option value="">Select...</option>
-<option>Max</option>
-<option>returned</option>
-<option>home</option>
-</select>
-
-<select id="o2c">
-<option value="">Select...</option>
-<option>Max</option>
-<option>returned</option>
-<option>home</option>
-</select>
-
-<button onclick="checkOrder2()">
-Check
-</button>
-
-<div id="order2"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>3. Order the sentence:</p>
-
-<div class="order-box">
-helped | Emma | Max
-</div>
-
-<select id="o3a">
-<option value="">Select...</option>
-<option>Emma</option>
-<option>helped</option>
-<option>Max</option>
-</select>
-
-<select id="o3b">
-<option value="">Select...</option>
-<option>Emma</option>
-<option>helped</option>
-<option>Max</option>
-</select>
-
-<select id="o3c">
-<option value="">Select...</option>
-<option>Emma</option>
-<option>helped</option>
-<option>Max</option>
-</select>
-
-<button onclick="checkOrder3()">
-Check
-</button>
-
-<div id="order3"></div>
-
-</div>
-
-<script>
-
-function speak(text){
-
-speechSynthesis.cancel();
-
-let speech = new SpeechSynthesisUtterance(text);
-
-speech.lang="en-US";
-
-speechSynthesis.speak(speech);
-
-}
-
-
-// STORY AUDIO
-
-let storySpeech;
-
-function playStory(speed){
-
-stopStory();
-
-
-let storyText=`
-
-Once upon a time, there was a little puppy named Max.
-
-Max lived in a small house near a beautiful park.
-
-Every day, he played with his family and ran in the garden.
-
-One sunny morning, Max saw a colorful butterfly.
-
-He wanted to follow it.
-
-The butterfly flew over some flowers and into the park.
-
-Max followed the butterfly.
-
-He walked and walked until he could not see his house anymore.
-
-Suddenly, Max stopped.
-
-He looked around.
-
-The park was very big.
-
-His house was gone.
-
-Max felt worried.
-
-He barked loudly, but nobody came.
-
-After a few minutes, a kind girl named Emma saw Max sitting under a tree.
-
-She helped Max return home.
-
-His family was very happy.
-
-The End.
-
 `;
 
 
-storySpeech =
-new SpeechSynthesisUtterance(storyText);
+/*====================================================
+=                  PLAY STORY AUDIO                  =
+====================================================*/
 
 
-storySpeech.lang="en-US";
+function playStory(
 
-storySpeech.rate=speed;
+    speed
+
+){
+
+    /*
+        Stop any previous audio.
+    */
+
+    stopSpeech();
 
 
-speechSynthesis.speak(storySpeech);
+    /*
+        Create a new speech object.
+    */
 
+    currentSpeech =
+
+        new SpeechSynthesisUtterance(
+
+            storyText
+
+        );
+
+
+    /*
+        Set English language.
+    */
+
+    currentSpeech.lang =
+        "en-US";
+
+
+    /*
+        Set selected reading speed.
+    */
+
+    currentSpeech.rate =
+        speed;
+
+
+    /*
+        Set normal pitch.
+    */
+
+    currentSpeech.pitch =
+        1;
+
+
+    /*
+        Set maximum volume.
+    */
+
+    currentSpeech.volume =
+        1;
+
+
+    /*
+        Play the story.
+    */
+
+    window.speechSynthesis.speak(
+
+        currentSpeech
+
+    );
 
 }
 
+
+/*====================================================
+=                  STOP STORY AUDIO                  =
+====================================================*/
 
 
 function stopStory(){
 
-speechSynthesis.cancel();
+    stopSpeech();
 
 }
 
 
-
-// RADIO QUESTIONS
-
-
-function checkAnswer(question,feedback){
+/*====================================================
+=               GLOBAL RESET FUNCTION                =
+====================================================*/
 
 
-let answer=document.querySelector(
-'input[name="'+question+'"]:checked'
+
+function resetAllAttemptTracking(){
+    Object.keys(attemptData).forEach(function(activityNumber){
+        let data=attemptData[activityNumber];
+        data.firstScore=0;
+        data.firstCompleted=false;
+        data.keys.forEach(function(key){
+            data.firstAnswered[key]=false;
+            data.retryAnswered[key]=false;
+        });
+    });
+    matchFirstAttempted={puppy:false,park:false,flower:false,home:false,worried:false};
+    matchFirstScore=0;
+    matchFirstCompleted=false;
+    matchRetryAttempted={puppy:false,park:false,flower:false,home:false,worried:false};
+}
+
+function resetAllActivities(){
+
+    resetAllAttemptTracking();
+
+    /*
+        Stop current audio.
+    */
+
+    stopSpeech();
+
+
+    /*
+        Reset Activity 1.
+    */
+
+    activity1State = {
+
+        q1:false,
+
+        q2:false,
+
+        q3:false,
+
+        q4:false
+
+    };
+
+
+    activity1Score = 0;
+
+
+    /*
+        Reset Activity 2.
+    */
+
+    activity2State = {
+
+        inf1:false,
+
+        inf2:false,
+
+        inf3:false,
+
+        inf4:false
+
+    };
+
+
+    activity2Score = 0;
+
+
+    /*
+        Reset Activity 3.
+    */
+
+    activity3State = {
+
+        main1:false,
+
+        main2:false,
+
+        main3:false,
+
+        main4:false
+
+    };
+
+
+    activity3Score = 0;
+
+
+    /*
+        Reset Activity 4.
+    */
+
+    activity4State = {
+
+        vocab1:false,
+
+        vocab2:false,
+
+        vocab3:false,
+
+        vocab4:false
+
+    };
+
+
+    activity4Score = 0;
+
+
+    /*
+        Reset Activity 5.
+    */
+
+    activity5State = {
+
+        order1:false,
+
+        order2:false,
+
+        order3:false
+
+    };
+
+
+    activity5Score = 0;
+
+
+    /*
+        Hide all activity results.
+    */
+
+    document
+        .querySelectorAll(
+            ".activity-result"
+        )
+        .forEach(
+
+            function(result){
+
+                result.style.display =
+                    "none";
+
+            }
+
+        );
+
+
+    /*
+        Reset Vocabulary Match Game.
+    */
+
+    resetGame();
+
+}
+
+
+/*====================================================
+=             PAGE INITIALIZATION                    =
+====================================================*/
+
+
+/*
+    Stop speech if the page is closed
+    or the student leaves the page.
+*/
+
+window.addEventListener(
+
+    "beforeunload",
+
+    function(){
+
+        stopSpeech();
+
+    }
+
 );
 
 
-if(!answer){
+/*
+    Ensure speech synthesis is ready
+    after the page loads.
+*/
 
-return;
+window.addEventListener(
 
-}
+    "load",
 
+    function(){
 
-document.getElementById(feedback).innerHTML =
+        if(
+            "speechSynthesis" in window
+        ){
 
-answer.value==="correct"
+            window.speechSynthesis.cancel();
 
-?
+        }
 
-"✅ Correct!"
+    }
 
-:
-
-"❌ Incorrect!";
-
-}
-
-
-
-
-// SELECT QUESTIONS
-
-
-function checkSelect(select,correct,id){
-
-
-let feedback =
-document.getElementById(id);
-
-
-if(select.value===correct){
-
-
-feedback.innerHTML="✅ Correct!";
-
-feedback.className="correct";
-
-
-}else{
-
-
-feedback.innerHTML="❌ Incorrect!";
-
-feedback.className="incorrect";
-
-
-}
-
-
-}
-
-
-
-// SENTENCE ORDER 1
-
-
-function checkOrder1(){
-
-
-let a=document.getElementById("o1a").value;
-
-let b=document.getElementById("o1b").value;
-
-let c=document.getElementById("o1c").value;
-
-
-
-document.getElementById("order1").innerHTML =
-
-
-(a==="Max" &&
-b==="felt" &&
-c==="worried")
-
-?
-
-"✅ Correct!"
-
-:
-
-"❌ Incorrect!";
-
-
-}
-
-
-
-// SENTENCE ORDER 2
-
-
-function checkOrder2(){
-
-
-let a=document.getElementById("o2a").value;
-
-let b=document.getElementById("o2b").value;
-
-let c=document.getElementById("o2c").value;
-
-
-
-document.getElementById("order2").innerHTML =
-
-
-(a==="Max" &&
-b==="returned" &&
-c==="home")
-
-?
-
-"✅ Correct!"
-
-:
-
-"❌ Incorrect!";
-
-
-}
-
-
-
-// SENTENCE ORDER 3
-
-
-function checkOrder3(){
-
-
-let a=document.getElementById("o3a").value;
-
-let b=document.getElementById("o3b").value;
-
-let c=document.getElementById("o3c").value;
-
-
-
-document.getElementById("order3").innerHTML =
-
-
-(a==="Emma" &&
-b==="helped" &&
-c==="Max")
-
-?
-
-"✅ Correct!"
-
-:
-
-"❌ Incorrect!";
-
-
-}
-
-
-
-
-// VOCABULARY DRAG AND DROP
-
-
-let draggedWord=null;
-
-
-
-function drag(event){
-
-
-draggedWord =
-event.target;
-
-
-}
-
-
-
-
-function allowDrop(event){
-
-
-event.preventDefault();
-
-
-}
-
-
-
-
-function drop(event){
-
-
-event.preventDefault();
-
-
-
-let zone =
-event.currentTarget;
-
-
-
-let correctWord =
-zone.dataset.word;
-
-
-
-if(draggedWord.id===correctWord){
-
-
-
-zone.innerHTML="";
-
-
-zone.appendChild(draggedWord);
-
-
-
-zone.classList.add("success");
-
-
-
-document.getElementById("matchFeedback").innerHTML=
-"✅ Correct Match!";
-
-
-
-}else{
-
-
-document.getElementById("matchFeedback").innerHTML=
-"❌ Try Again!";
-
-
-}
-
-
-
-}
-
-
-
-// RESET GAME
-
-
-function resetGame(){
-
-
-location.reload();
-
-
-}
+);
 
 
 </script>
+
+
+<!--==================================================
+=                    END OF PAGE                     =
+===================================================-->
+
+</div>
 
 
 </body>
