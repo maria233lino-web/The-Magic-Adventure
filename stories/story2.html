@@ -2,842 +2,1087 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Story 2 - Mia's Magic Backpack</title>
 
 <style>
+/*====================================================
+=                 GENERAL PAGE STYLE                 =
+====================================================*/
+*{
+  box-sizing:border-box;
+}
 
 body{
-font-family:Arial,sans-serif;
-margin:0;
-padding:20px;
-background:linear-gradient(to bottom,#FFE8B6,#FFD6F5);
+  font-family:Arial,sans-serif;
+  margin:0;
+  padding:20px;
+  background: linear-gradient(to bottom, #FFE8B6, #FFD6F5);
 }
 
 .container{
-max-width:1200px;
-margin:auto;
+  max-width:1200px;
+  margin:auto;
 }
 
 .section{
-background:white;
-padding:20px;
-margin-top:20px;
-border-radius:20px;
-box-shadow:0 4px 10px rgba(0,0,0,.15);
+  background:white;
+  padding:20px;
+  margin-top:20px;
+  border-radius:20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
 }
 
 h1{
-text-align:center;
-color:#7A3E65;
+  text-align:center;
+  color:#7A3E65;
 }
 
 h2{
-color:#9B59B6;
+  color:#9B59B6;
 }
 
-.card{
-display:inline-block;
-width:180px;
-margin:10px;
-padding:15px;
-background:#FFF8E7;
-border-radius:15px;
-text-align:center;
-vertical-align:top;
+h3{
+  color:#7A3E65;
 }
 
-.card img{
-width:120px;
-height:120px;
-object-fit:cover;
-border-radius:10px;
-}
-
+/*====================================================
+=                      BUTTONS                       =
+====================================================*/
 button{
-background:#9B59B6;
-color:white;
-border:none;
-padding:10px 15px;
-border-radius:10px;
-cursor:pointer;
-font-weight:bold;
+  background:#9B59B6;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+  margin:5px;
+  transition: transform .2s, opacity .2s;
 }
 
 button:hover{
-transform:scale(1.05);
+  transform:scale(1.05);
+  opacity:.9;
 }
 
 .back{
-background:#FF9F43;
+  background:#FF9F43;
+}
+
+/*====================================================
+=                  VOCABULARY CARDS                  =
+====================================================*/
+.card{
+  display:inline-block;
+  width:180px;
+  margin:10px;
+  padding:15px;
+  background:#FFF8E7;
+  border-radius:15px;
+  text-align:center;
+  vertical-align:top;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+
+.card img{
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+/*====================================================
+=                   QUESTION BOXES                   =
+====================================================*/
+.question-box{
+  background:#F4F8FF;
+  padding:15px;
+  margin-top:15px;
+  border-radius:10px;
 }
 
 .feedback{
-font-weight:bold;
-margin-top:10px;
+  font-weight:bold;
+  margin-top:10px;
+  padding:10px 15px;
+  border-radius:8px;
+  display:none;
 }
 
 .correct{
-color:green;
+  display:block;
+  color:#155724;
+  background-color:#d4edda;
+  border-left:5px solid #28a745;
 }
 
 .incorrect{
-color:red;
+  display:block;
+  color:#721c24;
+  background-color:#f8d7da;
+  border-left:5px solid #dc3545;
 }
 
-.question-box{
-background:#F4F8FF;
-padding:15px;
-margin-top:15px;
-border-radius:10px;
+.hint-text{
+  display:block;
+  font-size:14px;
+  font-weight:normal;
+  margin-top:4px;
+  color:#856404;
 }
 
+/*====================================================
+=                     STORY BOX                      =
+====================================================*/
 .story-box{
-background:#FDFDFD;
-padding:20px;
-border-radius:15px;
-line-height:1.8;
-font-size:18px;
+  background:#FDFDFD;
+  padding:20px;
+  border-radius:15px;
+  line-height:1.8;
+  font-size:18px;
+}
+
+/*====================================================
+=                    RESULT BOX                      =
+====================================================*/
+.result-box{
+  margin-top:20px;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  font-size:18px;
+  font-weight:bold;
+  display:none;
+}
+
+.excellent-result{
+  background:#FFFDE7;
+  border:3px solid #F1C40F;
+  color:#7D6608;
+}
+
+.good-result{
+  background:#FFF8D6;
+  border:3px solid #F1C40F;
+  color:#9A7D0A;
+}
+
+.practice-result{
+  background:#FFE8E8;
+  border:3px solid #E74C3C;
+  color:#922B21;
+}
+
+.stars{
+  font-size:35px;
+  margin:10px;
+}
+
+.retry-button{
+  background:#6C5CE7;
+  color:white;
+  padding:10px 20px;
+  font-size:16px;
+  border-radius:10px;
+  margin-top:10px;
+}
+
+/*====================================================
+=                  DRAWING CANVAS                    =
+====================================================*/
+.canvas-container{
+  text-align:center;
+  margin-top:20px;
 }
 
 canvas{
-border:3px solid #9B59B6;
-background:white;
-border-radius:10px;
-margin-top:10px;
+  border: 3px solid #9B59B6;
+  background:white;
+  border-radius:10px;
+  max-width:100%;
+  touch-action:none;
+  cursor:crosshair;
 }
 
-</style>
+.drawing-toolbar{
+  background:#F8F1FF;
+  padding:15px;
+  border-radius:15px;
+  margin-bottom:15px;
+}
 
+.tool-group{
+  margin:10px 0;
+}
+
+.tool-group label{
+  font-weight:bold;
+  margin-right:10px;
+}
+
+.color-button{
+  width:35px;
+  height:35px;
+  padding:0;
+  border-radius:50%;
+  border: 3px solid white;
+  box-shadow: 0 1px 4px rgba(0,0,0,.3);
+  margin:4px;
+}
+
+.color-button:hover{
+  transform:scale(1.15);
+}
+
+.tool-button{ background:#7A3E65; }
+.eraser-button{ background:#95A5A6; }
+.clear-button{ background:#E74C3C; }
+.undo-button{ background:#3498DB; }
+
+.checkbox-option{
+  display:block;
+  margin:8px 0;
+  font-size:17px;
+}
+
+.radio-item{
+  display:block;
+  margin:6px 0;
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-<button class="back"
-onclick="window.location.href='../index.html'">
+<button class="back" onclick="window.location.href='../index.html'">
 🏠 Back to Home
 </button>
 
 <h1>🎒 Story 2: Mia's Magic Backpack</h1>
 
 <!-- BEFORE READING -->
-
 <div class="section">
+  <h2>📚 Before Reading</h2>
+  <p>Learn the vocabulary before reading.</p>
 
-<h2>📚 Before Reading</h2>
+  <div class="card">
+    <img src="../images/backpack.jpg" alt="Backpack">
+    <h3>Backpack</h3>
+    <button onclick="speak('Backpack. A bag used to carry things.')">🔊 Listen</button>
+    <p>A bag used to carry things.</p>
+  </div>
 
-<p>
-Learn the vocabulary before reading.
-</p>
+  <div class="card">
+    <img src="../images/pencil.jpg" alt="Pencil">
+    <h3>Pencil</h3>
+    <button onclick="speak('Pencil. Used for writing.')">🔊 Listen</button>
+    <p>Used for writing.</p>
+  </div>
 
-<div class="card">
+  <div class="card">
+    <img src="../images/book.jpg" alt="Book">
+    <h3>Book</h3>
+    <button onclick="speak('Book. Something you read.')">🔊 Listen</button>
+    <p>Something you read.</p>
+  </div>
 
-<img src="../images/backpack.jpg">
+  <div class="card">
+    <img src="../images/umbrella.jpg" alt="Umbrella">
+    <h3>Umbrella</h3>
+    <button onclick="speak('Umbrella. Used when it rains.')">🔊 Listen</button>
+    <p>Used when it rains.</p>
+  </div>
 
-<h3>Backpack</h3>
-
-<button onclick="speak('Backpack. A bag used to carry things.')">
-🔊 Listen
-</button>
-
-<p>A bag used to carry things.</p>
-
+  <div class="card">
+    <img src="../images/magic.jpg" alt="Magic">
+    <h3>Magic</h3>
+    <button onclick="speak('Magic. Something special and surprising.')">🔊 Listen</button>
+    <p>Something special and surprising.</p>
+  </div>
 </div>
 
-<div class="card">
-
-<img src="../images/pencil.jpg">
-
-<h3>Pencil</h3>
-
-<button onclick="speak('Pencil. Used for writing.')">
-🔊 Listen
-</button>
-
-<p>Used for writing.</p>
-
-</div>
-
-<div class="card">
-
-<img src="../images/book.jpg">
-
-<h3>Book</h3>
-
-<button onclick="speak('Book. Something you read.')">
-🔊 Listen
-</button>
-
-<p>Something you read.</p>
-
-</div>
-
-<div class="card">
-
-<img src="../images/umbrella.jpg">
-
-<h3>Umbrella</h3>
-
-<button onclick="speak('Umbrella. Used when it rains.')">
-🔊 Listen
-</button>
-
-<p>Used when it rains.</p>
-
-</div>
-
-<div class="card">
-
-<img src="../images/magic.jpg">
-
-<h3>Magic</h3>
-
-<button onclick="speak('Magic. Something special and surprising.')">
-🔊 Listen
-</button>
-
-<p>Something special and surprising.</p>
-
-</div>
-
-</div>
-
-<!-- MATCH GAME -->
-
+<!-- VOCABULARY MATCH GAME -->
 <div class="section">
+  <h2>📚 Choose the Correct Definition</h2>
+  <p>Choose the correct definition for each word.</p>
 
-<h2>📚 Choose the Correct Definition</h2>
+  <button onclick="resetVocabularyGame()">🔄 Reset Game</button>
 
-<p>Choose the correct definition for each word.</p>
+  <div class="question-box">
+    <p><b>Backpack</b></p>
+    <select id="sel_m1" class="shuffle-select" onchange="checkVocabSelect(this, 'A bag used to carry things', 'm1')">
+      <option value="">Select...</option>
+      <option>A bag used to carry things</option>
+      <option>Used when it rains</option>
+      <option>Something you read</option>
+    </select>
+    <div id="m1" class="feedback"></div>
+  </div>
 
-<button onclick="resetGame()">
-🔄 Reset Game
-</button>
+  <div class="question-box">
+    <p><b>Pencil</b></p>
+    <select id="sel_m2" class="shuffle-select" onchange="checkVocabSelect(this, 'Used for writing', 'm2')">
+      <option value="">Select...</option>
+      <option>Used for writing</option>
+      <option>A magical object</option>
+      <option>A place to sleep</option>
+    </select>
+    <div id="m2" class="feedback"></div>
+  </div>
 
-<div id="matchFeedback" class="feedback"></div>
+  <div class="question-box">
+    <p><b>Book</b></p>
+    <select id="sel_m3" class="shuffle-select" onchange="checkVocabSelect(this, 'Something you read', 'm3')">
+      <option value="">Select...</option>
+      <option>Something you read</option>
+      <option>Used for cooking</option>
+      <option>A school bag</option>
+    </select>
+    <div id="m3" class="feedback"></div>
+  </div>
 
-<div class="question-box">
+  <div class="question-box">
+    <p><b>Umbrella</b></p>
+    <select id="sel_m4" class="shuffle-select" onchange="checkVocabSelect(this, 'Used when it rains', 'm4')">
+      <option value="">Select...</option>
+      <option>Used when it rains</option>
+      <option>Used for writing</option>
+      <option>A pet</option>
+    </select>
+    <div id="m4" class="feedback"></div>
+  </div>
 
-<p><b>Backpack</b></p>
+  <div class="question-box">
+    <p><b>Magic</b></p>
+    <select id="sel_m5" class="shuffle-select" onchange="checkVocabSelect(this, 'Something special and surprising', 'm5')">
+      <option value="">Select...</option>
+      <option>Something special and surprising</option>
+      <option>A type of food</option>
+      <option>A toy</option>
+    </select>
+    <div id="m5" class="feedback"></div>
+  </div>
 
-<select onchange="checkSelect(this,'A bag used to carry things','m1')">
-<option value="">Select...</option>
-<option>A bag used to carry things</option>
-<option>Used when it rains</option>
-<option>Something you read</option>
-</select>
-
-<div id="m1"></div>
-
-</div>
-
-<div class="question-box">
-
-<p><b>Pencil</b></p>
-
-<select onchange="checkSelect(this,'Used for writing','m2')">
-<option value="">Select...</option>
-<option>Used for writing</option>
-<option>A magical object</option>
-<option>A place to sleep</option>
-</select>
-
-<div id="m2"></div>
-
-</div>
-
-<div class="question-box">
-
-<p><b>Book</b></p>
-
-<select onchange="checkSelect(this,'Something you read','m3')">
-<option value="">Select...</option>
-<option>Something you read</option>
-<option>Used for cooking</option>
-<option>A school bag</option>
-</select>
-
-<div id="m3"></div>
-
-</div>
-
-<div class="question-box">
-
-<p><b>Umbrella</b></p>
-
-<select onchange="checkSelect(this,'Used when it rains','m4')">
-<option value="">Select...</option>
-<option>Used when it rains</option>
-<option>Used for writing</option>
-<option>A pet</option>
-</select>
-
-<div id="m4"></div>
-
-</div>
-
-<div class="question-box">
-
-<p><b>Magic</b></p>
-
-<select onchange="checkSelect(this,'Something special and surprising','m5')">
-<option value="">Select...</option>
-<option>Something special and surprising</option>
-<option>A type of food</option>
-<option>A toy</option>
-</select>
-
-<div id="m5"></div>
-
-</div>
-
-</div>
-
-<!-- WARM UP -->
-
-<div class="section">
-
-<h2>🗣️ Warm-Up</h2>
-
-<div class="question-box">
-🎒 What do you usually carry in your backpack?
-</div>
-
-<div class="question-box">
-📚 What is your favorite book?
-</div>
-
-<div class="question-box">
-✏️ Do you use pencils at school?
-</div>
-
-<div class="question-box">
-☂️ When do you use an umbrella?
-</div>
-
-<div class="question-box">
-✨ If you had a magic backpack, what would you want inside?
-</div>
-
+  <div id="vocabularyResult" class="result-box">
+    <div>🎉 Vocabulary Complete!</div>
+    <div id="vocabularyScore"></div>
+    <div id="vocabularyStars" class="stars"></div>
+    <div id="vocabularyResultMessage"></div>
+    <button class="retry-button" onclick="resetVocabularyGame()">🔄 Try Again</button>
+  </div>
 </div>
 
 <!-- WHILE READING -->
-
 <div class="section">
+  <h2>📖 While Reading</h2>
+  <div class="story-box">
+    <p>
+      Mia was a young girl.<br><br>
+      One day, she found a magic backpack in her attic.<br><br>
+      The backpack looked old, but it was very special.<br><br>
+      Every morning, Mia opened the backpack.<br><br>
+      Inside, she found something useful.<br><br>
+      On Monday, she found a pencil.<br><br>
+      On Tuesday, she found a book.<br><br>
+      On Wednesday, she found an umbrella.<br><br>
+      Mia used these items to help her friends at school.<br><br>
+      Her friends were happy and thankful.<br><br>
+      One day, the backpack was empty.<br><br>
+      Mia felt sad.<br><br>
+      Then she found a note inside.<br><br>
+      The note said:<br><br>
+      <b>"The real magic is helping others."</b><br><br>
+      Mia smiled.<br><br>
+      She understood the lesson.<br><br>
+      From that day, she continued helping people every day.<br><br>
+      The End.
+    </p>
+  </div>
 
-<h2>📖 While Reading</h2>
-
-<div class="story-box">
-
-<p>
-
-Mia was a young girl.
-
-One day, she found a magic backpack in her attic.
-
-The backpack looked old, but it was very special.
-
-Every morning, Mia opened the backpack.
-
-Inside, she found something useful.
-
-On Monday, she found a pencil.
-
-On Tuesday, she found a book.
-
-On Wednesday, she found an umbrella.
-
-Mia used these items to help her friends at school.
-
-Her friends were happy and thankful.
-
-One day, the backpack was empty.
-
-Mia felt sad.
-
-Then she found a note inside.
-
-The note said:
-
-"The real magic is helping others."
-
-Mia smiled.
-
-She understood the lesson.
-
-From that day, she continued helping people every day.
-
-The End.
-
-</p>
-
-</div>
-
-<div style="margin-top:15px;">
-
-<button onclick="playStory(0.7)">
-🐢 Super Slow
-</button>
-
-<button onclick="playStory(1)">
-🚶 Normal
-</button>
-
-<button onclick="playStory(1.3)">
-🐇 Fast
-</button>
-
-<button onclick="stopStory()">
-⏹ Stop
-</button>
-
-</div>
-
+  <div style="margin-top:15px; text-align:center;">
+    <button onclick="playStory(0.7)">🐢 Super Slow</button>
+    <button onclick="playStory(1)">🚶 Normal</button>
+    <button onclick="playStory(1.3)">🐇 Fast</button>
+    <button onclick="stopStory()">⏹ Stop</button>
+  </div>
 </div>
 
 <!-- AFTER READING -->
-
 <div class="section">
+  <h2>📝 After Reading</h2>
 
-<h2>📝 After Reading</h2>
+  <h3>📖 Activity 1: Literal Comprehension</h3>
 
-<!-- ACTIVITY 1 -->
+  <div class="question-box">
+    <p>1. What did Mia find?</p>
+    <div class="radio-group" id="group_q1">
+      <label class="radio-item"><input type="radio" name="q1" value="correct"> A magic backpack</label>
+      <label class="radio-item"><input type="radio" name="q1" value="wrong"> A magic book</label>
+      <label class="radio-item"><input type="radio" name="q1" value="wrong"> A magic pencil</label>
+    </div>
+    <button onclick="checkRadioAnswer('q1','fb1')">Check Answer</button>
+    <div id="fb1" class="feedback"></div>
+  </div>
 
-<h3>📖 Activity 1: Literal Comprehension</h3>
+  <div class="question-box">
+    <p>2. Where did Mia find the backpack?</p>
+    <div class="radio-group" id="group_q2">
+      <label class="radio-item"><input type="radio" name="q2" value="correct"> In the attic</label>
+      <label class="radio-item"><input type="radio" name="q2" value="wrong"> In the garden</label>
+      <label class="radio-item"><input type="radio" name="q2" value="wrong"> At school</label>
+    </div>
+    <button onclick="checkRadioAnswer('q2','fb2')">Check Answer</button>
+    <div id="fb2" class="feedback"></div>
+  </div>
 
-<div class="question-box">
+  <div class="question-box">
+    <p>3. What did Mia find on Monday?</p>
+    <div class="radio-group" id="group_q3">
+      <label class="radio-item"><input type="radio" name="q3" value="correct"> A pencil</label>
+      <label class="radio-item"><input type="radio" name="q3" value="wrong"> A book</label>
+      <label class="radio-item"><input type="radio" name="q3" value="wrong"> An umbrella</label>
+    </div>
+    <button onclick="checkRadioAnswer('q3','fb3')">Check Answer</button>
+    <div id="fb3" class="feedback"></div>
+  </div>
 
-<p>1. What did Mia find?</p>
+  <div class="question-box">
+    <p>4. What did the note say?</p>
+    <div class="radio-group" id="group_q4">
+      <label class="radio-item"><input type="radio" name="q4" value="correct"> Helping others is magic</label>
+      <label class="radio-item"><input type="radio" name="q4" value="wrong"> Go to school</label>
+      <label class="radio-item"><input type="radio" name="q4" value="wrong"> Keep the backpack</label>
+    </div>
+    <button onclick="checkRadioAnswer('q4','fb4')">Check Answer</button>
+    <div id="fb4" class="feedback"></div>
+  </div>
 
-<input type="radio" name="q1" value="correct"> A magic backpack<br>
-<input type="radio" name="q1" value="wrong"> A magic book<br>
-<input type="radio" name="q1" value="wrong"> A magic pencil<br>
+  <div id="act1Result" class="result-box">
+    <div>🎉 Activity 1 Complete!</div>
+    <div id="act1Score"></div>
+    <div id="act1Stars" class="stars"></div>
+    <div id="act1ResultMessage"></div>
+    <button class="retry-button" onclick="resetAct1()">🔄 Try Again</button>
+  </div>
 
-<button onclick="checkAnswer('q1','fb1')">
-Check Answer
-</button>
+  <h3>🧠 Activity 2: Inferential Comprehension</h3>
 
-<div id="fb1"></div>
+  <div class="question-box">
+    <p>1. Why were Mia's friends happy?</p>
+    <select id="sel_inf1" class="shuffle-select" onchange="checkInferentialSelect(this, 'She helped them', 'inf1')">
+      <option value="">Select...</option>
+      <option>She helped them</option>
+      <option>She ignored them</option>
+      <option>She was absent</option>
+    </select>
+    <div id="inf1" class="feedback"></div>
+  </div>
+
+  <div class="question-box">
+    <p>2. How did Mia feel when the backpack was empty?</p>
+    <select id="sel_inf2" class="shuffle-select" onchange="checkInferentialSelect(this, 'sad', 'inf2')">
+      <option value="">Select...</option>
+      <option>happy</option>
+      <option>sad</option>
+      <option>excited</option>
+    </select>
+    <div id="inf2" class="feedback"></div>
+  </div>
+
+  <div class="question-box">
+    <p>3. Was Mia a helpful person?</p>
+    <select id="sel_inf3" class="shuffle-select" onchange="checkInferentialSelect(this, 'yes', 'inf3')">
+      <option value="">Select...</option>
+      <option>yes</option>
+      <option>no</option>
+    </select>
+    <div id="inf3" class="feedback"></div>
+  </div>
+
+  <div class="question-box">
+    <p>4. What was the real magic?</p>
+    <select id="sel_inf4" class="shuffle-select" onchange="checkInferentialSelect(this, 'Helping others', 'inf4')">
+      <option value="">Select...</option>
+      <option>Helping others</option>
+      <option>The umbrella</option>
+      <option>The attic</option>
+    </select>
+    <div id="inf4" class="feedback"></div>
+  </div>
+
+  <div id="act2Result" class="result-box">
+    <div>🎉 Activity 2 Complete!</div>
+    <div id="act2Score"></div>
+    <div id="act2Stars" class="stars"></div>
+    <div id="act2ResultMessage"></div>
+    <button class="retry-button" onclick="resetAct2()">🔄 Try Again</button>
+  </div>
+
+  <!-- DRAWING ACTIVITY -->
+  <div class="section">
+    <h3>🎨 Draw What You Read</h3>
+    <p>Draw Mia and her Magic Backpack.</p>
+
+    <div class="drawing-toolbar">
+      <div class="tool-group">
+        <label>🖌️ Drawing Tool:</label>
+        <button class="tool-button" onclick="setTool('pencil')">✏️ Pencil</button>
+        <button class="tool-button" onclick="setTool('brush')">🖌️ Brush</button>
+        <button class="tool-button" onclick="setTool('marker')">🖍️ Marker</button>
+        <button class="eraser-button" onclick="setTool('eraser')">🧹 Eraser</button>
+      </div>
+
+      <div class="tool-group">
+        <label>📏 Brush Size:</label>
+        <button onclick="setBrushSize(3)">Small</button>
+        <button onclick="setBrushSize(7)">Medium</button>
+        <button onclick="setBrushSize(14)">Large</button>
+      </div>
+
+      <div class="tool-group">
+        <label>🎨 Colors:</label>
+        <button class="color-button" style="background:#000000;" onclick="setColor('#000000')"></button>
+        <button class="color-button" style="background:#FF0000;" onclick="setColor('#FF0000')"></button>
+        <button class="color-button" style="background:#FF8C00;" onclick="setColor('#FF8C00')"></button>
+        <button class="color-button" style="background:#FFD700;" onclick="setColor('#FFD700')"></button>
+        <button class="color-button" style="background:#008000;" onclick="setColor('#008000')"></button>
+        <button class="color-button" style="background:#00AEEF;" onclick="setColor('#00AEEF')"></button>
+        <button class="color-button" style="background:#800080;" onclick="setColor('#800080')"></button>
+        <button class="color-button" style="background:#FF69B4;" onclick="setColor('#FF69B4')"></button>
+        <button class="color-button" style="background:#8B4513;" onclick="setColor('#8B4513')"></button>
+        <br><br>
+        <label>🌈 Custom Color:</label>
+        <input type="color" id="customColor" value="#000000" onchange="setColor(this.value)">
+      </div>
+
+      <div class="tool-group">
+        <button class="undo-button" onclick="undoDrawing()">↩️ Undo</button>
+        <button class="clear-button" onclick="clearCanvas()">🗑️ Clear Drawing</button>
+      </div>
+    </div>
+
+    <div class="canvas-container">
+      <canvas id="drawingCanvas" width="700" height="350"></canvas>
+    </div>
+  </div>
+
+  <!-- CHECKBOX ACTIVITY -->
+  <div class="section">
+    <h3>🎒 What's Inside the Backpack?</h3>
+    <p>Select only the objects that appeared in the story.</p>
+    <div class="question-box shuffle-checkboxes">
+      <label class="checkbox-option"><input type="checkbox" value="Pencil"> Pencil ✏️</label>
+      <label class="checkbox-option"><input type="checkbox" value="Book"> Book 📖</label>
+      <label class="checkbox-option"><input type="checkbox" value="Umbrella"> Umbrella ☂️</label>
+      <label class="checkbox-option"><input type="checkbox" value="Pizza"> Pizza 🍕</label>
+      <label class="checkbox-option"><input type="checkbox" value="Car"> Car 🚗</label>
+      <br>
+      <button onclick="checkBackpack()">Check</button>
+      <div id="backpackFeedback" class="feedback"></div>
+    </div>
+  </div>
+
+  <!-- FAVORITE PART -->
+  <div class="section">
+    <h3>⭐ Favorite Part</h3>
+    <p>What was your favorite part of the story?</p>
+    <select id="sel_fav" class="shuffle-select" onchange="favoritePart(this)">
+      <option value="">Select...</option>
+      <option>Finding the backpack</option>
+      <option>Finding the pencil</option>
+      <option>Helping friends</option>
+      <option>Reading the note</option>
+    </select>
+    <div id="favoriteFeedback" class="feedback"></div>
+  </div>
 
 </div>
 
-<div class="question-box">
-
-<p>2. Where did Mia find the backpack?</p>
-
-<input type="radio" name="q2" value="correct"> In the attic<br>
-<input type="radio" name="q2" value="wrong"> In the garden<br>
-<input type="radio" name="q2" value="wrong"> At school<br>
-
-<button onclick="checkAnswer('q2','fb2')">
-Check Answer
-</button>
-
-<div id="fb2"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>3. What did Mia find on Monday?</p>
-
-<input type="radio" name="q3" value="correct"> A pencil<br>
-<input type="radio" name="q3" value="wrong"> A book<br>
-<input type="radio" name="q3" value="wrong"> An umbrella<br>
-
-<button onclick="checkAnswer('q3','fb3')">
-Check Answer
-</button>
-
-<div id="fb3"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>4. What did the note say?</p>
-
-<input type="radio" name="q4" value="correct"> Helping others is magic<br>
-<input type="radio" name="q4" value="wrong"> Go to school<br>
-<input type="radio" name="q4" value="wrong"> Keep the backpack<br>
-
-<button onclick="checkAnswer('q4','fb4')">
-Check Answer
-</button>
-
-<div id="fb4"></div>
-
-</div>
-
-<!-- ACTIVITY 2 -->
-
-<h3>🧠 Activity 2: Inferential Comprehension</h3>
-
-<div class="question-box">
-
-<p>Why were Mia's friends happy?</p>
-
-<select onchange="checkSelect(this,'She helped them','inf1')">
-<option value="">Select...</option>
-<option>She helped them</option>
-<option>She ignored them</option>
-<option>She was absent</option>
-</select>
-
-<div id="inf1"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>How did Mia feel when the backpack was empty?</p>
-
-<select onchange="checkSelect(this,'sad','inf2')">
-<option value="">Select...</option>
-<option>happy</option>
-<option>sad</option>
-<option>excited</option>
-</select>
-
-<div id="inf2"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>Was Mia a helpful person?</p>
-
-<select onchange="checkSelect(this,'yes','inf3')">
-<option value="">Select...</option>
-<option>yes</option>
-<option>no</option>
-</select>
-
-<div id="inf3"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>What was the real magic?</p>
-
-<select onchange="checkSelect(this,'Helping others','inf4')">
-<option value="">Select...</option>
-<option>Helping others</option>
-<option>The umbrella</option>
-<option>The attic</option>
-</select>
-
-<div id="inf4"></div>
-
-</div>
-
-<!-- ACTIVITY 3 -->
-
-<h3>🎨 Draw What You Read</h3>
-
-<p>
-Draw Mia and her Magic Backpack.
-</p>
-
-<canvas id="drawingCanvas"
-width="700"
-height="350">
-</canvas>
-
-<br>
-
-<button onclick="clearCanvas()">
-🧹 Clear Drawing
-</button>
-
-</div>
-
-<!-- ACTIVITY 4 -->
-
-<div class="section">
-
-<h3>🎒 What's Inside the Backpack?</h3>
-
-<p>
-Select only the objects that appeared in the story.
-</p>
-
-<div class="question-box">
-
-<input type="checkbox" id="item1"> Pencil ✏️<br>
-<input type="checkbox" id="item2"> Book 📖<br>
-<input type="checkbox" id="item3"> Umbrella ☂️<br>
-<input type="checkbox" id="item4"> Pizza 🍕<br>
-<input type="checkbox" id="item5"> Car 🚗<br>
-
-<button onclick="checkBackpack()">
-Check
-</button>
-
-<div id="backpackFeedback"></div>
-
-</div>
-
-</div>
-
-<!-- ACTIVITY 5 -->
-
-<div class="section">
-
-<h3>⭐ Favorite Part</h3>
-
-<p>
-What was your favorite part of the story?
-</p>
-
-<select onchange="favoritePart(this)">
-
-<option value="">Select...</option>
-
-<option>Finding the backpack</option>
-
-<option>Finding the pencil</option>
-
-<option>Helping friends</option>
-
-<option>Reading the note</option>
-
-</select>
-
-<div id="favoriteFeedback"></div>
-
-</div>
-
+<!-- JAVASCRIPT -->
 <script>
+/*====================================================
+=              RANDOM MOTIVATIONAL MESSAGES         =
+====================================================*/
+const positivePraise = [
+    "Correct! Well done!",
+    "Correct! Great job!",
+    "Correct! Awesome!",
+    "Correct! Outstanding!",
+    "Correct! You got it!"
+];
 
-function speak(text){
-
-speechSynthesis.cancel();
-
-let speech =
-new SpeechSynthesisUtterance(text);
-
-speech.lang="en-US";
-
-speechSynthesis.speak(speech);
-
+function getRandomPraise() {
+    return positivePraise[Math.floor(Math.random() * positivePraise.length)];
 }
 
-let storySpeech;
+/*====================================================
+=             SHUFFLE OPTIONS FUNCTION               =
+====================================================*/
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function randomizeAllOptions() {
+    // 1. Shuffle select options (except default "Select...")
+    document.querySelectorAll('.shuffle-select').forEach(select => {
+        let firstOpt = select.options[0];
+        let optionsArr = Array.from(select.options).slice(1);
+        shuffleArray(optionsArr);
+        select.innerHTML = '';
+        select.appendChild(firstOpt);
+        optionsArr.forEach(opt => select.appendChild(opt));
+    });
+
+    // 2. Shuffle radio option groups
+    document.querySelectorAll('.radio-group').forEach(group => {
+        let items = Array.from(group.querySelectorAll('.radio-item'));
+        shuffleArray(items);
+        group.innerHTML = '';
+        items.forEach(item => group.appendChild(item));
+    });
+
+    // 3. Shuffle checkbox option groups
+    document.querySelectorAll('.shuffle-checkboxes').forEach(container => {
+        let items = Array.from(container.querySelectorAll('.checkbox-option'));
+        let button = container.querySelector('button');
+        let feedback = container.querySelector('.feedback');
+        
+        shuffleArray(items);
+        container.innerHTML = '';
+        
+        items.forEach(item => container.appendChild(item));
+        container.appendChild(document.createElement('br'));
+        if (button) container.appendChild(button);
+        if (feedback) container.appendChild(feedback);
+    });
+}
+
+window.addEventListener('DOMContentLoaded', randomizeAllOptions);
+
+/*====================================================
+=                 STAR RATING SYSTEM                 =
+====================================================*/
+function getStarRating(score, total) {
+    let percentage = (score / total) * 100;
+
+    if (percentage === 100) {
+        return {
+            stars: "⭐⭐⭐",
+            message: "Excellent!",
+            className: "excellent-result",
+            audio: "Excellent! You answered all the questions correctly. Great job!"
+        };
+    }
+    if (percentage >= 50) {
+        return {
+            stars: "⭐⭐",
+            message: "Good!",
+            className: "good-result",
+            audio: "Good job! You answered most of the questions correctly. Keep going!"
+        };
+    }
+    return {
+        stars: "⭐",
+        message: "Keep Practicing!",
+        className: "practice-result",
+        audio: "Keep practicing! Read the story again and try once more. You can do it!"
+    };
+}
+
+/*====================================================
+=              SPEECH & AUDIO FUNCTIONS              =
+====================================================*/
+function speak(text){
+    window.speechSynthesis.cancel();
+    let speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "en-US";
+    speech.rate = 1;
+    speech.pitch = 1;
+    window.speechSynthesis.speak(speech);
+}
+
+function playFeedbackAudio(text){
+    window.speechSynthesis.cancel();
+    let cleanText = text.replace(/<br>/gi, " ").replace(/<[^>]*>/g, "").replace(/[✅❌💡🎉🎒⭐]/g, "");
+    let feedbackSpeech = new SpeechSynthesisUtterance(cleanText);
+    feedbackSpeech.lang = "en-US";
+    feedbackSpeech.rate = 0.95;
+    window.speechSynthesis.speak(feedbackSpeech);
+}
 
 function playStory(speed){
-
-stopStory();
-
-let text=`
-Mia was a young girl.
-
-One day, she found a magic backpack in her attic.
-
-The backpack looked old, but it was very special.
-
-Every morning, Mia opened the backpack.
-
-Inside, she found something useful.
-
-On Monday, she found a pencil.
-
-On Tuesday, she found a book.
-
-On Wednesday, she found an umbrella.
-
-Mia used these items to help her friends at school.
-
-Her friends were happy and thankful.
-
-One day, the backpack was empty.
-
-Mia felt sad.
-
-Then she found a note inside.
-
-The note said:
-
-"The real magic is helping others."
-
-Mia smiled.
-
-She understood the lesson.
-
-From that day, she continued helping people every day.
-
-The End.
-`;
-
-storySpeech =
-new SpeechSynthesisUtterance(text);
-
-storySpeech.lang="en-US";
-storySpeech.rate=speed;
-
-speechSynthesis.speak(storySpeech);
-
+    stopStory();
+    let text = `Mia was a young girl. One day, she found a magic backpack in her attic. The backpack looked old, but it was very special. Every morning, Mia opened the backpack. Inside, she found something useful. On Monday, she found a pencil. On Tuesday, she found a book. On Wednesday, she found an umbrella. Mia used these items to help her friends at school. Her friends were happy and thankful. One day, the backpack was empty. Mia felt sad. Then she found a note inside. The note said: "The real magic is helping others." Mia smiled. She understood the lesson. From that day, she continued helping people every day. The End.`;
+    
+    let storySpeech = new SpeechSynthesisUtterance(text);
+    storySpeech.lang = "en-US";
+    storySpeech.rate = speed;
+    storySpeech.pitch = 1;
+    window.speechSynthesis.speak(storySpeech);
 }
 
 function stopStory(){
-
-speechSynthesis.cancel();
-
+    window.speechSynthesis.cancel();
 }
 
-function checkAnswer(question,feedback){
+/*====================================================
+=            DATA DICTIONARIES & HINTS              =
+====================================================*/
+const vocabHints = {
+    m1: "Read again: Mia used her backpack to carry objects.",
+    m2: "Read again: A pencil is a tool used for writing.",
+    m3: "Read again: A book contains pages to read.",
+    m4: "Read again: An umbrella keeps you dry in the rain.",
+    m5: "Read again: Magic means special and surprising."
+};
 
-let answer=
-document.querySelector(
-'input[name="'+question+'"]:checked'
-);
+const infHints = {
+    inf1: "Read again: Mia used the items to help her friends.",
+    inf2: "Read again: When the backpack was empty, Mia felt sad.",
+    inf3: "Read again: Mia helped her friends at school every day.",
+    inf4: "Read again: The note said: The real magic is helping others."
+};
 
-if(!answer)return;
+const act1Hints = {
+    q1: "Read again: Mia found a magic backpack in her attic.",
+    q2: "Read again: One day, she found a magic backpack in her attic.",
+    q3: "Read again: On Monday, she found a pencil.",
+    q4: "Read again: The note said: The real magic is helping others."
+};
 
-document.getElementById(feedback).innerHTML=
-answer.value==="correct"
-?
-"✅ Correct!"
-:
-"❌ Incorrect!";
+/*====================================================
+=             VOCABULARY MATCH LOGIC                 =
+====================================================*/
+let vocabState = { m1: null, m2: null, m3: null, m4: null, m5: null };
+let vocabFirstAttemptScore = null;
 
+function checkVocabSelect(selectElement, correctAnswer, key) {
+    let feedback = document.getElementById(key);
+    let userVal = selectElement.value;
+
+    if (userVal === "") {
+        feedback.style.display = "none";
+        return;
+    }
+
+    if (vocabState[key] === null) {
+        vocabState[key] = (userVal === correctAnswer);
+    }
+
+    let fullText = "";
+    if (userVal === correctAnswer) {
+        feedback.className = "feedback correct";
+        let praise = getRandomPraise();
+        fullText = "✅ " + praise;
+        feedback.innerHTML = fullText;
+    } else {
+        feedback.className = "feedback incorrect";
+        fullText = "❌ Not quite!<br><span class='hint-text'>💡 " + vocabHints[key] + "</span>";
+        feedback.innerHTML = fullText;
+    }
+
+    playFeedbackAudio(fullText);
+    checkVocabCompletion();
 }
 
-function checkSelect(select,correct,id){
+function checkVocabCompletion() {
+    let keys = Object.keys(vocabState);
+    let allAnswered = keys.every(k => {
+        let sel = document.getElementById("sel_" + k);
+        return sel && sel.value !== "";
+    });
 
-document.getElementById(id).innerHTML=
-select.value===correct
-?
-"✅ Correct!"
-:
-"❌ Incorrect!";
+    if (allAnswered && vocabFirstAttemptScore === null) {
+        vocabFirstAttemptScore = keys.filter(k => vocabState[k] === true).length;
+        let result = getStarRating(vocabFirstAttemptScore, 5);
 
+        let resBox = document.getElementById("vocabularyResult");
+        resBox.className = "result-box " + result.className;
+        document.getElementById("vocabularyScore").innerText = "First Attempt Score: " + vocabFirstAttemptScore + "/5";
+        document.getElementById("vocabularyStars").innerText = result.stars;
+        document.getElementById("vocabularyResultMessage").innerText = result.message;
+        resBox.style.display = "block";
+
+        playFeedbackAudio(result.audio);
+    }
 }
 
-function checkBackpack(){
-
-let pencil=
-document.getElementById("item1").checked;
-
-let book=
-document.getElementById("item2").checked;
-
-let umbrella=
-document.getElementById("item3").checked;
-
-let pizza=
-document.getElementById("item4").checked;
-
-let car=
-document.getElementById("item5").checked;
-
-if(
-pencil &&
-book &&
-umbrella &&
-!pizza &&
-!car
-){
-
-document.getElementById(
-"backpackFeedback"
-).innerHTML=
-"✅ Correct!";
-
-}else{
-
-document.getElementById(
-"backpackFeedback"
-).innerHTML=
-"❌ Incorrect!";
-
+function resetVocabularyGame() {
+    vocabState = { m1: null, m2: null, m3: null, m4: null, m5: null };
+    vocabFirstAttemptScore = null;
+    let keys = ['m1','m2','m3','m4','m5'];
+    keys.forEach(k => {
+        let sel = document.getElementById("sel_" + k);
+        if(sel) sel.value = "";
+        let fb = document.getElementById(k);
+        if(fb) fb.style.display = "none";
+    });
+    document.getElementById("vocabularyResult").style.display = "none";
+    randomizeAllOptions();
 }
 
+/*====================================================
+=             ACTIVITY 1 LOGIC (RADIO)               =
+====================================================*/
+let act1State = { q1: null, q2: null, q3: null, q4: null };
+let act1FirstScore = null;
+
+function checkRadioAnswer(groupName, feedbackId) {
+    let options = document.getElementsByName(groupName);
+    let feedback = document.getElementById(feedbackId);
+    let selectedOption = null;
+
+    for (let opt of options) {
+        if (opt.checked) selectedOption = opt;
+    }
+
+    if (!selectedOption) return;
+
+    let isCorrect = (selectedOption.value === "correct");
+
+    if (act1State[groupName] === null) {
+        act1State[groupName] = isCorrect;
+    }
+
+    let fullText = "";
+    if (isCorrect) {
+        feedback.className = "feedback correct";
+        let praise = getRandomPraise();
+        fullText = "✅ " + praise;
+        feedback.innerHTML = fullText;
+    } else {
+        feedback.className = "feedback incorrect";
+        fullText = "❌ Not quite!<br><span class='hint-text'>💡 " + act1Hints[groupName] + "</span>";
+        feedback.innerHTML = fullText;
+    }
+
+    playFeedbackAudio(fullText);
+    checkAct1Completion();
+}
+
+function checkAct1Completion() {
+    let keys = ['q1', 'q2', 'q3', 'q4'];
+    let allAnswered = keys.every(k => act1State[k] !== null);
+
+    if (allAnswered && act1FirstScore === null) {
+        act1FirstScore = keys.filter(k => act1State[k] === true).length;
+        let result = getStarRating(act1FirstScore, 4);
+
+        let resBox = document.getElementById("act1Result");
+        resBox.className = "result-box " + result.className;
+        document.getElementById("act1Score").innerText = "First Attempt Score: " + act1FirstScore + "/4";
+        document.getElementById("act1Stars").innerText = result.stars;
+        document.getElementById("act1ResultMessage").innerText = result.message;
+        resBox.style.display = "block";
+
+        playFeedbackAudio(result.audio);
+    }
+}
+
+function resetAct1() {
+    act1State = { q1: null, q2: null, q3: null, q4: null };
+    act1FirstScore = null;
+    let keys = ['q1', 'q2', 'q3', 'q4'];
+    keys.forEach((k, idx) => {
+        let opts = document.getElementsByName(k);
+        opts.forEach(o => o.checked = false);
+        let fb = document.getElementById("fb" + (idx + 1));
+        if (fb) fb.style.display = "none";
+    });
+    document.getElementById("act1Result").style.display = "none";
+    randomizeAllOptions();
+}
+
+/*====================================================
+=             ACTIVITY 2 LOGIC (INFERENTIAL)         =
+====================================================*/
+let act2State = { inf1: null, inf2: null, inf3: null, inf4: null };
+let act2FirstScore = null;
+
+function checkInferentialSelect(selectElement, correctAnswer, key) {
+    let feedback = document.getElementById(key);
+    let userVal = selectElement.value;
+
+    if (userVal === "") {
+        feedback.style.display = "none";
+        return;
+    }
+
+    if (act2State[key] === null) {
+        act2State[key] = (userVal === correctAnswer);
+    }
+
+    let fullText = "";
+    if (userVal === correctAnswer) {
+        feedback.className = "feedback correct";
+        let praise = getRandomPraise();
+        fullText = "✅ " + praise;
+        feedback.innerHTML = fullText;
+    } else {
+        feedback.className = "feedback incorrect";
+        fullText = "❌ Not quite!<br><span class='hint-text'>💡 " + infHints[key] + "</span>";
+        feedback.innerHTML = fullText;
+    }
+
+    playFeedbackAudio(fullText);
+    checkAct2Completion();
+}
+
+function checkAct2Completion() {
+    let keys = ['inf1', 'inf2', 'inf3', 'inf4'];
+    let allAnswered = keys.every(k => {
+        let sel = document.getElementById("sel_" + k);
+        return sel && sel.value !== "";
+    });
+
+    if (allAnswered && act2FirstScore === null) {
+        act2FirstScore = keys.filter(k => act2State[k] === true).length;
+        let result = getStarRating(act2FirstScore, 4);
+
+        let resBox = document.getElementById("act2Result");
+        resBox.className = "result-box " + result.className;
+        document.getElementById("act2Score").innerText = "First Attempt Score: " + act2FirstScore + "/4";
+        document.getElementById("act2Stars").innerText = result.stars;
+        document.getElementById("act2ResultMessage").innerText = result.message;
+        resBox.style.display = "block";
+
+        playFeedbackAudio(result.audio);
+    }
+}
+
+function resetAct2() {
+    act2State = { inf1: null, inf2: null, inf3: null, inf4: null };
+    act2FirstScore = null;
+    let keys = ['inf1', 'inf2', 'inf3', 'inf4'];
+    keys.forEach(k => {
+        let sel = document.getElementById("sel_" + k);
+        if (sel) sel.value = "";
+        let fb = document.getElementById(k);
+        if (fb) fb.style.display = "none";
+    });
+    document.getElementById("act2Result").style.display = "none";
+    randomizeAllOptions();
+}
+
+/*====================================================
+=                 CHECK BACKPACK LOGIC               =
+====================================================*/
+function checkBackpack() {
+    const correctItems = ["Pencil", "Book", "Umbrella"];
+    const checkboxes = document.querySelectorAll('.shuffle-checkboxes input[type="checkbox"]');
+    
+    let selectedItems = [];
+    checkboxes.forEach(cb => {
+        if (cb.checked) {
+            selectedItems.push(cb.value);
+        }
+    });
+
+    let isCorrect = selectedItems.length === correctItems.length &&
+                    correctItems.every(item => selectedItems.includes(item));
+
+    let feedback = document.getElementById('backpackFeedback');
+    let fullText = "";
+
+    if (isCorrect) {
+        feedback.className = "feedback correct";
+        let praise = getRandomPraise();
+        fullText = "✅ " + praise + " Pencil, Book, and Umbrella were in the backpack!";
+        feedback.innerHTML = fullText;
+    } else {
+        feedback.className = "feedback incorrect";
+        fullText = "❌ Not quite!<br><span class='hint-text'>💡 Read again: Mia found a pencil, a book, and an umbrella inside.</span>";
+        feedback.innerHTML = fullText;
+    }
+
+    playFeedbackAudio(fullText);
 }
 
 function favoritePart(select){
-
-if(select.value!=""){
-
-document.getElementById(
-"favoriteFeedback"
-).innerHTML=
-"🌟 Great choice!";
-
+    let feedbackElement = document.getElementById("favoriteFeedback");
+    if(select.value !== ""){
+        feedbackElement.className = "feedback correct";
+        let fullText = "🌟 Great choice!";
+        feedbackElement.innerHTML = fullText;
+        playFeedbackAudio(fullText);
+    } else {
+        feedbackElement.style.display = "none";
+    }
 }
 
+/*====================================================
+=                  CANVAS DRAWING                     =
+====================================================*/
+const canvas = document.getElementById('drawingCanvas');
+const ctx = canvas.getContext('2d');
+let drawing = false;
+let color = '#000000';
+let size = 3;
+let history = [];
+
+function startDrawing(e) {
+    drawing = true;
+    history.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+    draw(e);
 }
 
-let canvas=
-document.getElementById("drawingCanvas");
-
-let ctx=
-canvas.getContext("2d");
-
-let drawing=false;
-
-canvas.addEventListener("mousedown",()=>{
-
-drawing=true;
-
-});
-
-canvas.addEventListener("mouseup",()=>{
-
-drawing=false;
-
-ctx.beginPath();
-
-});
-
-canvas.addEventListener("mousemove",(e)=>{
-
-if(!drawing)return;
-
-ctx.lineWidth=3;
-
-ctx.lineCap="round";
-
-ctx.lineTo(
-e.offsetX,
-e.offsetY
-);
-
-ctx.stroke();
-
-ctx.beginPath();
-
-ctx.moveTo(
-e.offsetX,
-e.offsetY
-);
-
-});
-
-function clearCanvas(){
-
-ctx.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
-
+function stopDrawing() {
+    drawing = false;
+    ctx.beginPath();
 }
 
-function resetGame(){
-
-location.reload();
-
+function draw(e) {
+    if(!drawing) return;
+    let rect = canvas.getBoundingClientRect();
+    let clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    let clientY = e.clientY || (e.touches && e.touches[0].clientY);
+    let x = clientX - rect.left;
+    let y = clientY - rect.top;
+    
+    ctx.lineWidth = size;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = color;
+    
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y);
 }
 
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('mousemove', draw);
+
+canvas.addEventListener('touchstart', startDrawing);
+canvas.addEventListener('touchend', stopDrawing);
+canvas.addEventListener('touchmove', draw);
+
+function setColor(c) { color = c; }
+function setBrushSize(s) { size = s; }
+function setTool(tool) {
+    if(tool === 'eraser') color = '#FFFFFF';
+    else if(tool === 'pencil') size = 2;
+    else if(tool === 'brush') size = 6;
+    else if(tool === 'marker') size = 12;
+}
+
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function undoDrawing() {
+    if(history.length > 0) {
+        ctx.putImageData(history.pop(), 0, 0);
+    }
+}
 </script>
-
 </body>
 </html>
