@@ -202,6 +202,49 @@ margin-right: 10px;
 .tf-true { background: #2ECC71; }
 .tf-false { background: #E74C3C; }
 
+/* RESULT BOX STYLES */
+.result-box{
+margin-top:20px;
+padding:20px;
+border-radius:15px;
+text-align:center;
+font-size:18px;
+font-weight:bold;
+display:none;
+}
+
+.excellent-result{
+background:#FFFDE7;
+border:3px solid #F1C40F;
+color:#7D6608;
+}
+
+.good-result{
+background:#FFF8D6;
+border:3px solid #F1C40F;
+color:#9A7D0A;
+}
+
+.practice-result{
+background:#FFE8E8;
+border:3px solid #E74C3C;
+color:#922B21;
+}
+
+.stars{
+font-size:35px;
+margin:10px;
+}
+
+.retry-button{
+background:#C86BFA;
+color:white;
+padding:10px 20px;
+font-size:16px;
+border-radius:10px;
+margin-top:10px;
+}
+
 </style>
 
 </head>
@@ -298,7 +341,7 @@ Learn the vocabulary before reading.
 
 </div>
 
-<!-- VOCABULARY MATCHING GAME (RENOVED/RESTORED ORIGINAL) -->
+<!-- VOCABULARY MATCHING GAME -->
 
 <div class="section">
 
@@ -415,6 +458,34 @@ Drop Here
 
 </div>
 
+<!-- WARM UP -->
+
+<div class="section">
+
+<h2>🗣️ Warm-Up</h2>
+
+<div class="question-box">
+🧚 Do you believe fairies exist?
+</div>
+
+<div class="question-box">
+🌳 What can you find in a forest?
+</div>
+
+<div class="question-box">
+🏡 Would you like to live in a village?
+</div>
+
+<div class="question-box">
+💧 Have you ever seen a water stream?
+</div>
+
+<div class="question-box">
+🗺️ What is your favorite adventure?
+</div>
+
+</div>
+
 <!-- WHILE READING -->
 
 <div class="section">
@@ -519,7 +590,7 @@ The End.
 
 </div>
 
-<!-- AFTER READING -->
+<!-- AFTER READING ACTIVITIES -->
 
 <div class="section">
 
@@ -529,11 +600,7 @@ The End.
 Help Lily and Crystal complete their magical adventure!
 </p>
 
-</div>
-
 <!-- ACTIVITY 1 -->
-
-<div class="section">
 
 <h3>💎 Activity 1: Find the Missing Object</h3>
 
@@ -571,11 +638,7 @@ alt="Backpack">
 
 </div>
 
-</div>
-
 <!-- ACTIVITY 2 -->
-
-<div class="section">
 
 <h3>🗺️ Activity 2: Adventure Path</h3>
 
@@ -653,11 +716,7 @@ Check Path
 
 </div>
 
-</div>
-
 <!-- ACTIVITY 3 -->
-
-<div class="section">
 
 <h3>🌳 Activity 3: Save the Magic Tree</h3>
 
@@ -685,11 +744,7 @@ What helped the Magic Tree shine again?
 
 </div>
 
-</div>
-
-<!-- ACTIVITY 4: TRUE / FALSE (REPLACES DRAWING) -->
-
-<div class="section">
+<!-- ACTIVITY 4: TRUE / FALSE -->
 
 <h3>🕵️ Activity 4: True or False Reading Challenge</h3>
 
@@ -716,41 +771,27 @@ What helped the Magic Tree shine again?
 <div id="tf3" class="feedback"></div>
 </div>
 
-</div>
+<!-- ACTIVITY 5: NUEVA ACTIVIDAD "WHO SAID IT?" (REEMPLAZA LA ANTERIOR QUE ERA REPETIDA) -->
 
-<!-- ACTIVITY 5 -->
+<h3>🗣️ Activity 5: Who Said It?</h3>
 
-<div class="section">
-
-<h3>🧚 Activity 5: Fairy Helper</h3>
-
-<p>
-What did Lily do to help Crystal?
-</p>
+<p>Who said this sentence in the story?</p>
 
 <div class="question-box">
 
-<select id="sel_fairy1" class="shuffle-select" onchange="checkSelect(this,'She returned the crystal','fairy1')">
+<p><i>"I need your help. The Magic Tree is losing its light."</i></p>
 
-<option value="">Select...</option>
-
-<option>She returned the crystal</option>
-
-<option>She hid the crystal</option>
-
-<option>She broke the crystal</option>
-
+<select id="sel_who1" class="shuffle-select" onchange="checkWhoSaid(this, 'Crystal the Fairy', 'who1')">
+<option value="">Select Character...</option>
+<option>Lily</option>
+<option>Crystal the Fairy</option>
 </select>
 
-<div id="fairy1" class="feedback"></div>
+<div id="who1" class="feedback"></div>
 
 </div>
 
-</div>
-
-<!-- ACTIVITY 6: ADAPTED LIKE THE DRAGON STORY ENDING -->
-
-<div class="section">
+<!-- ACTIVITY 6: CHOOSE THE BEST ENDING -->
 
 <h3>⭐ Activity 6: Choose the Best Ending</h3>
 
@@ -776,19 +817,30 @@ Which ending matches the story?
 
 </div>
 
+<br>
+<button onclick="calculateFinalScore()" style="width:100%; padding:15px; font-size:18px; background:#D45D9E;">
+🏆 Check Final Mission Score!
+</button>
+
+<!-- RÚBRICA DE ESTRELLITAS -->
+<div id="finalScoreResult" class="result-box">
+<div>🎉 Mission Completed!</div>
+<div id="finalScoreText"></div>
+<div id="finalStars" class="stars"></div>
+<div id="finalResultMessage"></div>
+<button class="retry-button" onclick="location.reload()">🔄 Play Again</button>
+</div>
+
 </div>
 
 <script>
 
+/* SOUND & SPEECH */
 function speak(text){
-
 speechSynthesis.cancel();
-
 let speech = new SpeechSynthesisUtterance(text);
-
 speech.lang="en-US";
 speechSynthesis.speak(speech);
-
 }
 
 function playFeedbackAudio(text){
@@ -803,122 +855,96 @@ speechSynthesis.speak(feedbackSpeech);
 let storySpeech;
 
 function playStory(speed){
-
 stopStory();
-
 let text=`
 Lily was a kind girl who loved nature.
-
 Every afternoon, she walked through the forest near her village.
-
 One day, she found a small crystal on the ground.
-
 The crystal sparkled with many colors.
-
 Lily picked it up and suddenly a tiny fairy appeared.
-
 The fairy had shining wings and a bright smile.
-
 "Hello, Lily," said the fairy.
-
 "My name is Crystal."
-
 Lily was surprised.
-
 "A fairy?" she asked.
-
 Crystal nodded.
-
 "I need your help," she said.
-
 "The Magic Tree is losing its light."
-
 Lily and Crystal followed a path through the forest.
-
 They crossed a stream and climbed a small hill.
-
 At last, they reached the Magic Tree.
-
 The tree looked weak and sad.
-
 Its crystal was missing.
-
 Lily looked around carefully.
-
 Then she smiled.
-
 "The crystal I found belongs to the tree!"
-
 She gently placed the crystal back on the tree.
-
 Suddenly, the tree began to glow.
-
 Bright lights filled the forest.
-
 The flowers opened.
-
 The birds sang again.
-
 Crystal was very happy.
-
 "You saved the Magic Tree," she said.
-
 As a reward, Crystal gave Lily a small shining crystal.
-
 "Keep this crystal," said the fairy.
-
 "It will remind you that kindness can make a difference."
-
 Lily thanked Crystal and returned home.
-
 Every time she looked at the crystal, she remembered her magical adventure.
-
 The End.
 `;
 
 storySpeech = new SpeechSynthesisUtterance(text);
-
 storySpeech.lang="en-US";
 storySpeech.rate=speed;
-
 speechSynthesis.speak(storySpeech);
-
 }
 
 function stopStory(){
-
 speechSynthesis.cancel();
-
 }
+
+/* TRACKING USER FIRST ATTEMPTS FOR STAR SCORE */
+let userScores = {
+act1: null,
+act2: null,
+act3: null,
+act4: null,
+act5: null,
+act6: null
+};
 
 function checkSelect(select,correct,id){
 let fb = document.getElementById(id);
 if(select.value === "") { fb.style.display = "none"; return; }
+
+if(userScores.act3 === null){
+    userScores.act3 = (select.value === correct);
+}
 
 if(select.value===correct){
     fb.className = "feedback correct";
     fb.innerHTML = "✅ Correct! Great job!";
 }else{
     fb.className = "feedback incorrect";
-    fb.innerHTML = "❌ Try again!<br><span class='hint-box'>💡 Hint: Think about what happened in the story.</span>";
+    fb.innerHTML = "❌ Try again!<br><span class='hint-box'>💡 Hint: Think about what object sparkled in the forest.</span>";
 }
 playFeedbackAudio(fb.innerText);
 }
 
 function checkPath(){
-
 let s1=document.getElementById("path1").value;
 let s2=document.getElementById("path2").value;
 let s3=document.getElementById("path3").value;
 let s4=document.getElementById("path4").value;
 let fb = document.getElementById("pathFeedback");
 
-if(
-s1==="Village" &&
-s2==="Forest" &&
-s3==="Magic Tree" &&
-s4==="Home"
-){
+let isCorrect = (s1==="Village" && s2==="Forest" && s3==="Magic Tree" && s4==="Home");
+
+if(userScores.act2 === null){
+    userScores.act2 = isCorrect;
+}
+
+if(isCorrect){
     fb.className = "feedback correct";
     fb.innerHTML = "✅ Correct path! Excellent sequence!";
 }else{
@@ -928,70 +954,43 @@ s4==="Home"
 playFeedbackAudio(fb.innerText);
 }
 
-function allowDrop(ev){
+function allowDrop(ev){ ev.preventDefault(); }
 
-ev.preventDefault();
-
-}
-
-function drag(ev){
-
-ev.dataTransfer.setData(
-"text",
-ev.target.id
-);
-
-}
+function drag(ev){ ev.dataTransfer.setData("text", ev.target.id); }
 
 function drop(ev){
-
 ev.preventDefault();
-
 const data = ev.dataTransfer.getData("text");
-
 const dragged = document.getElementById(data);
-
 const dropZone = ev.currentTarget;
-
 const correctAnswer = dropZone.dataset.answer;
 
 if(data===correctAnswer){
-
 dropZone.innerHTML="";
-
 dropZone.appendChild(dragged);
-
 dropZone.style.background="#d4edda";
-
 dropZone.style.border="3px solid green";
-
 speak("Correct!");
-
 }else{
-
 speak("Try again!");
-
 }
-
 }
 
 function checkcrystal(answer){
-
 let result=document.getElementById("crystalResult");
 
-if(answer === "crystal"){
+if(userScores.act1 === null){
+    userScores.act1 = (answer === "crystal");
+}
 
+if(answer === "crystal"){
 result.className="feedback correct";
 result.innerHTML="✅ Correct! The crystal was missing from the tree.";
-
 }else{
-
 result.className="feedback incorrect";
 result.innerHTML="❌ Try again!<br><span class='hint-box'>💡 Hint: Lily found something sparkling on the ground!</span>";
-
 }
 playFeedbackAudio(result.innerText);
-
 }
 
 // TRUE / FALSE FUNCTION WITH SHORT HINTS
@@ -1001,9 +1000,21 @@ const tfHints = {
     tf3: "💡 Hint: They crossed a stream and climbed a hill."
 };
 
+let tfScoreTrack = { tf1: null, tf2: null, tf3: null };
+
 function checkTF(key, userChoice, correctBool) {
     let fb = document.getElementById(key);
-    if(userChoice === correctBool) {
+    let isCorrect = (userChoice === correctBool);
+    
+    if(tfScoreTrack[key] === null){
+        tfScoreTrack[key] = isCorrect;
+    }
+    
+    if(Object.values(tfScoreTrack).every(val => val !== null) && userScores.act4 === null){
+        userScores.act4 = (Object.values(tfScoreTrack).filter(v => v === true).length >= 2);
+    }
+
+    if(isCorrect) {
         fb.className = "feedback correct";
         fb.innerHTML = "✅ Correct!";
     } else {
@@ -1013,12 +1024,35 @@ function checkTF(key, userChoice, correctBool) {
     playFeedbackAudio(fb.innerText);
 }
 
-// ACTIVITY 6: ADAPTED LIKE THE DRAGON STORY
+// NUEVA ACTIVIDAD 5
+function checkWhoSaid(selectEl, correct, id){
+let fb = document.getElementById(id);
+if(selectEl.value === "") { fb.style.display = "none"; return; }
+
+if(userScores.act5 === null){
+    userScores.act5 = (selectEl.value === correct);
+}
+
+if(selectEl.value === correct){
+    fb.className = "feedback correct";
+    fb.innerHTML = "✅ Correct! Crystal asked Lily for help to save the tree.";
+} else {
+    fb.className = "feedback incorrect";
+    fb.innerHTML = "❌ Try again!<br><span class='hint-box'>💡 Hint: The magical creature with wings needed help.</span>";
+}
+playFeedbackAudio(fb.innerText);
+}
+
+// ACTIVITY 6
 function checkAct6Select(selectEl) {
     let fb = document.getElementById("end1");
     let val = selectEl.value;
 
     if (val === "") { fb.style.display = "none"; return; }
+
+    if(userScores.act6 === null){
+        userScores.act6 = (val === "The Magic Tree shined again");
+    }
 
     if (val === "The Magic Tree shined again") {
         fb.className = "feedback correct";
@@ -1028,6 +1062,43 @@ function checkAct6Select(selectEl) {
         fb.innerHTML = "❌ Try again!<br><span class='hint-box'>💡 Hint: The crystal saved the tree and brought back its light.</span>";
     }
     playFeedbackAudio(fb.innerText);
+}
+
+/* RÚBRICA Y CÁLCULO FINAL DE ESTRELLITAS */
+function calculateFinalScore() {
+    let totalScore = 0;
+    let keys = Object.keys(userScores);
+    
+    keys.forEach(k => {
+        if(userScores[k] === true) totalScore++;
+    });
+
+    let resBox = document.getElementById("finalScoreResult");
+    let starsEl = document.getElementById("finalStars");
+    let scoreTextEl = document.getElementById("finalScoreText");
+    let msgEl = document.getElementById("finalResultMessage");
+
+    scoreTextEl.innerText = "Correct Activities: " + totalScore + " / 6";
+
+    if(totalScore >= 5) {
+        resBox.className = "result-box excellent-result";
+        starsEl.innerText = "⭐⭐⭐";
+        msgEl.innerText = "Outstanding! You are a Fairy Story Master!";
+        playFeedbackAudio("Outstanding! You are a Fairy Story Master!");
+    } else if(totalScore >= 3) {
+        resBox.className = "result-box good-result";
+        starsEl.innerText = "⭐⭐";
+        msgEl.innerText = "Good job! You completed most activities correctly!";
+        playFeedbackAudio("Good job! You completed most activities correctly!");
+    } else {
+        resBox.className = "result-box practice-result";
+        starsEl.innerText = "⭐";
+        msgEl.innerText = "Keep practicing! Read the story again and try once more!";
+        playFeedbackAudio("Keep practicing! Read the story again and try once more!");
+    }
+
+    resBox.style.display = "block";
+    resBox.scrollIntoView({ behavior: 'smooth' });
 }
 
 function shuffleArray(array) {
