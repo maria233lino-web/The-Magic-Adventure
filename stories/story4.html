@@ -65,6 +65,8 @@ padding:10px 15px;
 border-radius:10px;
 cursor:pointer;
 font-weight:bold;
+margin:3px;
+transition: transform 0.2s;
 }
 
 button:hover{
@@ -93,21 +95,35 @@ font-size:18px;
 .feedback{
 font-weight:bold;
 margin-top:10px;
+padding:10px 15px;
+border-radius:8px;
+display:none;
 }
 
 .correct{
-color:green;
+display:block;
+color:#155724;
+background-color:#d4edda;
+border-left:5px solid #28a745;
 }
 
 .incorrect{
-color:red;
+display:block;
+color:#721c24;
+background-color:#f8d7da;
+border-left:5px solid #dc3545;
 }
 
-canvas{
-border:3px solid #C86BFA;
-background:white;
-border-radius:10px;
-margin-top:10px;
+.hint-box{
+background:#FFF3CD;
+color:#856404;
+padding:6px 10px;
+border-radius:6px;
+margin-top:6px;
+font-size:14px;
+font-weight:normal;
+display:inline-block;
+border-left:4px solid #FFC107;
 }
 
 .matching-container{
@@ -177,6 +193,15 @@ transform:scale(1.1);
 border-color:#C86BFA;
 }
 
+.tf-btn {
+padding: 8px 18px;
+font-size: 15px;
+border-radius: 8px;
+margin-right: 10px;
+}
+.tf-true { background: #2ECC71; }
+.tf-false { background: #E74C3C; }
+
 </style>
 
 </head>
@@ -185,8 +210,7 @@ border-color:#C86BFA;
 
 <div class="container">
 
-<button class="back"
-onclick="window.location.href='../index.html'">
+<button class="back" onclick="window.location.href='../index.html'">
 🏠 Back to Home
 </button>
 
@@ -204,7 +228,7 @@ Learn the vocabulary before reading.
 
 <div class="card">
 
-<img src="../images/fairy.jpg">
+<img src="../images/fairy.jpg" alt="Fairy">
 
 <h3>Fairy</h3>
 
@@ -218,7 +242,7 @@ Learn the vocabulary before reading.
 
 <div class="card">
 
-<img src="../images/forest.jpg">
+<img src="../images/forest.jpg" alt="Forest">
 
 <h3>Forest</h3>
 
@@ -232,7 +256,7 @@ Learn the vocabulary before reading.
 
 <div class="card">
 
-<img src="../images/village.jpg">
+<img src="../images/village.jpg" alt="Village">
 
 <h3>Village</h3>
 
@@ -246,7 +270,7 @@ Learn the vocabulary before reading.
 
 <div class="card">
 
-<img src="../images/water stream.jpg">
+<img src="../images/water stream.jpg" alt="Stream">
 
 <h3>Stream</h3>
 
@@ -260,7 +284,7 @@ Learn the vocabulary before reading.
 
 <div class="card">
 
-<img src="../images/adventure.jpg">
+<img src="../images/adventure.jpg" alt="Adventure">
 
 <h3>Adventure</h3>
 
@@ -274,7 +298,7 @@ Learn the vocabulary before reading.
 
 </div>
 
-<!-- VOCABULARY MATCHING GAME -->
+<!-- VOCABULARY MATCHING GAME (RENOVED/RESTORED ORIGINAL) -->
 
 <div class="section">
 
@@ -391,34 +415,6 @@ Drop Here
 
 </div>
 
-<!-- WARM UP -->
-
-<div class="section">
-
-<h2>🗣️ Warm-Up</h2>
-
-<div class="question-box">
-🧚 Do you believe fairies exist?
-</div>
-
-<div class="question-box">
-🌳 What can you find in a forest?
-</div>
-
-<div class="question-box">
-🏡 Would you like to live in a village?
-</div>
-
-<div class="question-box">
-💧 Have you ever seen a water stream?
-</div>
-
-<div class="question-box">
-🗺️ What is your favorite adventure?
-</div>
-
-</div>
-
 <!-- WHILE READING -->
 
 <div class="section">
@@ -429,71 +425,71 @@ Drop Here
 
 <p>
 
-Lily was a kind girl who loved nature.
+Lily was a kind girl who loved nature.<br><br>
 
-Every afternoon, she walked through the forest near her village.
+Every afternoon, she walked through the forest near her village.<br><br>
 
-One day, she found a small crystal on the ground.
+One day, she found a small crystal on the ground.<br><br>
 
-The crystal sparkled with many colors.
+The crystal sparkled with many colors.<br><br>
 
-Lily picked it up and suddenly a tiny fairy appeared.
+Lily picked it up and suddenly a tiny fairy appeared.<br><br>
 
-The fairy had shining wings and a bright smile.
+The fairy had shining wings and a bright smile.<br><br>
 
-"Hello, Lily," said the fairy.
+"Hello, Lily," said the fairy.<br><br>
 
-"My name is Crystal."
+"My name is Crystal."<br><br>
 
-Lily was surprised.
+Lily was surprised.<br><br>
 
-"A fairy?" she asked.
+"A fairy?" she asked.<br><br>
 
-Crystal nodded.
+Crystal nodded.<br><br>
 
-"I need your help," she said.
+"I need your help," she said.<br><br>
 
-"The Magic Tree is losing its light."
+"The Magic Tree is losing its light."<br><br>
 
-Lily and Crystal followed a path through the forest.
+Lily and Crystal followed a path through the forest.<br><br>
 
-They crossed a stream and climbed a small hill.
+They crossed a stream and climbed a small hill.<br><br>
 
-At last, they reached the Magic Tree.
+At last, they reached the Magic Tree.<br><br>
 
-The tree looked weak and sad.
+The tree looked weak and sad.<br><br>
 
-Its crystal was missing.
+Its crystal was missing.<br><br>
 
-Lily looked around carefully.
+Lily looked around carefully.<br><br>
 
-Then she smiled.
+Then she smiled.<br><br>
 
-"The crystal I found belongs to the tree!"
+"The crystal I found belongs to the tree!"<br><br>
 
-She gently placed the crystal back on the tree.
+She gently placed the crystal back on the tree.<br><br>
 
-Suddenly, the tree began to glow.
+Suddenly, the tree began to glow.<br><br>
 
-Bright lights filled the forest.
+Bright lights filled the forest.<br><br>
 
-The flowers opened.
+The flowers opened.<br><br>
 
-The birds sang again.
+The birds sang again.<br><br>
 
-Crystal was very happy.
+Crystal was very happy.<br><br>
 
-"You saved the Magic Tree," she said.
+"You saved the Magic Tree," she said.<br><br>
 
-As a reward, Crystal gave Lily a small shining crystal.
+As a reward, Crystal gave Lily a small shining crystal.<br><br>
 
-"Keep this crystal," said the fairy.
+"Keep this crystal," said the fairy.<br><br>
 
-"It will remind you that kindness can make a difference."
+"It will remind you that kindness can make a difference."<br><br>
 
-Lily thanked Crystal and returned home.
+Lily thanked Crystal and returned home.<br><br>
 
-Every time she looked at the crystal, she remembered her magical adventure.
+Every time she looked at the crystal, she remembered her magical adventure.<br><br>
 
 The End.
 
@@ -501,7 +497,7 @@ The End.
 
 </div>
 
-<div style="margin-top:15px;">
+<div style="margin-top:15px; text-align:center;">
 
 <button onclick="playStory(0.7)">
 🐢 Slow
@@ -539,7 +535,7 @@ Help Lily and Crystal complete their magical adventure!
 
 <div class="section">
 
-<h3>💎 Activity 1: Find the Missing Crystal</h3>
+<h3>💎 Activity 1: Find the Missing Object</h3>
 
 <p>
 Which object was missing from the Magic Tree?
@@ -547,7 +543,7 @@ Which object was missing from the Magic Tree?
 
 <div class="question-box">
 
-<div class="image-options">
+<div class="image-options" id="act1_options">
 
 <img src="../images/crystal.jpg"
 class="choice-img"
@@ -571,9 +567,7 @@ alt="Backpack">
 
 </div>
 
-<p id="crystalResult"></p>
-
-<div id="magic1"></div>
+<div id="crystalResult" class="feedback"></div>
 
 </div>
 
@@ -591,7 +585,7 @@ Choose the correct order of Lily's adventure.
 
 <div class="question-box">
 
-<select id="path1">
+<select id="path1" class="shuffle-select">
 
 <option value="">Step 1</option>
 
@@ -605,7 +599,7 @@ Choose the correct order of Lily's adventure.
 
 </select>
 
-<select id="path2">
+<select id="path2" class="shuffle-select">
 
 <option value="">Step 2</option>
 
@@ -619,7 +613,7 @@ Choose the correct order of Lily's adventure.
 
 </select>
 
-<select id="path3">
+<select id="path3" class="shuffle-select">
 
 <option value="">Step 3</option>
 
@@ -633,7 +627,7 @@ Choose the correct order of Lily's adventure.
 
 </select>
 
-<select id="path4">
+<select id="path4" class="shuffle-select">
 
 <option value="">Step 4</option>
 
@@ -655,7 +649,7 @@ Check Path
 
 </button>
 
-<div id="pathFeedback"></div>
+<div id="pathFeedback" class="feedback"></div>
 
 </div>
 
@@ -673,7 +667,7 @@ What helped the Magic Tree shine again?
 
 <div class="question-box">
 
-<select onchange="checkSelect(this,'The crystal','tree1')">
+<select id="sel_tree1" class="shuffle-select" onchange="checkSelect(this,'The crystal','tree1')">
 
 <option value="">Select...</option>
 
@@ -687,32 +681,40 @@ What helped the Magic Tree shine again?
 
 </select>
 
-<div id="tree1"></div>
+<div id="tree1" class="feedback"></div>
 
 </div>
 
 </div>
 
-<!-- ACTIVITY 4 -->
+<!-- ACTIVITY 4: TRUE / FALSE (REPLACES DRAWING) -->
 
 <div class="section">
 
-<h3>🎨 Activity 4: Draw Crystal the Fairy</h3>
+<h3>🕵️ Activity 4: True or False Reading Challenge</h3>
 
-<p>
-Draw Crystal using the description from the story.
-</p>
+<p>Read each sentence and decide if it is True or False.</p>
 
-<canvas id="drawingCanvas"
-width="700"
-height="350">
-</canvas>
+<div class="question-box">
+<p>1. Lily found a small book on the ground.</p>
+<button class="tf-btn tf-true" onclick="checkTF('tf1', true, false)">True</button>
+<button class="tf-btn tf-false" onclick="checkTF('tf1', false, false)">False</button>
+<div id="tf1" class="feedback"></div>
+</div>
 
-<br><br>
+<div class="question-box">
+<p>2. The fairy's name was Crystal.</p>
+<button class="tf-btn tf-true" onclick="checkTF('tf2', true, true)">True</button>
+<button class="tf-btn tf-false" onclick="checkTF('tf2', false, true)">False</button>
+<div id="tf2" class="feedback"></div>
+</div>
 
-<button onclick="clearCanvas()">
-🧹 Clear Drawing
-</button>
+<div class="question-box">
+<p>3. Lily and Crystal crossed a stream and climbed a small hill.</p>
+<button class="tf-btn tf-true" onclick="checkTF('tf3', true, true)">True</button>
+<button class="tf-btn tf-false" onclick="checkTF('tf3', false, true)">False</button>
+<div id="tf3" class="feedback"></div>
+</div>
 
 </div>
 
@@ -728,7 +730,7 @@ What did Lily do to help Crystal?
 
 <div class="question-box">
 
-<select onchange="checkSelect(this,'She returned the crystal','fairy1')">
+<select id="sel_fairy1" class="shuffle-select" onchange="checkSelect(this,'She returned the crystal','fairy1')">
 
 <option value="">Select...</option>
 
@@ -740,13 +742,13 @@ What did Lily do to help Crystal?
 
 </select>
 
-<div id="fairy1"></div>
+<div id="fairy1" class="feedback"></div>
 
 </div>
 
 </div>
 
-<!-- ACTIVITY 6 -->
+<!-- ACTIVITY 6: ADAPTED LIKE THE DRAGON STORY ENDING -->
 
 <div class="section">
 
@@ -758,7 +760,7 @@ Which ending matches the story?
 
 <div class="question-box">
 
-<select onchange="checkSelect(this,'The Magic Tree shined again','end1')">
+<select id="sel_end1" class="shuffle-select" onchange="checkAct6Select(this)">
 
 <option value="">Select...</option>
 
@@ -770,7 +772,7 @@ Which ending matches the story?
 
 </select>
 
-<div id="end1"></div>
+<div id="end1" class="feedback"></div>
 
 </div>
 
@@ -782,12 +784,20 @@ function speak(text){
 
 speechSynthesis.cancel();
 
-let speech =
-new SpeechSynthesisUtterance(text);
+let speech = new SpeechSynthesisUtterance(text);
 
 speech.lang="en-US";
 speechSynthesis.speak(speech);
 
+}
+
+function playFeedbackAudio(text){
+speechSynthesis.cancel();
+let cleanText = text.replace(/<br>/gi, " ").replace(/<[^>]*>/g, "").replace(/[✅❌💡🎉⭐]/g, "");
+let feedbackSpeech = new SpeechSynthesisUtterance(cleanText);
+feedbackSpeech.lang = "en-US";
+feedbackSpeech.rate = 0.95;
+speechSynthesis.speak(feedbackSpeech);
 }
 
 let storySpeech;
@@ -866,8 +876,7 @@ Every time she looked at the crystal, she remembered her magical adventure.
 The End.
 `;
 
-storySpeech =
-new SpeechSynthesisUtterance(text);
+storySpeech = new SpeechSynthesisUtterance(text);
 
 storySpeech.lang="en-US";
 storySpeech.rate=speed;
@@ -883,13 +892,17 @@ speechSynthesis.cancel();
 }
 
 function checkSelect(select,correct,id){
-document.getElementById(id).innerHTML =
-select.value===correct
-?
-"✅ Correct!"
-:
-"❌ Incorrect!";
+let fb = document.getElementById(id);
+if(select.value === "") { fb.style.display = "none"; return; }
 
+if(select.value===correct){
+    fb.className = "feedback correct";
+    fb.innerHTML = "✅ Correct! Great job!";
+}else{
+    fb.className = "feedback incorrect";
+    fb.innerHTML = "❌ Try again!<br><span class='hint-box'>💡 Hint: Think about what happened in the story.</span>";
+}
+playFeedbackAudio(fb.innerText);
 }
 
 function checkPath(){
@@ -898,6 +911,7 @@ let s1=document.getElementById("path1").value;
 let s2=document.getElementById("path2").value;
 let s3=document.getElementById("path3").value;
 let s4=document.getElementById("path4").value;
+let fb = document.getElementById("pathFeedback");
 
 if(
 s1==="Village" &&
@@ -905,74 +919,13 @@ s2==="Forest" &&
 s3==="Magic Tree" &&
 s4==="Home"
 ){
-
-document.getElementById("pathFeedback").innerHTML=
-"✅ Correct!";
-
+    fb.className = "feedback correct";
+    fb.innerHTML = "✅ Correct path! Excellent sequence!";
 }else{
-
-document.getElementById("pathFeedback").innerHTML=
-"❌ Incorrect!";
-
+    fb.className = "feedback incorrect";
+    fb.innerHTML = "❌ Not quite right!<br><span class='hint-box'>💡 Hint: Lily started at the village and ended at home.</span>";
 }
-
-}
-
-let canvas =
-document.getElementById("drawingCanvas");
-
-let ctx =
-canvas.getContext("2d");
-
-let drawing=false;
-
-canvas.addEventListener("mousedown",()=>{
-
-drawing=true;
-
-});
-
-canvas.addEventListener("mouseup",()=>{
-
-drawing=false;
-
-ctx.beginPath();
-
-});
-
-canvas.addEventListener("mousemove",(e)=>{
-
-if(!drawing)return;
-
-ctx.lineWidth=3;
-
-ctx.lineCap="round";
-
-ctx.lineTo(
-e.offsetX,
-e.offsetY
-);
-
-ctx.stroke();
-
-ctx.beginPath();
-
-ctx.moveTo(
-e.offsetX,
-e.offsetY
-);
-
-});
-
-function clearCanvas(){
-
-ctx.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
-
+playFeedbackAudio(fb.innerText);
 }
 
 function allowDrop(ev){
@@ -994,17 +947,13 @@ function drop(ev){
 
 ev.preventDefault();
 
-const data =
-ev.dataTransfer.getData("text");
+const data = ev.dataTransfer.getData("text");
 
-const dragged =
-document.getElementById(data);
+const dragged = document.getElementById(data);
 
-const dropZone =
-ev.currentTarget;
+const dropZone = ev.currentTarget;
 
-const correctAnswer =
-dropZone.dataset.answer;
+const correctAnswer = dropZone.dataset.answer;
 
 if(data===correctAnswer){
 
@@ -1016,14 +965,15 @@ dropZone.style.background="#d4edda";
 
 dropZone.style.border="3px solid green";
 
+speak("Correct!");
+
 }else{
 
-alert("❌ Try Again!");
+speak("Try again!");
 
 }
 
 }
-
 
 function checkcrystal(answer){
 
@@ -1031,24 +981,85 @@ let result=document.getElementById("crystalResult");
 
 if(answer === "crystal"){
 
-result.textContent="✅ Correct! The crystal was missing.";
-result.className="correct";
+result.className="feedback correct";
+result.innerHTML="✅ Correct! The crystal was missing from the tree.";
 
 }else{
 
-result.textContent="❌ Try Again!";
-result.className="incorrect";
+result.className="feedback incorrect";
+result.innerHTML="❌ Try again!<br><span class='hint-box'>💡 Hint: Lily found something sparkling on the ground!</span>";
+
+}
+playFeedbackAudio(result.innerText);
 
 }
 
+// TRUE / FALSE FUNCTION WITH SHORT HINTS
+const tfHints = {
+    tf1: "💡 Hint: Lily found a sparkling crystal, not a book!",
+    tf2: "💡 Hint: 'My name is Crystal,' said the fairy.",
+    tf3: "💡 Hint: They crossed a stream and climbed a hill."
+};
+
+function checkTF(key, userChoice, correctBool) {
+    let fb = document.getElementById(key);
+    if(userChoice === correctBool) {
+        fb.className = "feedback correct";
+        fb.innerHTML = "✅ Correct!";
+    } else {
+        fb.className = "feedback incorrect";
+        fb.innerHTML = "❌ Not quite!<br><span class='hint-box'>" + tfHints[key] + "</span>";
+    }
+    playFeedbackAudio(fb.innerText);
 }
 
+// ACTIVITY 6: ADAPTED LIKE THE DRAGON STORY
+function checkAct6Select(selectEl) {
+    let fb = document.getElementById("end1");
+    let val = selectEl.value;
 
-function resetGame(){
+    if (val === "") { fb.style.display = "none"; return; }
 
-location.reload();
-
+    if (val === "The Magic Tree shined again") {
+        fb.className = "feedback correct";
+        fb.innerHTML = "✅ Correct! When Lily placed the crystal back, the tree began to glow and shined again!";
+    } else {
+        fb.className = "feedback incorrect";
+        fb.innerHTML = "❌ Try again!<br><span class='hint-box'>💡 Hint: The crystal saved the tree and brought back its light.</span>";
+    }
+    playFeedbackAudio(fb.innerText);
 }
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function randomizeAllOptions() {
+    document.querySelectorAll('.shuffle-select').forEach(select => {
+        let firstOpt = select.options[0];
+        let optionsArr = Array.from(select.options).slice(1);
+        shuffleArray(optionsArr);
+        select.innerHTML = '';
+        select.appendChild(firstOpt);
+        optionsArr.forEach(opt => select.appendChild(opt));
+    });
+
+    let act1Opts = document.getElementById("act1_options");
+    if(act1Opts){
+        let imgs = Array.from(act1Opts.children);
+        shuffleArray(imgs);
+        act1Opts.innerHTML = '';
+        imgs.forEach(img => act1Opts.appendChild(img));
+    }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    randomizeAllOptions();
+});
 
 </script>
 
