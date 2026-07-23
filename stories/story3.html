@@ -2,906 +2,1433 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Story 3 - The Little Dragon's Friend</title>
 
 <style>
+/*====================================================
+=                 GENERAL PAGE STYLE                 =
+====================================================*/
+*{
+  box-sizing:border-box;
+}
 
 body{
-font-family:Arial,sans-serif;
-margin:0;
-padding:20px;
-background:linear-gradient(to bottom,#DFF6FF,#E8D5FF);
+  font-family:Arial,sans-serif;
+  margin:0;
+  padding:20px;
+  background:linear-gradient(to bottom,#DFF6FF,#E8D5FF);
 }
 
 .container{
-max-width:1200px;
-margin:auto;
+  max-width:1200px;
+  margin:auto;
 }
 
 .section{
-background:white;
-padding:20px;
-margin-top:20px;
-border-radius:20px;
-box-shadow:0 4px 10px rgba(0,0,0,.15);
+  background:white;
+  padding:20px;
+  margin-top:20px;
+  border-radius:20px;
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
 }
 
 h1{
-text-align:center;
-color:#5A4FCF;
+  text-align:center;
+  color:#5A4FCF;
 }
 
 h2{
-color:#7A5FFF;
+  color:#7A5FFF;
 }
 
-.card{
-display:inline-block;
-width:180px;
-margin:10px;
-padding:15px;
-background:#FFF8E7;
-border-radius:15px;
-text-align:center;
-vertical-align:top;
+h3{
+  color:#5A4FCF;
 }
 
-.card img{
-width:120px;
-height:120px;
-object-fit:cover;
-border-radius:10px;
-}
-
+/*====================================================
+=                      BUTTONS                       =
+====================================================*/
 button{
-background:#7A5FFF;
-color:white;
-border:none;
-padding:10px 15px;
-border-radius:10px;
-cursor:pointer;
-font-weight:bold;
+  background:#7A5FFF;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:bold;
+  margin:5px;
+  transition: transform .2s, opacity .2s;
 }
 
 button:hover{
-transform:scale(1.05);
+  transform:scale(1.05);
+  opacity:.9;
 }
 
 .back{
-background:#FF9F43;
+  background:#FF9F43;
 }
 
+/*====================================================
+=                  VOCABULARY CARDS                  =
+====================================================*/
+.card{
+  display:inline-block;
+  width:180px;
+  margin:10px;
+  padding:15px;
+  background:#FFF8E7;
+  border-radius:15px;
+  text-align:center;
+  vertical-align:top;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+
+.card img{
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+/*====================================================
+=              SWIMMING FISH GAME STYLE             =
+====================================================*/
+.aquarium-container {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  background: linear-gradient(180deg, #74ebd5 0%, #9aceff 100%);
+  border: 4px solid #3498db;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.15);
+}
+
+.fish-item {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s;
+  user-select: none;
+}
+
+.fish-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #FFF;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  pointer-events: none;
+}
+
+.fish-item:hover {
+  filter: brightness(1.15) drop-shadow(0 0 10px #fff);
+}
+
+.fish-item.caught {
+  opacity: 0.2;
+  pointer-events: none;
+  filter: grayscale(100%);
+}
+
+.definitions-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.def-card {
+  background: #FFF8E7;
+  border: 3px solid #7A5FFF;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #333;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.def-card:hover {
+  transform: translateY(-3px);
+  background: #E8D5FF;
+}
+
+.def-card.selected {
+  background: #7A5FFF;
+  color: white;
+  border-color: #5A4FCF;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(122, 95, 255, 0.6);
+}
+
+.def-card.matched {
+  background: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+  cursor: default;
+  opacity: 0.6;
+}
+
+/*====================================================
+=                   QUESTION BOXES                   =
+====================================================*/
 .question-box{
-background:#F4F8FF;
-padding:15px;
-margin-top:15px;
-border-radius:10px;
-}
-
-.story-box{
-background:#FDFDFD;
-padding:20px;
-border-radius:15px;
-line-height:1.8;
-font-size:18px;
+  background:#F4F8FF;
+  padding:15px;
+  margin-top:15px;
+  border-radius:10px;
 }
 
 .feedback{
-font-weight:bold;
-margin-top:10px;
+  font-weight:bold;
+  margin-top:10px;
+  padding:10px 15px;
+  border-radius:8px;
+  display:none;
 }
 
 .correct{
-color:green;
+  display:block;
+  color:#155724;
+  background-color:#d4edda;
+  border-left:5px solid #28a745;
 }
 
 .incorrect{
-color:red;
+  display:block;
+  color:#721c24;
+  background-color:#f8d7da;
+  border-left:5px solid #dc3545;
+}
+
+.almost{
+  display:block;
+  color:#856404;
+  background-color:#fff3cd;
+  border-left:5px solid #ffc107;
+}
+
+.hint-text{
+  display:block;
+  font-size:14px;
+  font-weight:normal;
+  margin-top:6px;
+  line-height: 1.4;
+}
+
+.grammar-box{
+  background: #FFF3CD;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border-left: 4px solid #FFC107;
+  color: #856404;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.story-quote{
+  background: #E2F0D9;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border-left: 4px solid #28A745;
+  color: #155724;
+  font-size: 13px;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/*====================================================
+=                     STORY BOX                      =
+====================================================*/
+.story-box{
+  background:#FDFDFD;
+  padding:20px;
+  border-radius:15px;
+  line-height:1.8;
+  font-size:18px;
+}
+
+/*====================================================
+=                    RESULT BOX                      =
+====================================================*/
+.result-box{
+  margin-top:20px;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+  font-size:18px;
+  font-weight:bold;
+  display:none;
+}
+
+.excellent-result{
+  background:#FFFDE7;
+  border:3px solid #F1C40F;
+  color:#7D6608;
+}
+
+.good-result{
+  background:#FFF8D6;
+  border:3px solid #F1C40F;
+  color:#9A7D0A;
+}
+
+.practice-result{
+  background:#FFE8E8;
+  border:3px solid #E74C3C;
+  color:#922B21;
+}
+
+.stars{
+  font-size:35px;
+  margin:10px;
+}
+
+.retry-button{
+  background:#6C5CE7;
+  color:white;
+  padding:10px 20px;
+  font-size:16px;
+  border-radius:10px;
+  margin-top:10px;
+}
+
+/*====================================================
+=                  DRAWING CANVAS                    =
+====================================================*/
+.canvas-container{
+  text-align:center;
+  margin-top:20px;
 }
 
 canvas{
-border:3px solid #7A5FFF;
-background:white;
-border-radius:10px;
-margin-top:10px;
+  border: 3px solid #7A5FFF;
+  background:white;
+  border-radius:10px;
+  max-width:100%;
+  touch-action:none;
+  cursor:crosshair;
 }
 
-</style>
+.drawing-toolbar{
+  background:#F8F1FF;
+  padding:15px;
+  border-radius:15px;
+  margin-bottom:15px;
+}
 
+.tool-group{
+  margin:10px 0;
+}
+
+.tool-group label{
+  font-weight:bold;
+  margin-right:10px;
+}
+
+.color-button{
+  width:35px;
+  height:35px;
+  padding:0;
+  border-radius:50%;
+  border: 3px solid white;
+  box-shadow: 0 1px 4px rgba(0,0,0,.3);
+  margin:4px;
+}
+
+.color-button:hover{
+  transform:scale(1.15);
+}
+
+.tool-button{ background:#5A4FCF; }
+.eraser-button{ background:#95A5A6; }
+.clear-button{ background:#E74C3C; }
+.undo-button{ background:#3498DB; }
+
+.radio-item{
+  display:block;
+  margin:6px 0;
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-<button class="back"
-onclick="window.location.href='../index.html'">
+<button class="back" onclick="window.location.href='../index.html'">
 🏠 Back to Home
 </button>
 
 <h1>🐉 Story 3: The Little Dragon's Friend</h1>
 
 <!-- BEFORE READING -->
-
 <div class="section">
+  <h2>📚 Before Reading</h2>
+  <p>Learn the vocabulary before reading.</p>
 
-<h2>📚 Before Reading</h2>
+  <div class="card">
+    <img src="../images/dragon.jpg" alt="Dragon">
+    <h3>Dragon</h3>
+    <button onclick="speak('Dragon. A magical flying creature.')">🔊 Listen</button>
+    <p>A magical flying creature.</p>
+  </div>
 
-<p>
-Learn the vocabulary before reading.
-</p>
+  <div class="card">
+    <img src="../images/mountain.jpg" alt="Mountain">
+    <h3>Mountain</h3>
+    <button onclick="speak('Mountain. A very high hill.')">🔊 Listen</button>
+    <p>A very high hill.</p>
+  </div>
 
-<div class="card">
+  <div class="card">
+    <img src="../images/light.jpg" alt="Light">
+    <h3>Light</h3>
+    <button onclick="speak('Light. Something bright that helps us see.')">🔊 Listen</button>
+    <p>Something bright that helps us see.</p>
+  </div>
 
-<img src="../images/dragon.jpg">
+  <div class="card">
+    <img src="../images/cave.jpg" alt="Cave">
+    <h3>Cave</h3>
+    <button onclick="speak('Cave. A large hole in a mountain or rock.')">🔊 Listen</button>
+    <p>A large hole in a mountain or rock.</p>
+  </div>
 
-<h3>Dragon</h3>
-
-<button onclick="speak('Dragon. A magical flying creature.')">
-🔊 Listen
-</button>
-
-<p>A magical flying creature.</p>
-
+  <div class="card">
+    <img src="../images/crystal.jpg" alt="Crystal">
+    <h3>Crystal</h3>
+    <button onclick="speak('Crystal. A beautiful shiny stone.')">🔊 Listen</button>
+    <p>A beautiful shiny stone.</p>
+  </div>
 </div>
 
-<div class="card">
-
-<img src="../images/mountain.jpg">
-
-<h3>Mountain</h3>
-
-<button onclick="speak('Mountain. A very high hill.')">
-🔊 Listen
-</button>
-
-<p>A very high hill.</p>
-
-</div>
-
-<div class="card">
-
-<img src="../images/light.jpg">
-
-<h3>Light</h3>
-
-<button onclick="speak('Light. Something bright that helps us see.')">
-🔊 Listen
-</button>
-
-<p>Something bright that helps us see.</p>
-
-</div>
-
-<div class="card">
-
-<img src="../images/cave.jpg">
-
-<h3>Cave</h3>
-
-<button onclick="speak('Cave. A large hole in a mountain or rock.')">
-🔊 Listen
-</button>
-
-<p>A large hole in a mountain or rock.</p>
-
-</div>
-
-<div class="card">
-
-<img src="../images/crystal.jpg">
-
-<h3>Crystal</h3>
-
-<button onclick="speak('Crystal. A beautiful shiny stone.')">
-🔊 Listen
-</button>
-
-<p>A beautiful shiny stone.</p>
-
-</div>
-
-</div>
-
-<!-- VOCABULARY ACTIVITY -->
-
+<!-- VOCABULARY FISHING GAME -->
 <div class="section">
+  <h2>🎣 Catch the Vocabulary Fish!</h2>
+  <p><b>Instruction:</b> First, click a definition card below. Then, click the swimming image that matches it!</p>
 
-<h2>🔍 Choose the Correct Definition</h2>
+  <button onclick="resetVocabularyGame()">🔄 Reset Fish Game</button>
 
-<p>
-Choose the correct definition for each word.
-</p>
+  <!-- AQUARIUM -->
+  <div class="aquarium-container" id="aquarium"></div>
 
-<button onclick="resetGame()">
-🔄 Reset
-</button>
+  <!-- DEFINITION CARDS -->
+  <h3>📜 Select a Definition:</h3>
+  <div class="definitions-pool" id="defPool"></div>
 
-<div class="question-box">
+  <div id="fishFeedback" class="feedback" style="margin-top:15px;"></div>
 
-<p><b>Dragon</b></p>
-
-<select onchange="checkSelect(this,'A magical flying creature','v1')">
-<option value="">Select...</option>
-<option>A magical flying creature</option>
-<option>A shiny stone</option>
-<option>A dark cave</option>
-</select>
-
-<div id="v1"></div>
-
-</div>
-
-<div class="question-box">
-
-<p><b>Mountain</b></p>
-
-<select onchange="checkSelect(this,'A very high hill','v2')">
-<option value="">Select...</option>
-<option>A very high hill</option>
-<option>A bright light</option>
-<option>A flying animal</option>
-</select>
-
-<div id="v2"></div>
-
-</div>
-
-<div class="question-box">
-
-<p><b>Light</b></p>
-
-<select onchange="checkSelect(this,'Something bright that helps us see','v3')">
-<option value="">Select...</option>
-<option>Something bright that helps us see</option>
-<option>A place to sleep</option>
-<option>A magical creature</option>
-</select>
-
-<div id="v3"></div>
-
-</div>
-
-<div class="question-box">
-
-<p><b>Cave</b></p>
-
-<select onchange="checkSelect(this,'A large hole in a mountain or rock','v4')">
-<option value="">Select...</option>
-<option>A large hole in a mountain or rock</option>
-<option>A shiny crystal</option>
-<option>A bird house</option>
-</select>
-
-<div id="v4"></div>
-
-</div>
-
-<div class="question-box">
-
-<p><b>Crystal</b></p>
-
-<select onchange="checkSelect(this,'A beautiful shiny stone','v5')">
-<option value="">Select...</option>
-<option>A beautiful shiny stone</option>
-<option>A scary monster</option>
-<option>A river</option>
-</select>
-
-<div id="v5"></div>
-
-</div>
-
+  <div id="vocabularyResult" class="result-box">
+    <div>🎉 Vocabulary Fishing Complete!</div>
+    <div id="vocabularyScore"></div>
+    <div id="vocabularyStars" class="stars"></div>
+    <div id="vocabularyResultMessage"></div>
+    <button class="retry-button" onclick="resetVocabularyGame()">🔄 Try Again</button>
+  </div>
 </div>
 
 <!-- WARM UP -->
-
 <div class="section">
-
-<h2>🗣️ Warm-Up</h2>
-
-<div class="question-box">
-🐉 Do you think dragons are friendly or scary?
-</div>
-
-<div class="question-box">
-💡 What would you do if you saw a mysterious light?
-</div>
-
-<div class="question-box">
-🕳️ Would you enter a cave to solve a mystery?
-</div>
-
-<div class="question-box">
-💎 Have you ever seen a crystal?
-</div>
-
-<div class="question-box">
-🤝 What makes someone a good friend?
-</div>
-
+  <h2>🗣️ Warm-Up</h2>
+  <div class="question-box">🐉 Do you think dragons are friendly or scary?</div>
+  <div class="question-box">💡 What would you do if you saw a mysterious light?</div>
+  <div class="question-box">🕳️ Would you enter a cave to solve a mystery?</div>
+  <div class="question-box">💎 Have you ever seen a crystal?</div>
+  <div class="question-box">🤝 What makes someone a good friend?</div>
 </div>
 
 <!-- WHILE READING -->
-
 <div class="section">
+  <h2>📖 While Reading</h2>
+  <div class="story-box">
+    <p>
+      Far away, on a mountain, lived a little dragon named Ember.<br><br>
+      Every night, Ember saw a strange blue light in the forest.<br><br>
+      The light moved between the trees and then disappeared.<br><br>
+      The rabbits were scared.<br><br>
+      The birds stopped singing.<br><br>
+      Some animals thought the light was a monster.<br><br>
+      No one knew what the light was.<br><br>
+      Ember was curious.<br><br>
+      One morning, he decided to follow the light.<br><br>
+      He walked into the forest and found small glowing footprints.<br><br>
+      The footprints led him to a cave.<br><br>
+      Inside the cave, Ember saw the blue light again.<br><br>
+      Then he found a small creature with silver fur and blue eyes.<br><br>
+      The creature looked sad.<br><br>
+      "My name is Lumi," she said.<br><br>
+      "I am lost."<br><br>
+      Lumi explained that she came from the Crystal Valley.<br><br>
+      A strong storm had carried her far from home.<br><br>
+      The blue light was not dangerous.<br><br>
+      It was Lumi's magic glow.<br><br>
+      Ember smiled.<br><br>
+      "I will help you," he said.<br><br>
+      Together they traveled across hills and rivers.<br><br>
+      At last, they reached the Crystal Valley.<br><br>
+      Lumi's family was very happy to see her again.<br><br>
+      Before Ember left, Lumi gave him a small crystal.<br><br>
+      "Now you will always remember our friendship," she said.<br><br>
+      Ember returned to his mountain.<br><br>
+      Every night, the crystal glowed beside his window.<br><br>
+      The mysterious blue light was no longer a mystery.<br><br>
+      It was the beginning of a wonderful friendship.<br><br>
+      The End.
+    </p>
+  </div>
 
-<h2>📖 While Reading</h2>
-
-<div class="story-box">
-
-<p>
-
-Far away, on a mountain, lived a little dragon named Ember.
-
-Every night, Ember saw a strange blue light in the forest.
-
-The light moved between the trees and then disappeared.
-
-The rabbits were scared.
-
-The birds stopped singing.
-
-Some animals thought the light was a monster.
-
-No one knew what the light was.
-
-Ember was curious.
-
-One morning, he decided to follow the light.
-
-He walked into the forest and found small glowing footprints.
-
-The footprints led him to a cave.
-
-Inside the cave, Ember saw the blue light again.
-
-Then he found a small creature with silver fur and blue eyes.
-
-The creature looked sad.
-
-"My name is Lumi," she said.
-
-"I am lost."
-
-Lumi explained that she came from the Crystal Valley.
-
-A strong storm had carried her far from home.
-
-The blue light was not dangerous.
-
-It was Lumi's magic glow.
-
-Ember smiled.
-
-"I will help you," he said.
-
-Together they traveled across hills and rivers.
-
-At last, they reached the Crystal Valley.
-
-Lumi's family was very happy to see her again.
-
-Before Ember left, Lumi gave him a small crystal.
-
-"Now you will always remember our friendship," she said.
-
-Ember returned to his mountain.
-
-Every night, the crystal glowed beside his window.
-
-The mysterious blue light was no longer a mystery.
-
-It was the beginning of a wonderful friendship.
-
-The End.
-
-</p>
-
-</div>
-
-<div style="margin-top:15px;">
-
-<button onclick="playStory(0.7)">
-🐢 Slow
-</button>
-
-<button onclick="playStory(1)">
-🚶 Normal
-</button>
-
-<button onclick="playStory(1.3)">
-🐇 Fast
-</button>
-
-<button onclick="stopStory()">
-⏹ Stop
-</button>
-
-</div>
-
+  <div style="margin-top:15px; text-align:center;">
+    <button onclick="playStory(0.7)">🐢 Super Slow</button>
+    <button onclick="playStory(1)">🚶 Normal</button>
+    <button onclick="playStory(1.3)">🐇 Fast</button>
+    <button onclick="stopStory()">⏹ Stop</button>
+  </div>
 </div>
 
 <!-- AFTER READING -->
-
 <div class="section">
+  <h2>📝 After Reading</h2>
 
-<h2>📝 After Reading</h2>
+  <!-- ACTIVITY 1 -->
+  <h3>📖 Activity 1: Literal Comprehension</h3>
 
-<!-- ACTIVITY 1 -->
+  <div class="question-box">
+    <p>1. Where did Ember live?</p>
+    <div class="radio-group" id="group_q1">
+      <label class="radio-item"><input type="radio" name="q1" value="correct"> On a mountain</label>
+      <label class="radio-item"><input type="radio" name="q1" value="wrong"> In a city</label>
+      <label class="radio-item"><input type="radio" name="q1" value="wrong"> In a school</label>
+    </div>
+    <button onclick="checkRadioAnswer('q1','fb1')">Check Answer</button>
+    <div id="fb1" class="feedback"></div>
+  </div>
 
-<h3>📖 Activity 1: Literal Comprehension</h3>
+  <div class="question-box">
+    <p>2. What color was the mysterious light?</p>
+    <div class="radio-group" id="group_q2">
+      <label class="radio-item"><input type="radio" name="q2" value="wrong"> Red</label>
+      <label class="radio-item"><input type="radio" name="q2" value="correct"> Blue</label>
+      <label class="radio-item"><input type="radio" name="q2" value="wrong"> Green</label>
+    </div>
+    <button onclick="checkRadioAnswer('q2','fb2')">Check Answer</button>
+    <div id="fb2" class="feedback"></div>
+  </div>
 
-<div class="question-box">
+  <div class="question-box">
+    <p>3. Where did the footprints lead Ember?</p>
+    <div class="radio-group" id="group_q3">
+      <label class="radio-item"><input type="radio" name="q3" value="wrong"> A river</label>
+      <label class="radio-item"><input type="radio" name="q3" value="correct"> A cave</label>
+      <label class="radio-item"><input type="radio" name="q3" value="wrong"> A house</label>
+    </div>
+    <button onclick="checkRadioAnswer('q3','fb3')">Check Answer</button>
+    <div id="fb3" class="feedback"></div>
+  </div>
 
-<p>1. Where did Ember live?</p>
+  <div class="question-box">
+    <p>4. What gift did Lumi give Ember?</p>
+    <div class="radio-group" id="group_q4">
+      <label class="radio-item"><input type="radio" name="q4" value="wrong"> A map</label>
+      <label class="radio-item"><input type="radio" name="q4" value="correct"> A crystal</label>
+      <label class="radio-item"><input type="radio" name="q4" value="wrong"> A book</label>
+    </div>
+    <button onclick="checkRadioAnswer('q4','fb4')">Check Answer</button>
+    <div id="fb4" class="feedback"></div>
+  </div>
 
-<input type="radio" name="q1" value="correct"> On a mountain<br>
-<input type="radio" name="q1" value="wrong"> In a city<br>
-<input type="radio" name="q1" value="wrong"> In a school<br>
+  <div id="act1Result" class="result-box">
+    <div>🎉 Activity 1 Complete!</div>
+    <div id="act1Score"></div>
+    <div id="act1Stars" class="stars"></div>
+    <div id="act1ResultMessage"></div>
+    <button class="retry-button" onclick="resetAct1()">🔄 Try Again</button>
+  </div>
 
-<button onclick="checkAnswer('q1','fb1')">
-Check Answer
-</button>
+  <!-- ACTIVITY 2 -->
+  <h3>🧠 Activity 2: Inferential Comprehension</h3>
 
-<div id="fb1"></div>
+  <div class="question-box">
+    <p>1. Why were the animals scared?</p>
+    <select id="sel_i1" class="shuffle-select" onchange="checkInferentialSelect(this, 'They thought it was a monster', 'i1')">
+      <option value="">Select...</option>
+      <option>They thought it was a monster</option>
+      <option>They wanted to play</option>
+      <option>They were tired</option>
+    </select>
+    <div id="i1" class="feedback"></div>
+  </div>
+
+  <div class="question-box">
+    <p>2. Was Lumi dangerous?</p>
+    <select id="sel_i2" class="shuffle-select" onchange="checkInferentialSelect(this, 'No', 'i2')">
+      <option value="">Select...</option>
+      <option>No</option>
+      <option>Yes</option>
+    </select>
+    <div id="i2" class="feedback"></div>
+  </div>
+
+  <div class="question-box">
+    <p>3. Why did Ember help Lumi?</p>
+    <select id="sel_i3" class="shuffle-select" onchange="checkInferentialSelect(this, 'He was kind', 'i3')">
+      <option value="">Select...</option>
+      <option>He was kind</option>
+      <option>He was angry</option>
+      <option>He was scared</option>
+    </select>
+    <div id="i3" class="feedback"></div>
+  </div>
+
+  <div class="question-box">
+    <p>4. What can we learn from Ember?</p>
+    <select id="sel_i4" class="shuffle-select" onchange="checkInferentialSelect(this, 'Help others', 'i4')">
+      <option value="">Select...</option>
+      <option>Help others</option>
+      <option>Be selfish</option>
+      <option>Never explore</option>
+    </select>
+    <div id="i4" class="feedback"></div>
+  </div>
+
+  <div id="act2Result" class="result-box">
+    <div>🎉 Activity 2 Complete!</div>
+    <div id="act2Score"></div>
+    <div id="act2Stars" class="stars"></div>
+    <div id="act2ResultMessage"></div>
+    <button class="retry-button" onclick="resetAct2()">🔄 Try Again</button>
+  </div>
+
+  <!-- ACTIVITY 3 -->
+  <h3>💡 Activity 3: Main Idea</h3>
+
+  <div class="question-box">
+    <p>What is the story mainly about?</p>
+    <select id="sel_main1" class="shuffle-select" onchange="checkSimpleSelect(this, 'A dragon and a friendship', 'main1', 'Read again: Ember helped Lumi and they became great friends.')">
+      <option value="">Select...</option>
+      <option>A dragon and a friendship</option>
+      <option>A scary monster</option>
+      <option>A lost treasure</option>
+    </select>
+    <div id="main1" class="feedback"></div>
+  </div>
+
+  <!-- ACTIVITY 4 -->
+  <h3>🔤 Activity 4: Sentence Order</h3>
+  <p>Put the words in the correct order to make a sentence from the story.</p>
+
+  <div class="question-box">
+    <p>1. <b>Ember | saw | light | a</b></p>
+    <select id="sel_s1" class="shuffle-select" onchange="checkAct4Select(this, 'Ember saw a light', 's1')">
+      <option value="">Select...</option>
+      <option>Ember saw a light</option>
+      <option>Light saw Ember a</option>
+      <option>A Ember light saw</option>
+    </select>
+    <div id="s1" class="feedback"></div>
+  </div>
+
+  <div class="question-box">
+    <p>2. <b>lost | was | Lumi</b></p>
+    <select id="sel_s2" class="shuffle-select" onchange="checkAct4Select(this, 'Lumi was lost', 's2')">
+      <option value="">Select...</option>
+      <option>Lumi was lost</option>
+      <option>Lost Lumi was</option>
+      <option>Was Lumi lost</option>
+    </select>
+    <div id="s2" class="feedback"></div>
+  </div>
+
+  <div class="question-box">
+    <p>3. <b>became | They | friends</b></p>
+    <select id="sel_s3" class="shuffle-select" onchange="checkAct4Select(this, 'They became friends', 's3')">
+      <option value="">Select...</option>
+      <option>They became friends</option>
+      <option>Friends they became</option>
+      <option>Became friends they</option>
+    </select>
+    <div id="s3" class="feedback"></div>
+  </div>
+
+  <!-- RESULT BOX FOR ACTIVITY 4 -->
+  <div id="act4Result" class="result-box">
+    <div>🎉 Activity 4 Complete!</div>
+    <div id="act4Score"></div>
+    <div id="act4Stars" class="stars"></div>
+    <div id="act4ResultMessage"></div>
+    <button class="retry-button" onclick="resetAct4()">🔄 Try Again</button>
+  </div>
+
+  <!-- ACTIVITY 5: DRAWING -->
+  <div class="section">
+    <h3>🎨 Activity 5: Draw Lumi</h3>
+    <p>Draw Lumi using the description from the story (silver fur and blue eyes).</p>
+
+    <div class="drawing-toolbar">
+      <div class="tool-group">
+        <label>🖌️ Drawing Tool:</label>
+        <button class="tool-button" onclick="setTool('pencil')">✏️ Pencil</button>
+        <button class="tool-button" onclick="setTool('brush')">🖌️ Brush</button>
+        <button class="tool-button" onclick="setTool('marker')">🖍️ Marker</button>
+        <button class="eraser-button" onclick="setTool('eraser')">🧹 Eraser</button>
+      </div>
+
+      <div class="tool-group">
+        <label>📏 Brush Size:</label>
+        <button onclick="setBrushSize(3)">Small</button>
+        <button onclick="setBrushSize(7)">Medium</button>
+        <button onclick="setBrushSize(14)">Large</button>
+      </div>
+
+      <div class="tool-group">
+        <label>🎨 Colors:</label>
+        <button class="color-button" style="background:#000000;" onclick="setColor('#000000')"></button>
+        <button class="color-button" style="background:#00AEEF;" onclick="setColor('#00AEEF')"></button>
+        <button class="color-button" style="background:#C0C0C0;" onclick="setColor('#C0C0C0')"></button>
+        <button class="color-button" style="background:#5A4FCF;" onclick="setColor('#5A4FCF')"></button>
+        <button class="color-button" style="background:#FF0000;" onclick="setColor('#FF0000')"></button>
+        <button class="color-button" style="background:#FFD700;" onclick="setColor('#FFD700')"></button>
+        <button class="color-button" style="background:#008000;" onclick="setColor('#008000')"></button>
+        <br><br>
+        <label>🌈 Custom Color:</label>
+        <input type="color" id="customColor" value="#00AEEF" onchange="setColor(this.value)">
+      </div>
+
+      <div class="tool-group">
+        <button class="undo-button" onclick="undoDrawing()">↩️ Undo</button>
+        <button class="clear-button" onclick="clearCanvas()">🗑️ Clear Drawing</button>
+      </div>
+    </div>
+
+    <div class="canvas-container">
+      <canvas id="drawingCanvas" width="700" height="350"></canvas>
+    </div>
+  </div>
+
+  <!-- ACTIVITY 6: MYSTERY PREDICTION -->
+  <div class="section">
+    <h3>⭐ Activity 6: Mystery Prediction</h3>
+    <p>Before Ember found Lumi, what did you think the blue light was?</p>
+
+    <select id="sel_pred" class="shuffle-select" onchange="predictionAnswer(this)">
+      <option value="">Select...</option>
+      <option value="exact">A magical creature</option>
+      <option value="almost">A monster</option>
+      <option value="wrong">A ghost</option>
+      <option value="wrong">Something else</option>
+    </select>
+
+    <div id="predictionFeedback" class="feedback"></div>
+  </div>
 
 </div>
 
-<div class="question-box">
-
-<p>2. What color was the mysterious light?</p>
-
-<input type="radio" name="q2" value="wrong"> Red<br>
-<input type="radio" name="q2" value="correct"> Blue<br>
-<input type="radio" name="q2" value="wrong"> Green<br>
-
-<button onclick="checkAnswer('q2','fb2')">
-Check Answer
-</button>
-
-<div id="fb2"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>3. Where did the footprints lead Ember?</p>
-
-<input type="radio" name="q3" value="wrong"> A river<br>
-<input type="radio" name="q3" value="correct"> A cave<br>
-<input type="radio" name="q3" value="wrong"> A house<br>
-
-<button onclick="checkAnswer('q3','fb3')">
-Check Answer
-</button>
-
-<div id="fb3"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>4. What gift did Lumi give Ember?</p>
-
-<input type="radio" name="q4" value="wrong"> A map<br>
-<input type="radio" name="q4" value="correct"> A crystal<br>
-<input type="radio" name="q4" value="wrong"> A book<br>
-
-<button onclick="checkAnswer('q4','fb4')">
-Check Answer
-</button>
-
-<div id="fb4"></div>
-
-</div>
-
-</div>
-
-<!-- ACTIVITY 2 -->
-
-<div class="section">
-
-<h3>🧠 Activity 2: Inferential Comprehension</h3>
-
-<div class="question-box">
-
-<p>Why were the animals scared?</p>
-
-<select onchange="checkSelect(this,'They thought it was a monster','i1')">
-<option value="">Select...</option>
-<option>They thought it was a monster</option>
-<option>They wanted to play</option>
-<option>They were tired</option>
-</select>
-
-<div id="i1"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>Was Lumi dangerous?</p>
-
-<select onchange="checkSelect(this,'No','i2')">
-<option value="">Select...</option>
-<option>No</option>
-<option>Yes</option>
-</select>
-
-<div id="i2"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>Why did Ember help Lumi?</p>
-
-<select onchange="checkSelect(this,'He was kind','i3')">
-<option value="">Select...</option>
-<option>He was kind</option>
-<option>He was angry</option>
-<option>He was scared</option>
-</select>
-
-<div id="i3"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>What can we learn from Ember?</p>
-
-<select onchange="checkSelect(this,'Help others','i4')">
-<option value="">Select...</option>
-<option>Help others</option>
-<option>Be selfish</option>
-<option>Never explore</option>
-</select>
-
-<div id="i4"></div>
-
-</div>
-
-</div>
-
-<!-- ACTIVITY 3 -->
-
-<div class="section">
-
-<h3>💡 Activity 3: Main Idea</h3>
-
-<div class="question-box">
-
-<p>What is the story mainly about?</p>
-
-<select onchange="checkSelect(this,'A dragon and a friendship','main1')">
-
-<option value="">Select...</option>
-
-<option>A dragon and a friendship</option>
-
-<option>A scary monster</option>
-
-<option>A lost treasure</option>
-
-</select>
-
-<div id="main1"></div>
-
-</div>
-
-</div>
-
-<!-- ACTIVITY 4 -->
-
-<div class="section">
-
-<h3>🔤 Activity 4: Sentence Order</h3>
-
-<p>
-Put the words in the correct order.
-</p>
-
-<div class="question-box">
-
-<p>
-Ember | saw | light | a
-</p>
-
-<select onchange="checkSelect(this,'Ember saw a light','s1')">
-
-<option value="">Select...</option>
-
-<option>Ember saw a light</option>
-
-<option>Light saw Ember a</option>
-
-<option>A Ember light saw</option>
-
-</select>
-
-<div id="s1"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>
-lost | was | Lumi
-</p>
-
-<select onchange="checkSelect(this,'Lumi was lost','s2')">
-
-<option value="">Select...</option>
-
-<option>Lumi was lost</option>
-
-<option>Lost Lumi was</option>
-
-<option>Was Lumi lost lost</option>
-
-</select>
-
-<div id="s2"></div>
-
-</div>
-
-<div class="question-box">
-
-<p>
-became | They | friends
-</p>
-
-<select onchange="checkSelect(this,'They became friends','s3')">
-
-<option value="">Select...</option>
-
-<option>They became friends</option>
-
-<option>Friends they became</option>
-
-<option>Became friends they</option>
-
-</select>
-
-<div id="s3"></div>
-
-</div>
-
-</div>
-
-<!-- ACTIVITY 5 -->
-
-<div class="section">
-
-<h3>🎨 Activity 5: Draw Lumi</h3>
-
-<p>
-Draw Lumi using the description from the story.
-</p>
-
-<canvas id="drawingCanvas"
-width="700"
-height="350">
-</canvas>
-
-<br><br>
-
-<button onclick="clearCanvas()">
-🧹 Clear Drawing
-</button>
-
-</div>
-
-<!-- ACTIVITY 6 -->
-
-<div class="section">
-
-<h3>⭐ Activity 6: Mystery Prediction</h3>
-
-<p>
-Before Ember found Lumi, what did you think the blue light was?
-</p>
-
-<select onchange="predictionAnswer(this)">
-
-<option value="">Select...</option>
-
-<option>A monster</option>
-
-<option>A ghost</option>
-
-<option>A magical creature</option>
-
-<option>Something else</option>
-
-</select>
-
-<div id="predictionFeedback"></div>
-
-</div>
-
+<!-- JAVASCRIPT -->
 <script>
+/*====================================================
+=              RANDOM MOTIVATIONAL MESSAGES         =
+====================================================*/
+const positivePraise = [
+    "Correct! Well done!",
+    "Correct! Great job!",
+    "Correct! Awesome!",
+    "Correct! Outstanding!",
+    "Correct! You got it!"
+];
 
-function speak(text){
-
-speechSynthesis.cancel();
-
-let speech =
-new SpeechSynthesisUtterance(text);
-
-speech.lang="en-US";
-
-speechSynthesis.speak(speech);
-
+function getRandomPraise() {
+    return positivePraise[Math.floor(Math.random() * positivePraise.length)];
 }
 
-let storySpeech;
+/*====================================================
+=             SHUFFLE OPTIONS FUNCTION               =
+====================================================*/
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function randomizeAllOptions() {
+    document.querySelectorAll('.shuffle-select').forEach(select => {
+        let firstOpt = select.options[0];
+        let optionsArr = Array.from(select.options).slice(1);
+        shuffleArray(optionsArr);
+        select.innerHTML = '';
+        select.appendChild(firstOpt);
+        optionsArr.forEach(opt => select.appendChild(opt));
+    });
+
+    document.querySelectorAll('.radio-group').forEach(group => {
+        let items = Array.from(group.querySelectorAll('.radio-item'));
+        shuffleArray(items);
+        group.innerHTML = '';
+        items.forEach(item => group.appendChild(item));
+    });
+}
+
+/*====================================================
+=            VOCABULARY FISHING GAME ENGINE          =
+====================================================*/
+const vocabData = [
+    { id: "v1", name: "Dragon", img: "../images/dragon.jpg", def: "A magical flying creature" },
+    { id: "v2", name: "Mountain", img: "../images/mountain.jpg", def: "A very high hill" },
+    { id: "v3", name: "Light", img: "../images/light.jpg", def: "Something bright that helps us see" },
+    { id: "v4", name: "Cave", img: "../images/cave.jpg", def: "A large hole in a mountain or rock" },
+    { id: "v5", name: "Crystal", img: "../images/crystal.jpg", def: "A beautiful shiny stone" }
+];
+
+let fishState = {
+    selectedDefId: null,
+    attempts: { v1: null, v2: null, v3: null, v4: null, v5: null },
+    caughtCount: 0,
+    animationFrameId: null,
+    fishes: []
+};
+
+function initFishGame() {
+    const aquarium = document.getElementById("aquarium");
+    const defPool = document.getElementById("defPool");
+    aquarium.innerHTML = "";
+    defPool.innerHTML = "";
+    document.getElementById("fishFeedback").style.display = "none";
+    document.getElementById("vocabularyResult").style.display = "none";
+
+    fishState.selectedDefId = null;
+    fishState.attempts = { v1: null, v2: null, v3: null, v4: null, v5: null };
+    fishState.caughtCount = 0;
+    fishState.fishes = [];
+
+    if (fishState.animationFrameId) {
+        cancelAnimationFrame(fishState.animationFrameId);
+    }
+
+    let shuffledDefs = shuffleArray([...vocabData]);
+    shuffledDefs.forEach(item => {
+        let card = document.createElement("div");
+        card.className = "def-card";
+        card.id = "card_" + item.id;
+        card.innerText = item.def;
+        card.onclick = () => selectDefinition(item.id, card);
+        defPool.appendChild(card);
+    });
+
+    let aquaWidth = aquarium.clientWidth || 800;
+    let aquaHeight = 380;
+
+    vocabData.forEach((item, index) => {
+        let fishEl = document.createElement("div");
+        fishEl.className = "fish-item";
+        fishEl.id = "fish_" + item.id;
+
+        let img = document.createElement("img");
+        img.src = item.img;
+        img.alt = item.name;
+        fishEl.appendChild(img);
+
+        aquarium.appendChild(fishEl);
+
+        let posX = Math.random() * (aquaWidth - 120);
+        let posY = Math.random() * (aquaHeight - 120);
+        let speedX = (Math.random() * 1.5 + 0.8) * (Math.random() < 0.5 ? 1 : -1);
+        let speedY = (Math.random() * 1.0 + 0.5) * (Math.random() < 0.5 ? 1 : -1);
+
+        let fishObj = {
+            id: item.id,
+            el: fishEl,
+            x: posX,
+            y: posY,
+            vx: speedX,
+            vy: speedY,
+            caught: false
+        };
+
+        fishEl.onclick = () => catchFish(fishObj);
+        fishState.fishes.push(fishObj);
+    });
+
+    animateFishes();
+}
+
+function animateFishes() {
+    let aquaWidth = document.getElementById("aquarium").clientWidth || 800;
+    let aquaHeight = 380;
+
+    fishState.fishes.forEach(f => {
+        if (!f.caught) {
+            f.x += f.vx;
+            f.y += f.vy;
+
+            if (f.x <= 0) {
+                f.x = 0;
+                f.vx *= -1;
+            } else if (f.x >= aquaWidth - 110) {
+                f.x = aquaWidth - 110;
+                f.vx *= -1;
+            }
+
+            if (f.y <= 0) {
+                f.y = 0;
+                f.vy *= -1;
+            } else if (f.y >= aquaHeight - 110) {
+                f.y = aquaHeight - 110;
+                f.vy *= -1;
+            }
+
+            let scaleX = f.vx > 0 ? 1 : -1;
+            f.el.style.transform = `translate(${f.x}px, ${f.y}px) scaleX(${scaleX})`;
+        }
+    });
+
+    fishState.animationFrameId = requestAnimationFrame(animateFishes);
+}
+
+function selectDefinition(id, cardEl) {
+    if (cardEl.classList.contains("matched")) return;
+
+    document.querySelectorAll(".def-card").forEach(c => c.classList.remove("selected"));
+    cardEl.classList.add("selected");
+    fishState.selectedDefId = id;
+
+    let itemData = vocabData.find(v => v.id === id);
+    speak(itemData.def);
+}
+
+function catchFish(fishObj) {
+    let feedback = document.getElementById("fishFeedback");
+
+    if (!fishState.selectedDefId) {
+        feedback.className = "feedback incorrect";
+        let msg = "💡 First select a definition card below, then click a fish!";
+        feedback.innerHTML = msg;
+        playFeedbackAudio(msg);
+        return;
+    }
+
+    if (fishObj.caught) return;
+
+    let targetId = fishState.selectedDefId;
+    let isCorrect = (fishObj.id === targetId);
+
+    if (fishState.attempts[targetId] === null) {
+        fishState.attempts[targetId] = isCorrect;
+    }
+
+    if (isCorrect) {
+        fishObj.caught = true;
+        fishObj.el.classList.add("caught");
+
+        let defCard = document.getElementById("card_" + targetId);
+        if (defCard) {
+            defCard.classList.remove("selected");
+            defCard.classList.add("matched");
+        }
+
+        fishState.selectedDefId = null;
+        fishState.caughtCount++;
+
+        feedback.className = "feedback correct";
+        let praise = getRandomPraise();
+        let fullMsg = "✅ " + praise;
+        feedback.innerHTML = fullMsg;
+        playFeedbackAudio(fullMsg);
+
+        if (fishState.caughtCount === vocabData.length) {
+            finishFishGame();
+        }
+    } else {
+        feedback.className = "feedback incorrect";
+        let hint = vocabHints[targetId] || "Try looking closely at the images again!";
+        let fullMsg = "❌ Not quite!<br><span class='hint-text'>💡 " + hint + "</span>";
+        feedback.innerHTML = fullMsg;
+        playFeedbackAudio(fullMsg);
+    }
+}
+
+function finishFishGame() {
+    let score = Object.keys(fishState.attempts).filter(k => fishState.attempts[k] === true).length;
+    let result = getStarRating(score, 5);
+
+    setTimeout(() => {
+        let resBox = document.getElementById("vocabularyResult");
+        resBox.className = "result-box " + result.className;
+        document.getElementById("vocabularyScore").innerText = "First Attempt Score: " + score + "/5";
+        document.getElementById("vocabularyStars").innerText = result.stars;
+        document.getElementById("vocabularyResultMessage").innerText = result.message;
+        resBox.style.display = "block";
+
+        playFeedbackAudio(result.audio);
+    }, 800);
+}
+
+function resetVocabularyGame() {
+    initFishGame();
+}
+
+/*====================================================
+=                 STAR RATING SYSTEM                 =
+====================================================*/
+function getStarRating(score, total) {
+    let percentage = (score / total) * 100;
+
+    if (percentage === 100) {
+        return {
+            stars: "⭐⭐⭐",
+            message: "Excellent!",
+            className: "excellent-result",
+            audio: "Excellent! You answered all the questions correctly. Great job!"
+        };
+    }
+    if (percentage >= 50) {
+        return {
+            stars: "⭐⭐",
+            message: "Good!",
+            className: "good-result",
+            audio: "Good job! You answered most of the questions correctly. Keep going!"
+        };
+    }
+    return {
+        stars: "⭐",
+        message: "Keep Practicing!",
+        className: "practice-result",
+        audio: "Keep practicing! Read the story again and try once more. You can do it!"
+    };
+}
+
+/*====================================================
+=              SPEECH & AUDIO FUNCTIONS              =
+====================================================*/
+function speak(text){
+    window.speechSynthesis.cancel();
+    let speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "en-US";
+    speech.rate = 1;
+    speech.pitch = 1;
+    window.speechSynthesis.speak(speech);
+}
+
+function playFeedbackAudio(text){
+    window.speechSynthesis.cancel();
+    let cleanText = text.replace(/<br>/gi, " ").replace(/<[^>]*>/g, "").replace(/[✅❌💡🎉🎒⭐🌤️🌟📜🎣]/g, "");
+    let feedbackSpeech = new SpeechSynthesisUtterance(cleanText);
+    feedbackSpeech.lang = "en-US";
+    feedbackSpeech.rate = 0.95;
+    window.speechSynthesis.speak(feedbackSpeech);
+}
 
 function playStory(speed){
-
-stopStory();
-
-let text=`
-Far away, on a mountain, lived a little dragon named Ember. 
-Every night, Ember saw a strange blue light in the forest. 
-The light moved between the trees and then disappeared. 
-The rabbits were scared. 
-The birds stopped singing. 
-Some animals thought the light was a monster. 
-No one knew what the light was. 
-Ember was curious. 
-One morning, he decided to follow the light. 
-He walked into the forest and found small glowing footprints. 
-The footprints led him to a cave. 
-Inside the cave, Ember saw the blue light again. 
-Then he found a small creature with silver fur and blue eyes. 
-The creature looked sad. 
-"My name is Lumi," she said. 
-"I am lost." Lumi explained that she came from the Crystal Valley. 
-A strong storm had carried her far from home. 
-The blue light was not dangerous. 
-It was Lumi's magic glow. 
-Ember smiled. 
-"I will help you," he said. 
-Together they traveled across hills and rivers. At last, they reached the Crystal Valley. 
-Lumi's family was very happy to see her again. 
-Before Ember left, Lumi gave him a small crystal. 
-"Now you will always remember our friendship," she said. 
-Ember returned to his mountain. 
-Every night, the crystal glowed beside his window. 
-The mysterious blue light was no longer a mystery. 
-It was the beginning of a wonderful friendship. 
-The End
-`;
-
-storySpeech =
-new SpeechSynthesisUtterance(text);
-
-storySpeech.lang="en-US";
-storySpeech.rate=speed;
-
-speechSynthesis.speak(storySpeech);
-
+    stopStory();
+    let text = `Far away, on a mountain, lived a little dragon named Ember. Every night, Ember saw a strange blue light in the forest. The light moved between the trees and then disappeared. The rabbits were scared. The birds stopped singing. Some animals thought the light was a monster. No one knew what the light was. Ember was curious. One morning, he decided to follow the light. He walked into the forest and found small glowing footprints. The footprints led him to a cave. Inside the cave, Ember saw the blue light again. Then he found a small creature with silver fur and blue eyes. The creature looked sad. "My name is Lumi," she said. "I am lost." Lumi explained that she came from the Crystal Valley. A strong storm had carried her far from home. The blue light was not dangerous. It was Lumi's magic glow. Ember smiled. "I will help you," he said. Together they traveled across hills and rivers. At last, they reached the Crystal Valley. Lumi's family was very happy to see her again. Before Ember left, Lumi gave him a small crystal. "Now you will always remember our friendship," she said. Ember returned to his mountain. Every night, the crystal glowed beside his window. The mysterious blue light was no longer a mystery. It was the beginning of a wonderful friendship. The End.`;
+    
+    let storySpeech = new SpeechSynthesisUtterance(text);
+    storySpeech.lang = "en-US";
+    storySpeech.rate = speed;
+    storySpeech.pitch = 1;
+    window.speechSynthesis.speak(storySpeech);
 }
 
 function stopStory(){
-
-speechSynthesis.cancel();
-
+    window.speechSynthesis.cancel();
 }
 
-function checkAnswer(question,feedback){
+/*====================================================
+=            DATA DICTIONARIES & HINTS              =
+====================================================*/
+const vocabHints = {
+    v1: "Read again: A dragon is a magical flying creature.",
+    v2: "Read again: A mountain is a very high hill.",
+    v3: "Read again: Light is something bright that helps us see.",
+    v4: "Read again: A cave is a large hole in a mountain or rock.",
+    v5: "Read again: A crystal is a beautiful shiny stone."
+};
 
-let answer=
-document.querySelector(
-'input[name="'+question+'"]:checked'
-);
+const infHints = {
+    i1: "Read again: Some animals thought the light was a monster.",
+    i2: "Read again: The blue light was not dangerous. It was Lumi's magic glow.",
+    i3: "Read again: Ember smiled and helped Lumi go back home.",
+    i4: "Read again: Ember helped Lumi find her family in Crystal Valley."
+};
 
-if(!answer)return;
+const act1Hints = {
+    q1: "Read again: Far away, on a mountain, lived a little dragon named Ember.",
+    q2: "Read again: Every night, Ember saw a strange blue light in the forest.",
+    q3: "Read again: The footprints led him to a cave.",
+    q4: "Read again: Before Ember left, Lumi gave him a small crystal."
+};
 
-document.getElementById(feedback).innerHTML=
-answer.value==="correct"
-?
-"✅ Correct!"
-:
-"❌ Incorrect!";
+/* DATA SPECIFIC FOR ACTIVITY 4 (GRAMMAR & STORY PROOF) */
+const act4Details = {
+    s1: {
+        quote: "From the story: 'Every night, Ember saw a strange blue light in the forest.'",
+        grammar: "Grammar Structure: Person (Ember) + Action (saw) + What (a light)."
+    },
+    s2: {
+        quote: "From the story: 'My name is Lumi,' she said. 'I am lost.'",
+        grammar: "Grammar Structure: Subject (Lumi) + State Verb (was) + Adjective (lost)."
+    },
+    s3: {
+        quote: "From the story: 'It was the beginning of a wonderful friendship.'",
+        grammar: "Grammar Structure: Subject (They) + Action (became) + Complement (friends)."
+    }
+};
 
+/*====================================================
+=             ACTIVITY 1 LOGIC (RADIO)               =
+====================================================*/
+let act1State = { q1: null, q2: null, q3: null, q4: null };
+let act1FirstScore = null;
+
+function checkRadioAnswer(groupName, feedbackId) {
+    let options = document.getElementsByName(groupName);
+    let feedback = document.getElementById(feedbackId);
+    let selectedOption = null;
+
+    for (let opt of options) {
+        if (opt.checked) selectedOption = opt;
+    }
+
+    if (!selectedOption) return;
+
+    let isCorrect = (selectedOption.value === "correct");
+
+    if (act1State[groupName] === null) {
+        act1State[groupName] = isCorrect;
+    }
+
+    let fullText = "";
+    if (isCorrect) {
+        feedback.className = "feedback correct";
+        let praise = getRandomPraise();
+        fullText = "✅ " + praise;
+        feedback.innerHTML = fullText;
+    } else {
+        feedback.className = "feedback incorrect";
+        fullText = "❌ Not quite!<br><span class='hint-text'>💡 " + act1Hints[groupName] + "</span>";
+        feedback.innerHTML = fullText;
+    }
+
+    playFeedbackAudio(fullText);
+    checkAct1Completion();
 }
 
-function checkSelect(select,correct,id){
+function checkAct1Completion() {
+    let keys = ['q1', 'q2', 'q3', 'q4'];
+    let allAnswered = keys.every(k => act1State[k] !== null);
 
-document.getElementById(id).innerHTML=
-select.value===correct
-?
-"✅ Correct!"
-:
-"❌ Incorrect!";
+    if (allAnswered && act1FirstScore === null) {
+        act1FirstScore = keys.filter(k => act1State[k] === true).length;
+        let result = getStarRating(act1FirstScore, 4);
 
+        let resBox = document.getElementById("act1Result");
+        resBox.className = "result-box " + result.className;
+        document.getElementById("act1Score").innerText = "First Attempt Score: " + act1FirstScore + "/4";
+        document.getElementById("act1Stars").innerText = result.stars;
+        document.getElementById("act1ResultMessage").innerText = result.message;
+        resBox.style.display = "block";
+
+        playFeedbackAudio(result.audio);
+    }
 }
 
-function predictionAnswer(select){
-
-if(select.value!=""){
-
-document.getElementById(
-"predictionFeedback"
-).innerHTML=
-"🌟 Great prediction!";
-
+function resetAct1() {
+    act1State = { q1: null, q2: null, q3: null, q4: null };
+    act1FirstScore = null;
+    let keys = ['q1', 'q2', 'q3', 'q4'];
+    keys.forEach((k, idx) => {
+        let opts = document.getElementsByName(k);
+        opts.forEach(o => o.checked = false);
+        let fb = document.getElementById("fb" + (idx + 1));
+        if (fb) fb.style.display = "none";
+    });
+    document.getElementById("act1Result").style.display = "none";
+    randomizeAllOptions();
 }
 
+/*====================================================
+=             ACTIVITY 2 LOGIC (INFERENTIAL)         =
+====================================================*/
+let act2State = { i1: null, i2: null, i3: null, i4: null };
+let act2FirstScore = null;
+
+function checkInferentialSelect(selectElement, correctAnswer, key) {
+    let feedback = document.getElementById(key);
+    let userVal = selectElement.value;
+
+    if (userVal === "") {
+        feedback.style.display = "none";
+        return;
+    }
+
+    if (act2State[key] === null) {
+        act2State[key] = (userVal === correctAnswer);
+    }
+
+    let fullText = "";
+    if (userVal === correctAnswer) {
+        feedback.className = "feedback correct";
+        let praise = getRandomPraise();
+        fullText = "✅ " + praise;
+        feedback.innerHTML = fullText;
+    } else {
+        feedback.className = "feedback incorrect";
+        fullText = "❌ Not quite!<br><span class='hint-text'>💡 " + infHints[key] + "</span>";
+        feedback.innerHTML = fullText;
+    }
+
+    playFeedbackAudio(fullText);
+    checkAct2Completion();
 }
 
-let canvas=
-document.getElementById("drawingCanvas");
+function checkAct2Completion() {
+    let keys = ['i1', 'i2', 'i3', 'i4'];
+    let allAnswered = keys.every(k => {
+        let sel = document.getElementById("sel_" + k);
+        return sel && sel.value !== "";
+    });
 
-let ctx=
-canvas.getContext("2d");
+    if (allAnswered && act2FirstScore === null) {
+        act2FirstScore = keys.filter(k => act2State[k] === true).length;
+        let result = getStarRating(act2FirstScore, 4);
 
-let drawing=false;
+        let resBox = document.getElementById("act2Result");
+        resBox.className = "result-box " + result.className;
+        document.getElementById("act2Score").innerText = "First Attempt Score: " + act2FirstScore + "/4";
+        document.getElementById("act2Stars").innerText = result.stars;
+        document.getElementById("act2ResultMessage").innerText = result.message;
+        resBox.style.display = "block";
 
-canvas.addEventListener("mousedown",()=>{
+        playFeedbackAudio(result.audio);
+    }
+}
 
-drawing=true;
+function resetAct2() {
+    act2State = { i1: null, i2: null, i3: null, i4: null };
+    act2FirstScore = null;
+    let keys = ['i1', 'i2', 'i3', 'i4'];
+    keys.forEach(k => {
+        let sel = document.getElementById("sel_" + k);
+        if (sel) sel.value = "";
+        let fb = document.getElementById(k);
+        if (fb) fb.style.display = "none";
+    });
+    document.getElementById("act2Result").style.display = "none";
+    randomizeAllOptions();
+}
 
+/*====================================================
+=             SIMPLE SELECT CHECK FUNCTION           =
+====================================================*/
+function checkSimpleSelect(selectElement, correctAnswer, feedbackId, hintText) {
+    let feedback = document.getElementById(feedbackId);
+    let userVal = selectElement.value;
+
+    if (userVal === "") {
+        feedback.style.display = "none";
+        return;
+    }
+
+    let fullText = "";
+    if (userVal === correctAnswer) {
+        feedback.className = "feedback correct";
+        let praise = getRandomPraise();
+        fullText = "✅ " + praise;
+        feedback.innerHTML = fullText;
+    } else {
+        feedback.className = "feedback incorrect";
+        fullText = "❌ Not quite!<br><span class='hint-text'>💡 " + hintText + "</span>";
+        feedback.innerHTML = fullText;
+    }
+
+    playFeedbackAudio(fullText);
+}
+
+/*====================================================
+=             ACTIVITY 4 LOGIC (SENTENCE ORDER)      =
+====================================================*/
+let act4State = { s1: null, s2: null, s3: null };
+let act4FirstScore = null;
+
+function checkAct4Select(selectElement, correctAnswer, key) {
+    let feedback = document.getElementById(key);
+    let userVal = selectElement.value;
+
+    if (userVal === "") {
+        feedback.style.display = "none";
+        return;
+    }
+
+    if (act4State[key] === null) {
+        act4State[key] = (userVal === correctAnswer);
+    }
+
+    let details = act4Details[key];
+    let fullText = "";
+
+    if (userVal === correctAnswer) {
+        feedback.className = "feedback correct";
+        let praise = getRandomPraise();
+        fullText = "✅ " + praise + "<div class='story-quote'>📖 " + details.quote + "</div>";
+        feedback.innerHTML = fullText;
+    } else {
+        feedback.className = "feedback incorrect";
+        fullText = "❌ Not quite!<div class='grammar-box'>📐 <b>Grammar Tip:</b> " + details.grammar + "</div>";
+        feedback.innerHTML = fullText;
+    }
+
+    playFeedbackAudio(fullText);
+    checkAct4Completion();
+}
+
+function checkAct4Completion() {
+    let keys = ['s1', 's2', 's3'];
+    let allAnswered = keys.every(k => {
+        let sel = document.getElementById("sel_" + k);
+        return sel && sel.value !== "";
+    });
+
+    if (allAnswered && act4FirstScore === null) {
+        act4FirstScore = keys.filter(k => act4State[k] === true).length;
+        let result = getStarRating(act4FirstScore, 3);
+
+        let resBox = document.getElementById("act4Result");
+        resBox.className = "result-box " + result.className;
+        document.getElementById("act4Score").innerText = "First Attempt Score: " + act4FirstScore + "/3";
+        document.getElementById("act4Stars").innerText = result.stars;
+        document.getElementById("act4ResultMessage").innerText = result.message;
+        resBox.style.display = "block";
+
+        playFeedbackAudio(result.audio);
+    }
+}
+
+function resetAct4() {
+    act4State = { s1: null, s2: null, s3: null };
+    act4FirstScore = null;
+    let keys = ['s1', 's2', 's3'];
+    keys.forEach(k => {
+        let sel = document.getElementById("sel_" + k);
+        if (sel) sel.value = "";
+        let fb = document.getElementById(k);
+        if (fb) fb.style.display = "none";
+    });
+    document.getElementById("act4Result").style.display = "none";
+    randomizeAllOptions();
+}
+
+/*====================================================
+=         ACTIVITY 6: MYSTERY PREDICTION LOGIC       =
+====================================================*/
+function predictionAnswer(selectElement) {
+    let feedback = document.getElementById("predictionFeedback");
+    let selectedOption = selectElement.options[selectElement.selectedIndex];
+    let valType = selectedOption.getAttribute('value');
+
+    if (selectElement.value === "") {
+        feedback.style.display = "none";
+        return;
+    }
+
+    let fullText = "";
+
+    if (valType === "exact") {
+        feedback.className = "feedback correct";
+        fullText = "🎉 Oh wow! Correct! It was a magical creature with a magic glow!";
+        feedback.innerHTML = fullText;
+    } else if (valType === "almost") {
+        feedback.className = "feedback almost";
+        fullText = "🌤️ Almost there! The animals thought it was a monster, but it was actually a lost magical creature!";
+        feedback.innerHTML = fullText;
+    } else {
+        feedback.className = "feedback incorrect";
+        fullText = "❌ Look closely at the story again: the blue light was not a ghost, it was Lumi's magic glow!";
+        feedback.innerHTML = fullText;
+    }
+
+    playFeedbackAudio(fullText);
+}
+
+/*====================================================
+=                  CANVAS DRAWING                     =
+====================================================*/
+const canvas = document.getElementById('drawingCanvas');
+const ctx = canvas.getContext('2d');
+let drawing = false;
+let color = '#000000';
+let size = 3;
+let history = [];
+
+function startDrawing(e) {
+    drawing = true;
+    history.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+    draw(e);
+}
+
+function stopDrawing() {
+    drawing = false;
+    ctx.beginPath();
+}
+
+function draw(e) {
+    if(!drawing) return;
+    let rect = canvas.getBoundingClientRect();
+    let clientX = e.clientX || (e.touches && e.touches[0].clientX);
+    let clientY = e.clientY || (e.touches && e.touches[0].clientY);
+    let x = clientX - rect.left;
+    let y = clientY - rect.top;
+    
+    ctx.lineWidth = size;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = color;
+    
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+}
+
+canvas.addEventListener('mousedown', startDrawing);
+canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('mousemove', draw);
+
+canvas.addEventListener('touchstart', startDrawing);
+canvas.addEventListener('touchend', stopDrawing);
+canvas.addEventListener('touchmove', draw);
+
+function setColor(c) { color = c; }
+function setBrushSize(s) { size = s; }
+function setTool(tool) {
+    if(tool === 'eraser') color = '#FFFFFF';
+    else if(tool === 'pencil') size = 2;
+    else if(tool === 'brush') size = 6;
+    else if(tool === 'marker') size = 12;
+}
+
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function undoDrawing() {
+    if(history.length > 0) {
+        ctx.putImageData(history.pop(), 0, 0);
+    }
+}
+
+// INITIALIZE ON LOAD
+window.addEventListener('DOMContentLoaded', () => {
+    randomizeAllOptions();
+    initFishGame();
 });
-
-canvas.addEventListener("mouseup",()=>{
-
-drawing=false;
-
-ctx.beginPath();
-
-});
-
-canvas.addEventListener("mousemove",(e)=>{
-
-if(!drawing)return;
-
-ctx.lineWidth=3;
-
-ctx.lineCap="round";
-
-ctx.lineTo(
-e.offsetX,
-e.offsetY
-);
-
-ctx.stroke();
-
-ctx.beginPath();
-
-ctx.moveTo(
-e.offsetX,
-e.offsetY
-);
-
-});
-
-function clearCanvas(){
-
-ctx.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
-
-}
-
-function resetGame(){
-
-location.reload();
-
-}
-
 </script>
-
 </body>
 </html>
